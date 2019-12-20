@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="ca3650af-3a9e-4993-bb0d-16cc44a5c7b5" Title="TagProcGen" Url="html/76b416ce-348b-cca5-fbd2-6ca849320289.htm">
+    <HelpTOCNode Id="d8dd8d0b-6f37-49df-a4db-af23ec123efd" Title="BySortingColumn Class" Url="html/0c1cab49-fd46-dbd5-f385-bc2afc68d8d2.htm">
+      <HelpTOCNode Title="BySortingColumn Constructor " Url="html/c1e5996c-3b7f-7af1-299c-bcd75939d7c5.htm" />
+      <HelpTOCNode Id="6f1e766d-e2fc-4ee5-93c2-63225d107850" Title="BySortingColumn Methods" Url="html/1a64c654-40f9-75ca-4d5a-9f96bbc2d7bb.htm">
+        <HelpTOCNode Title="Compare Method " Url="html/732fb19a-0f7d-4415-c4f3-b3b4ad051ada.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="8a38c077-c99d-4415-921a-914c9ec21f72" Title="ExtensionMethods Class" Url="html/0980ef94-9ff3-d8a2-d83e-6adaec44bd9c.htm">
+      <HelpTOCNode Id="fa07c05f-b993-45f0-9e3e-3c3b83374f1a" Title="ExtensionMethods Methods" Url="html/d501d5ce-1971-e8bb-1ec3-92731a339bd6.htm">
+        <HelpTOCNode Title="GetNthIndex Method " Url="html/ce40c838-4f3b-10de-c336-b2829bde7e02.htm" />
+        <HelpTOCNode Title="ParseColumnDataPairs Method " Url="html/56d6a340-e257-ed29-dd74-714e5e8700c1.htm" />
+        <HelpTOCNode Title="ReplaceTagKeywords Method " Url="html/4e5ba965-4421-bd5a-4e17-e1a1e2492859.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="d142c7aa-3b79-4df0-bba9-872adce70f18" Title="GenTags Class" Url="html/1ade3047-3e97-9c85-fb41-72e606840297.htm">
+      <HelpTOCNode Id="cc07885f-7cdd-440d-980f-1ca0f054a023" Title="GenTags Methods" Url="html/21c91835-a0fa-19b4-3d1b-f4535ff8f384.htm">
+        <HelpTOCNode Title="Generate Method " Url="html/d142aaed-f8e9-2c58-2cb1-dd89b67df50b.htm" />
+        <HelpTOCNode Title="GenIEDTagProcMap Method " Url="html/95bc7934-0d79-6743-5a0b-a3e2406a54be.htm" />
+        <HelpTOCNode Title="InitExcel Method " Url="html/1b9a2187-8dd3-9686-4875-2e18a4345f47.htm" />
+        <HelpTOCNode Title="LoadPointers Method " Url="html/3eae3da9-543f-af76-e6d7-65d7af103374.htm" />
+        <HelpTOCNode Title="LocateTemplates Method " Url="html/6c8f9230-1d52-c724-f9aa-3799f95fc47d.htm" />
+        <HelpTOCNode Title="ReadRtac Method " Url="html/926183a3-2e7a-f671-1b97-39ee6b33f838.htm" />
+        <HelpTOCNode Title="ReadScada Method " Url="html/96e77905-600a-46dd-65a7-4af9efdcfa13.htm" />
+        <HelpTOCNode Title="ReadTemplate Method " Url="html/08ac1331-b599-58dc-058f-c4736b935180.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="a12b9165-c647-47e9-9c98-4363f6cd3a8e" Title="GenTags Fields" Url="html/457884b8-91eb-011d-3be1-d4827472e291.htm">
+        <HelpTOCNode Title="GlobalPointers Field" Url="html/8b1672dd-96e4-2f1d-510f-f36ff4af087d.htm" />
+        <HelpTOCNode Title="IedTemplates Field" Url="html/4699e947-b5cb-1cbe-dc7c-fb9732e643ed.htm" />
+        <HelpTOCNode Title="TPL_Rtac Field" Url="html/b5461686-d33c-e251-8eca-d13fa6ae1a77.htm" />
+        <HelpTOCNode Title="TPL_Scada Field" Url="html/26205f3a-7c52-9996-d7e1-99e32af6d31e.htm" />
+        <HelpTOCNode Title="TPL_TagProcessor Field" Url="html/f2896cc3-a5b9-78fb-9daa-f2e351115da0.htm" />
+        <HelpTOCNode Title="xlApp Field" Url="html/bb3aafea-0c46-97df-638a-bf3872989a0f.htm" />
+        <HelpTOCNode Title="xlDef Field" Url="html/ffd2c265-d9ae-f367-c9be-a377104ffdee.htm" />
+        <HelpTOCNode Title="xlWorkbook Field" Url="html/de907b44-71e8-5d03-b492-5ba5665e061c.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="5fb2c303-edc4-4416-83d7-6fae8708ac21" Title="IedTemplate Class" Url="html/ebf582ba-dca0-a989-1c48-5c5f313e52fc.htm">
+      <HelpTOCNode Title="IedTemplate Constructor " Url="html/b3f83bf7-ceed-0c7f-6c62-b285ec45df0f.htm" />
+      <HelpTOCNode Id="56045be7-33cc-4725-9a4b-e69ec8203db3" Title="IedTemplate Properties" Url="html/052e7f21-583a-bc11-c9b1-7d9065d164fa.htm">
+        <HelpTOCNode Title="AllIedPoints Property " Url="html/fc1beab4-d262-323a-afa2-dd589789a12e.htm" />
+        <HelpTOCNode Title="IedScadaNames Property " Url="html/ca02db96-2dcb-9d12-bcff-9f79031629ab.htm" />
+        <HelpTOCNode Title="Offsets Property " Url="html/06505578-93d9-bd15-e7b4-98ee52b70beb.htm" />
+        <HelpTOCNode Title="Pointers Property " Url="html/36dbce04-f5a3-4372-7402-0f1b3050d014.htm" />
+        <HelpTOCNode Title="xlSheet Property " Url="html/aa87269d-2be7-2b3a-ffb6-e626f8897e8a.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="a29ea86c-bb4c-43c7-b123-343d8fcdcb97" Title="IedTemplate Methods" Url="html/831236d6-fb1c-79c2-32f0-9e2ad41941f0.htm">
+        <HelpTOCNode Title="GetLinkedStatusPoint Method " Url="html/0bbce6cd-adfe-6f65-d047-53a05c827b05.htm" />
+        <HelpTOCNode Title="GetOrCreateTagEntry Method " Url="html/1c8179f2-5555-f0fc-912a-edda0c0d7ebe.htm" />
+        <HelpTOCNode Title="SubstituteTagName Method " Url="html/1539389c-5b45-52c6-04cb-3357b4ef855f.htm" />
+        <HelpTOCNode Title="Validate Method " Url="html/1cd45651-59b2-d987-c787-57d61a6cd1a6.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="f24fd1a6-adb6-4b89-a1b0-55bad78d54af" Title="IedTemplate.FilterInfo Class" Url="html/d110aa8b-cfba-52f4-2c54-1e609a067c37.htm">
+      <HelpTOCNode Title="IedTemplate.FilterInfo Constructor " Url="html/71ad9638-bef4-06e8-1406-06b689cc3ddd.htm" />
+      <HelpTOCNode Id="9b5baf19-5685-4bb5-bf3d-bd857456ce04" Title="FilterInfo Methods" Url="html/c58870db-319d-22c1-e8ea-570dea1be220.htm">
+        <HelpTOCNode Title="ShouldPointBeGenerated Method " Url="html/674be8d6-9160-09b0-7a6d-78b67d43808a.htm" />
+        <HelpTOCNode Title="ToString Method " Url="html/a7306f7a-c72d-cd44-8679-7aaaa65dec19.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="e581728f-3956-4d4c-9560-6d9677bc8fbe" Title="FilterInfo Fields" Url="html/a1108283-9053-3003-d2ef-5b6397eb722b.htm">
+        <HelpTOCNode Title="DeviceList Field" Url="html/3a1b2d8d-92b3-63d5-429c-5ba9286fd41e.htm" />
+        <HelpTOCNode Title="FilterPredicate Field" Url="html/d2d67128-8177-1fee-c185-2894a6e470b5.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="IedTemplate.FilterPredicateEnum Enumeration" Url="html/710074b3-e1cc-caa5-c21b-fa494094ac08.htm" />
+    <HelpTOCNode Id="779a2139-f3fe-4230-97e6-71cccc9ae9bf" Title="IedTemplate.IedScadaNamePair Class" Url="html/bca8ebf8-c38c-2b06-3fe8-5ace736ad513.htm">
+      <HelpTOCNode Title="IedTemplate.IedScadaNamePair Constructor " Url="html/b5715b8a-b2f8-3250-ac27-76ec63fc8b11.htm" />
+      <HelpTOCNode Title="IedScadaNamePair Methods" Url="html/9649d5f5-c353-c5ec-d1e5-8f77d3173f0c.htm" />
+      <HelpTOCNode Id="92291112-c67b-4611-a0f2-95c524ce6a09" Title="IedScadaNamePair Fields" Url="html/19d02fc4-c8ec-e5d8-08cf-19c7092282d4.htm">
+        <HelpTOCNode Title="IedName Field" Url="html/f9f2b3e1-e718-678d-69b2-d13994797138.htm" />
+        <HelpTOCNode Title="ScadaName Field" Url="html/ed6d2e27-e5d5-16cd-df5f-176203645b30.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="bfce2944-1f0a-4e18-a6c7-67c502c90e1f" Title="IedTemplate.IedTagEntry Class" Url="html/b2cd1938-5aaf-422e-036a-a48418cfc32d.htm">
+      <HelpTOCNode Title="IedTemplate.IedTagEntry Constructor " Url="html/b1ea0e41-1f71-ad97-bdb8-de9ce70b1fd3.htm" />
+      <HelpTOCNode Title="IedTagEntry Methods" Url="html/fc558edf-767d-db48-3065-a79f44d61fad.htm" />
+      <HelpTOCNode Id="a9761a10-0ce6-4605-b1f6-dfdbc4ccf2a5" Title="IedTagEntry Fields" Url="html/2747bcec-3c06-6d1f-c46d-b270169fdd3c.htm">
+        <HelpTOCNode Title="DeviceFilter Field" Url="html/4571dacb-e233-6cf3-62b8-9b578ee001f9.htm" />
+        <HelpTOCNode Title="IedTagNameTypeList Field" Url="html/1d9eb451-cf99-ff5c-66f4-35d335083053.htm" />
+        <HelpTOCNode Title="PointNumber Field" Url="html/261f7e8e-644f-c72f-bc8d-837aacd305ec.htm" />
+        <HelpTOCNode Title="PointNumberIsAbsolute Field" Url="html/5600db4d-f16a-1547-9f2a-43fca6b63351.htm" />
+        <HelpTOCNode Title="RtacColumns Field" Url="html/7bb5d8ad-525e-055c-570b-37b37c355876.htm" />
+        <HelpTOCNode Title="ScadaColumns Field" Url="html/f3d0a4bc-af3c-ee3c-5c0c-7670eeac7cad.htm" />
+        <HelpTOCNode Title="ScadaPointName Field" Url="html/0d2348f3-a3f5-e47e-7a68-8a8445fed9a3.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="bc2280d1-8505-4cd7-9de2-ddf5b50ad27d" Title="IedTemplate.IedTagNameTypePair Class" Url="html/b2adc314-5d6b-e03a-af16-5109bb4aba4d.htm">
+      <HelpTOCNode Title="IedTemplate.IedTagNameTypePair Constructor " Url="html/d51c4037-9dd7-c1b0-7efc-59d37e7cf3ce.htm" />
+      <HelpTOCNode Title="IedTagNameTypePair Methods" Url="html/f333f337-b017-f930-078e-102ca7b14f94.htm" />
+      <HelpTOCNode Id="84b1a904-72b7-47d7-8ee0-3b4fac33c9b6" Title="IedTagNameTypePair Fields" Url="html/79a50172-0a69-c0ea-7524-de1537318e4d.htm">
+        <HelpTOCNode Title="IedTagName Field" Url="html/efefe64c-89c0-2c3c-38dd-07fe5bcddacc.htm" />
+        <HelpTOCNode Title="IedTagTypeName Field" Url="html/68dcc656-ebb1-4e15-bef2-302d54442408.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="59a68773-b105-4bb0-a9e9-93e6973f4c05" Title="PointTypeInfo Class" Url="html/63fa50df-e13c-d44a-572f-2bed2f2c9c6f.htm">
+      <HelpTOCNode Id="3b38b02f-5d9c-498e-9adb-88c03fc51612" Title="PointTypeInfo Constructor " Url="html/0b4181d9-d6c6-8386-d50d-8e6903ef3739.htm">
+        <HelpTOCNode Title="PointTypeInfo Constructor (String)" Url="html/7919c5a4-be60-9c05-e2ec-ca333bdb1333.htm" />
+        <HelpTOCNode Title="PointTypeInfo Constructor (Boolean, Boolean)" Url="html/3be6917b-0634-b7fa-e5a0-79f3c21cddc8.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="c842110b-1f6f-423b-bb9f-d235e320ce91" Title="PointTypeInfo Properties" Url="html/78a7754d-500c-1202-f8e2-d77dd95ec2f0.htm">
+        <HelpTOCNode Title="IsAnalog Property " Url="html/2ebcb514-7ceb-bc48-8dbd-4455f2c97e0f.htm" />
+        <HelpTOCNode Title="IsBinary Property " Url="html/09e8d22f-e2f0-685b-c25b-f9371066ebed.htm" />
+        <HelpTOCNode Title="IsControl Property " Url="html/6712c1bd-d6c1-9811-821d-2652ff938a24.htm" />
+        <HelpTOCNode Title="IsStatus Property " Url="html/95b2a085-22e2-7d62-3b05-d8bbdbacbcce.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="e3d5e10d-5f66-4c28-896c-1deb0a148011" Title="PointTypeInfo Methods" Url="html/bd686909-f08a-0450-5993-33a0ebd3f68d.htm">
+        <HelpTOCNode Title="ToString Method " Url="html/37f1e5d9-841c-a0b0-9788-2b91f3b164b7.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="ac7a66fe-c99a-4e7c-a2d6-5b3072783d18" Title="RtacTagProcessorWorksheet Class" Url="html/01e946c8-e36e-a3d7-e858-17e90bd1152a.htm">
+      <HelpTOCNode Title="RtacTagProcessorWorksheet Constructor " Url="html/25944228-94c1-ce03-8745-9bcc38593cdd.htm" />
+      <HelpTOCNode Id="1fc33296-c15f-4004-8089-3cbff75fa30c" Title="RtacTagProcessorWorksheet Properties" Url="html/20232bcd-f07f-15a2-a5da-90f879c5e4c3.htm">
+        <HelpTOCNode Title="TagProcessorColumnsTemplate Property " Url="html/ce6e402e-7841-0895-629e-d20389cdac74.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="a53e1e7e-5348-40fd-8347-151a801a13b1" Title="RtacTagProcessorWorksheet Methods" Url="html/9418ebbf-8aa7-993c-5a30-ca124c41a825.htm">
+        <HelpTOCNode Title="AddEntry Method " Url="html/e54d04d6-8e3b-f548-a9e5-bd7b90ad3b84.htm" />
+        <HelpTOCNode Title="WriteCsv Method " Url="html/4dd8b681-7513-e048-965c-648018faca98.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="RtacTagProcessorWorksheet.QualityWrapModeEnum Enumeration" Url="html/c6dd1d07-c397-b19e-2ee6-5090b8d9c0cd.htm" />
+    <HelpTOCNode Id="1f74a5a9-9f0b-41b5-b04e-92043de2cb10" Title="RtacTagProcessorWorksheet.TagProcessorMapEntry Class" Url="html/5ce9c9b7-3254-f387-189b-b9dab1693293.htm">
+      <HelpTOCNode Id="54ad90e2-64ec-4c9e-b9fe-32c4d269d0bd" Title="TagProcessorMapEntry Constructor " Url="html/647c7f6a-dcf0-594a-6ad7-7cd99b10fe57.htm">
+        <HelpTOCNode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry Constructor " Url="html/b255afcb-89a3-0f4c-8325-cf6a5f5b428d.htm" />
+        <HelpTOCNode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry Constructor (String, String, String, String, PointTypeInfo, Dictionary(Int32, String), Boolean, Tuple(Int32, Int32))" Url="html/f9ecb1b3-129f-62a4-44dd-1db6b1916aef.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="6bac51ac-92f6-4259-99ff-7b8c86467432" Title="TagProcessorMapEntry Properties" Url="html/8d668e78-3d33-34b1-1de3-ea9b3b38b5ce.htm">
+        <HelpTOCNode Title="DestinationTagDataType Property " Url="html/c8ddc9ab-cbe0-9baf-341b-d7f2e9304481.htm" />
+        <HelpTOCNode Title="DestinationTagName Property " Url="html/011c1f86-1b03-5007-8590-930aec87d475.htm" />
+        <HelpTOCNode Title="NominalValueColumns Property " Url="html/ae34f1a6-ef47-a236-99ba-c5be7474c5ac.htm" />
+        <HelpTOCNode Title="ParsedDeviceName Property " Url="html/1ef0bab5-0f79-b126-70b7-b76524419c1b.htm" />
+        <HelpTOCNode Title="ParsedTagName Property " Url="html/aa961216-f3a1-087e-2264-a20a282fbb61.htm" />
+        <HelpTOCNode Title="PerformQualityWrapping Property " Url="html/22c0b5ac-e0b6-d614-fd60-1ab36302f42e.htm" />
+        <HelpTOCNode Title="PointType Property " Url="html/0b160642-c024-5707-81c7-6e4b34b42c94.htm" />
+        <HelpTOCNode Title="QualitySourceTagName Property " Url="html/1e734619-e757-a9f2-2232-c21ded780c0a.htm" />
+        <HelpTOCNode Title="ScadaRow Property " Url="html/415ded19-3e4d-7244-2297-4f531313b628.htm" />
+        <HelpTOCNode Title="SourceExpression Property " Url="html/aa526c84-bb3e-2dc2-2910-dc592ed5df38.htm" />
+        <HelpTOCNode Title="SourceExpressionDataType Property " Url="html/d0c1850b-9683-1ed0-f7dd-aec568c23e4d.htm" />
+        <HelpTOCNode Title="TimeSourceTagName Property " Url="html/86d9451e-890e-8367-3839-8651840d6109.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="TagProcessorMapEntry Methods" Url="html/dc8a198b-7191-5610-9a0b-ead830b01d3f.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="ad807a8d-af68-4352-adf9-45f46207bf55" Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator Class" Url="html/3e8bc65c-7cbd-dd91-9861-bf062e0ce62d.htm">
+      <HelpTOCNode Id="6bfad05e-c727-4de4-892c-d3f4026d761f" Title="TagQualityWrapGenerator Constructor " Url="html/3696e07d-a6ae-b0ea-3597-c75101192b88.htm">
+        <HelpTOCNode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator Constructor " Url="html/17c37876-30d4-04ce-d729-1ae55db5d692.htm" />
+        <HelpTOCNode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator Constructor (List(RtacTagProcessorWorksheet.TagProcessorMapEntry))" Url="html/8b05f7b5-3e22-7f50-ddda-0049c0b757b0.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="4cb3bc62-6f22-45e4-92df-359776e0020a" Title="TagQualityWrapGenerator Properties" Url="html/a57084d8-47b8-fefd-cd7c-8291f274012b.htm">
+        <HelpTOCNode Title="TagsToWrap Property " Url="html/e58516e5-c506-887e-7fb3-84d09cdf2bbe.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="8d9b9ce2-ba39-455d-9acc-cf375f88d6a9" Title="TagQualityWrapGenerator Methods" Url="html/1d161cdb-9d82-ca85-639f-5bcdf6c95319.htm">
+        <HelpTOCNode Title="Generate Method " Url="html/9aebaf6e-2ffe-d5b5-2433-efe836144e66.htm" />
+        <HelpTOCNode Title="GenerateConditionalTagEntry Method " Url="html/accce18b-7fc0-9248-3c30-9410a4bdc210.htm" />
+        <HelpTOCNode Title="GetNominalValue Method " Url="html/fc07f66e-cfc7-5d67-acc0-1e5f04d4f50a.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="07800854-8888-4862-8413-d8733eba5661" Title="TagQualityWrapGenerator Fields" Url="html/b1aba3d5-76bb-360d-1ae6-5b3ba2ee47d9.htm">
+        <HelpTOCNode Title="ELSE_TEMPLATE Field" Url="html/9738bf0f-6ca9-d24e-e5a2-5e011244de4d.htm" />
+        <HelpTOCNode Title="END_IF_TEMPLATE Field" Url="html/0801c56c-d08f-1982-2b27-b6d804f12f0b.htm" />
+        <HelpTOCNode Title="QUALITY_CONDITIONAL_TEMPLATE Field" Url="html/02bffe00-a42a-420a-d5f9-8a19f09e5e97.htm" />
+        <HelpTOCNode Title="QUALITY_SOURCE_TEMPLATE Field" Url="html/1528b69a-b308-212c-d70f-170ba5a1ffde.htm" />
+        <HelpTOCNode Title="TAG_KEYWORD Field" Url="html/a7122aac-597d-25c1-87a6-df576b42d3cb.htm" />
+        <HelpTOCNode Title="TIME_SOURCE_TEMPLATE Field" Url="html/5cd36395-8655-ba44-1ebf-761fb4714b9e.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="8a3d5880-b812-415a-ac33-ec38dcdf43bb" Title="RtacTemplate Class" Url="html/5eed4121-436a-f59b-1661-0987971e63c6.htm">
+      <HelpTOCNode Title="RtacTemplate Constructor " Url="html/479b64bd-30b0-9406-ae17-ab2b7ba91e2e.htm" />
+      <HelpTOCNode Id="cbd715b2-2836-44cb-ab57-de7ad4635adc" Title="RtacTemplate Properties" Url="html/b4032607-4e47-42bd-6ba8-e3f22ad9934d.htm">
+        <HelpTOCNode Title="AliasNameTemplate Property " Url="html/43d205cf-56d6-9a71-151d-fbc218622dc8.htm" />
+        <HelpTOCNode Title="Pointers Property " Url="html/5f2a9d55-a2ba-20f4-4130-427ca5eea223.htm" />
+        <HelpTOCNode Title="RtacServerName Property " Url="html/9332eefe-5b0d-e087-5c1a-8c2403d75de7.htm" />
+        <HelpTOCNode Title="RtacTagPrototypes Property " Url="html/7f05c06d-f357-033d-afcc-9129479cd0d7.htm" />
+        <HelpTOCNode Title="TagAliasSubstitutes Property " Url="html/7247dc17-3dd6-334c-fc15-25b22e339a84.htm" />
+        <HelpTOCNode Title="TagTypeRunningAddressOffset Property " Url="html/a07598b8-a7d3-2c0c-ce9d-0539c0d17c80.htm" />
+        <HelpTOCNode Title="xlSheet Property " Url="html/f8d72c52-403c-5822-5b84-f7440d9130e3.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="f96e2572-1127-4ab4-b1ed-e71c1dfe5724" Title="RtacTemplate Methods" Url="html/81f9a3ce-8196-2809-3499-83a66d8d4c78.htm">
+        <HelpTOCNode Title="AddIedServerTagMap Method " Url="html/28df6172-ccb7-3edd-8294-7c67d6384560.htm" />
+        <HelpTOCNode Title="AddRtacTagOutput Method " Url="html/33e6cdab-eab3-afe8-f828-1cfa0f8e9827.htm" />
+        <HelpTOCNode Title="AddTagPrototypeEntry Method " Url="html/2921f849-af36-b247-3686-1b323b4f71dc.htm" />
+        <HelpTOCNode Title="GenerateServerTagNameByAddress Method " Url="html/861756af-1834-41a3-ccbb-f3c33e5b6f6a.htm" />
+        <HelpTOCNode Title="GetArraySuffix Method " Url="html/f7648bfd-aa12-3c45-1981-9f95bee38437.htm" />
+        <HelpTOCNode Title="GetRtacAlias Method " Url="html/a6c3b0ff-1c7a-b28d-0f4c-762dc72ef8b2.htm" />
+        <HelpTOCNode Title="GetServerTagEntryByDevice Method " Url="html/6b60c7b8-9a40-0bfe-e011-8b9b9ad20c36.htm" />
+        <HelpTOCNode Title="GetServerTagInfoByDevice Method " Url="html/a6927e82-e7c2-1b39-a76f-a677c4138cf9.htm" />
+        <HelpTOCNode Title="GetServerTagPrototypeByDevice Method " Url="html/fbf2f655-4b4d-ca14-7905-5e10f565f03f.htm" />
+        <HelpTOCNode Title="GetServerTypeByIedType Method " Url="html/b96729b0-42be-1f26-90b7-a243a86873c2.htm" />
+        <HelpTOCNode Title="IncrementRtacTagBaseAddressByRtacTagType Method " Url="html/8207ea24-5e5f-93f8-526e-62aaa37fb0d5.htm" />
+        <HelpTOCNode Title="ReplaceRtacKeywords Method " Url="html/18d5592f-a573-af31-67e4-cbfd0df85a95.htm" />
+        <HelpTOCNode Title="ValidateTag Method " Url="html/0c986410-0b9e-2e03-dfcf-4b835d930b6e.htm" />
+        <HelpTOCNode Title="ValidateTagAlias Method " Url="html/a8f09ede-846e-6491-64db-c5c05a70ead6.htm" />
+        <HelpTOCNode Title="ValidateTagPrototypes Method " Url="html/bf25c8ab-8ca1-f24c-b22b-d6437ced6fb6.htm" />
+        <HelpTOCNode Title="WriteAllServerTags Method " Url="html/770cdde8-fa84-86ca-5315-2bc149d80f03.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="536902c7-6d09-47ff-bff9-313b8ba46905" Title="RtacTemplate.ServerTagInfo Class" Url="html/7abafda1-2c94-c861-ee0c-e61815df40b7.htm">
+      <HelpTOCNode Id="56b5bfa7-8dc5-4384-a4c9-62cce03db813" Title="ServerTagInfo Constructor " Url="html/a44fa772-5737-665e-62ca-d86008e923e0.htm">
+        <HelpTOCNode Title="RtacTemplate.ServerTagInfo Constructor " Url="html/b927ba95-def3-7d4d-6db4-9e6296a700a0.htm" />
+        <HelpTOCNode Title="RtacTemplate.ServerTagInfo Constructor (String)" Url="html/b29c030d-1110-278c-c556-f609fbc3d2ca.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="21a8f251-402a-4c92-9d97-648ae4df53b8" Title="ServerTagInfo Properties" Url="html/70e2a1ec-988b-935b-af0d-85fb937c7fc4.htm">
+        <HelpTOCNode Title="FullServerTagTypeName Property " Url="html/3ad8e2a8-76fb-b561-0ddf-160c52a799b9.htm" />
+        <HelpTOCNode Title="Index Property " Url="html/ef780852-ce90-a2d6-e613-2ad81431e7d6.htm" />
+        <HelpTOCNode Title="IsArray Property " Url="html/b7286bcc-6ed3-7115-ca01-3e710abc2070.htm" />
+        <HelpTOCNode Title="RootServerTagTypeName Property " Url="html/db59ce4d-eac7-64e1-abde-d3748ac31445.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="ServerTagInfo Methods" Url="html/ade8a4ee-d6c6-fa3d-2508-c745e0e7253c.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="55d4fe53-28fc-4a64-b133-009cad42356c" Title="RtacTemplate.ServerTagMapInfo Class" Url="html/9cc0dd91-e89b-f9f5-2bc7-e3307c084c74.htm">
+      <HelpTOCNode Title="RtacTemplate.ServerTagMapInfo Constructor " Url="html/3888d058-8b72-1a59-a189-4696014c0398.htm" />
+      <HelpTOCNode Title="ServerTagMapInfo Methods" Url="html/99a62f5f-9076-b60c-1481-c968f7380a92.htm" />
+      <HelpTOCNode Id="d8229a33-bef5-4bfb-b1b2-f957c8ffec27" Title="ServerTagMapInfo Fields" Url="html/c9e46ffe-2d0a-06b8-f9f3-5a4e13b3992e.htm">
+        <HelpTOCNode Title="PerformQualityWrapping Field" Url="html/079207a1-666c-2741-8332-bc30a74b78a5.htm" />
+        <HelpTOCNode Title="ServerTagTypeName Field" Url="html/bb85fd27-9992-b52b-4313-f59d4d5489db.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="623d913c-2c32-4d54-8ffd-96fd387932a2" Title="RtacTemplate.ServerTagPrototypeEntry Class" Url="html/fcbf4804-22b7-a179-d46d-e542bda828e8.htm">
+      <HelpTOCNode Title="RtacTemplate.ServerTagPrototypeEntry Constructor " Url="html/408da745-a2c3-86d8-214c-cef235f4b1c8.htm" />
+      <HelpTOCNode Title="ServerTagPrototypeEntry Methods" Url="html/c9a98d20-b964-a361-8b26-28dffbdbdce5.htm" />
+      <HelpTOCNode Id="fb82c49c-cb09-4700-a45a-687eb751ad18" Title="ServerTagPrototypeEntry Fields" Url="html/c2b47867-90a4-9ab8-436f-01f1fc155d79.htm">
+        <HelpTOCNode Title="ServerTagNameTemplate Field" Url="html/84c52a01-1e1f-0dc5-b46a-8809fa9ad5ab.htm" />
+        <HelpTOCNode Title="StandardColumns Field" Url="html/e0de6f12-6b83-487d-9fdd-72a62c9f7cf1.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="3fe5f935-9546-4d58-8841-8cad142127e7" Title="RtacTemplate.ServerTagRootPrototype Class" Url="html/febc734d-2372-74af-27ae-d35f4d5c056d.htm">
+      <HelpTOCNode Title="RtacTemplate.ServerTagRootPrototype Constructor " Url="html/4b07a4b6-6ac3-ed03-5634-c9d64a4cb84f.htm" />
+      <HelpTOCNode Title="ServerTagRootPrototype Methods" Url="html/bfe5837c-95a4-4dc3-2acb-7ab823ed455d.htm" />
+      <HelpTOCNode Id="bd30180f-9dd4-41a7-a08e-fabb29a7dc6c" Title="ServerTagRootPrototype Fields" Url="html/f66eb9ec-0615-fa4f-74ed-922452d56c5f.htm">
+        <HelpTOCNode Title="NominalColumns Field" Url="html/eaa620da-3c74-c2e1-66a0-5d14b870dc20.htm" />
+        <HelpTOCNode Title="PointType Field" Url="html/70cf53e1-691e-01d3-a841-d7fa34acde3f.htm" />
+        <HelpTOCNode Title="SortingColumn Field" Url="html/086fde7f-4d11-93b5-c42b-23b936834d4e.htm" />
+        <HelpTOCNode Title="TagPrototypeEntries Field" Url="html/d2d39bc7-0442-2c50-a07d-fac16c5e75e9.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="762c9f2c-c5f0-47e8-8323-bf8c462fc41f" Title="ScadaWorksheet Class" Url="html/837d246f-9703-1b28-6902-91500a7d7e21.htm">
+      <HelpTOCNode Title="ScadaWorksheet Constructor " Url="html/8f4bd731-4e22-313d-6397-be3c06173dfe.htm" />
+      <HelpTOCNode Id="a538c66d-1339-4b02-972d-b4a027093292" Title="ScadaWorksheet Properties" Url="html/c713b248-b776-ae10-f508-0c2bd030b404.htm">
+        <HelpTOCNode Title="MaxValidatedTag Property " Url="html/d37b0322-7632-6e54-b18d-834da4ee411d.htm" />
+        <HelpTOCNode Title="MaxValidatedTagLength Property " Url="html/5614bd4d-4124-1367-e298-be8a9b992ea5.htm" />
+        <HelpTOCNode Title="Pointers Property " Url="html/64afc11e-c998-68c1-f5a1-3302794e32f7.htm" />
+        <HelpTOCNode Title="ScadaNameTemplate Property " Url="html/9d50d02e-4ff8-8812-efaf-b4475b88b88d.htm" />
+        <HelpTOCNode Title="ScadaTagPrototypes Property " Url="html/d651ade2-dde3-2fc9-cf0d-aa78e6e245c3.htm" />
+        <HelpTOCNode Title="xlSheet Property " Url="html/3965b242-2e41-57a4-1826-85b165241dd6.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="41a477d9-70d6-4535-b783-aea9810ac4a5" Title="ScadaWorksheet Methods" Url="html/f1bf7b8c-a4fe-7704-716e-208a0a34247d.htm">
+        <HelpTOCNode Title="AddScadaTagOutput Method " Url="html/2e30f636-ee91-e7bd-b93d-79c2493c660f.htm" />
+        <HelpTOCNode Title="AddTagPrototypeEntry Method " Url="html/caf835c1-6c66-c5e7-6fd3-7a6211be4152.htm" />
+        <HelpTOCNode Title="ReplaceScadaKeywords Method " Url="html/2e386af5-31e5-b1f0-5033-66a78e638625.htm" />
+        <HelpTOCNode Title="ScadaNameGenerator Method " Url="html/166dc368-b090-8585-22e9-361c6512250f.htm" />
+        <HelpTOCNode Title="ValidateTagName Method " Url="html/120b7cb5-3df6-2ecb-6a02-1f5326742a06.htm" />
+        <HelpTOCNode Title="WriteAllSCADATags Method " Url="html/d53e8a89-f8fe-5add-eb01-27f975f0af92.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="02e4698b-e357-4922-9068-fc7505362c92" Title="ScadaWorksheet.ScadaTagPrototype Class" Url="html/ca2e742e-6b7e-d074-57c9-68fee3b882fc.htm">
+      <HelpTOCNode Title="ScadaWorksheet.ScadaTagPrototype Constructor " Url="html/7eb95aa5-a38d-0781-9e7a-21435f314a27.htm" />
+      <HelpTOCNode Title="ScadaTagPrototype Methods" Url="html/4ef09d83-fc46-5496-e52a-ae3e5e515abc.htm" />
+      <HelpTOCNode Id="16693974-b66b-4e9a-8e39-6240c2426c68" Title="ScadaTagPrototype Fields" Url="html/965b0eb1-d216-c8ef-07a2-4317787a6c66.htm">
+        <HelpTOCNode Title="CsvHeader Field" Url="html/1d23d115-2ddc-0810-3de7-1c8f908e026a.htm" />
+        <HelpTOCNode Title="CsvRowDefaults Field" Url="html/357f6c7e-7547-71fa-3f43-e9ce48b02a73.htm" />
+        <HelpTOCNode Title="KeyFormat Field" Url="html/6c9b3e73-423e-e91d-c2ce-389bcc6c2a27.htm" />
+        <HelpTOCNode Title="SortingColumn Field" Url="html/547b5c56-4799-e082-7f89-8263086e8c76.htm" />
+        <HelpTOCNode Title="StandardColumns Field" Url="html/085f7707-38ce-1540-574c-b5c508bff83e.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="76bc8c27-5baa-4415-b0df-51b50c16bcc7" Title="SharedUtils Class" Url="html/3d306b51-5f7a-145b-0c6e-56b3e0eb222f.htm">
+      <HelpTOCNode Id="6bdb495b-9f68-40fc-8693-d52de38cedfb" Title="SharedUtils Methods" Url="html/abc84dd0-2c16-7013-9c1c-0f888d3c8710.htm">
+        <HelpTOCNode Title="OutputRowEntryDictionaryToArray Method " Url="html/faa71129-5eb2-9540-9e7e-fa752b2763eb.htm" />
+        <HelpTOCNode Title="ReadPairRange Method " Url="html/697da2ad-8ee7-378a-0064-84793a970ee9.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>
