@@ -15,25 +15,22 @@ namespace TagProcGen
         public FormMain()
         {
             InitializeComponent();
-
-            this.DragEnter += Main_DragEnter;
-            this.DragDrop += Main_DragDrop;
         }
 
         private void FormMain_Load(object sender, EventArgs e) 
         {
-            _Path.Text = Properties.Settings.Default.SavedPath;
+            Path.Text = Properties.Settings.Default.SavedPath;
         }
 
-        private void Main_DragDrop(object sender, DragEventArgs e)
+        private void FormMain_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = e.Data.GetData(DataFormats.FileDrop) as string[];
-            _Path.Text = files[0];
+            Path.Text = files[0];
             Properties.Settings.Default.SavedPath = files[0];
             Properties.Settings.Default.Save();
         }
 
-        private void Main_DragEnter(object sender, DragEventArgs e)
+        private void FormMain_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 e.Effect = DragDropEffects.Copy;
@@ -41,36 +38,36 @@ namespace TagProcGen
                 e.Effect = DragDropEffects.None;
         }
 
-        private void _Browse_Click(object sender, EventArgs e)
+        private void Browse_Click(object sender, EventArgs e)
         {
             string Dir = "";
-            if (_Path.Text.Length > 0)
+            if (Path.Text.Length > 0)
             {
-                Dir = System.IO.Path.GetDirectoryName(_Path.Text);
+                Dir = System.IO.Path.GetDirectoryName(Path.Text);
             }
             _OpenFileDialog1.InitialDirectory = Dir;
 
             if ((int)_OpenFileDialog1.ShowDialog() == (int)DialogResult.OK)
             {
-                _Path.Text = _OpenFileDialog1.FileName;
+                Path.Text = _OpenFileDialog1.FileName;
                 Properties.Settings.Default.SavedPath = _OpenFileDialog1.FileName;
                 Properties.Settings.Default.Save();
             }
         }
 
-        private void _Gen_Click(object sender, EventArgs e)
+        private void Gen_Click(object sender, EventArgs e)
         {
-            _Gen.Enabled = false;
+            Gen.Enabled = false;
 
-            if (!System.IO.File.Exists(_Path.Text))
+            if (!System.IO.File.Exists(Path.Text))
             {
                 MessageBox.Show("File does not exist");
                 return;
             }
 
-            GenTags.Generate(_Path.Text);
+            GenTags.Generate(Path.Text);
 
-            _Gen.Enabled = true;
+            Gen.Enabled = true;
         }
     }
 }
