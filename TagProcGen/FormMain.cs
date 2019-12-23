@@ -15,9 +15,12 @@ namespace TagProcGen
         public FormMain()
         {
             InitializeComponent();
+
+            this.DragEnter += Main_DragEnter;
+            this.DragDrop += Main_DragDrop;
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
+        private void FormMain_Load(object sender, EventArgs e) 
         {
             _Path.Text = Properties.Settings.Default.SavedPath;
         }
@@ -34,6 +37,8 @@ namespace TagProcGen
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 e.Effect = DragDropEffects.Copy;
+            else
+                e.Effect = DragDropEffects.None;
         }
 
         private void _Browse_Click(object sender, EventArgs e)

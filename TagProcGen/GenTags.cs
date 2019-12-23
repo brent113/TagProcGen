@@ -273,16 +273,16 @@ namespace TagProcGen
 
             for (int i = 1, loopTo = dataTable.GetLength(0); i <= loopTo; i++)
             {
-                bool Process = (dataTable(i, 1).ToString().ToUpper() ?? "") == "TRUE";
+                bool Process = (dataTable[i, 1].ToString().ToUpper() ?? "") == "TRUE";
                 if (Process)
                 {
-                    string filterRaw = dataTable(i, 2) != null ? dataTable(i, 2).ToString() : "";
-                    string pointNumberRaw = dataTable(i, 3) != null ? dataTable(i, 3).ToString() : "";
-                    string iedTagName = dataTable(i, 4) != null ? dataTable(i, 4).ToString() : "";
-                    string iedTagType = dataTable(i, 5) != null ? dataTable(i, 5).ToString() : "";
-                    string rtacColumns = dataTable(i, 6) != null ? dataTable(i, 6).ToString() : "";
-                    string scadaPointName = dataTable(i, 7) != null ? dataTable(i, 7).ToString() : "";
-                    string scadaColumns = dataTable(i, 8) != null ? dataTable(i, 8).ToString() : "";
+                    string filterRaw = dataTable[i, 2] != null ? dataTable[i, 2].ToString() : "";
+                    string pointNumberRaw = dataTable[i, 3] != null ? dataTable[i, 3].ToString() : "";
+                    string iedTagName = dataTable[i, 4] != null ? dataTable[i, 4].ToString() : "";
+                    string iedTagType = dataTable[i, 5] != null ? dataTable[i, 5].ToString() : "";
+                    string rtacColumns = dataTable[i, 6] != null ? dataTable[i, 6].ToString() : "";
+                    string scadaPointName = dataTable[i, 7] != null ? dataTable[i, 7].ToString() : "";
+                    string scadaColumns = dataTable[i, 8] != null ? dataTable[i, 8].ToString() : "";
 
                     int pointNumber;
                     bool pointNumberIsAbsolute;
