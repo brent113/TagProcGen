@@ -175,8 +175,8 @@ namespace TagProcGen
     /// <returns>X less than Y: Less than 0. X=Y: 0. X greater than Y: Greater than 0.</returns>
         public int Compare(OutputRowEntryDictionary x, OutputRowEntryDictionary y)
         {
-            double xVal = Conversions.ToDouble(x[m_sortingColumn]);
-            double YVal = Conversions.ToDouble(y[m_sortingColumn]);
+            double xVal = Convert.ToDouble(x[m_sortingColumn]);
+            double YVal = Convert.ToDouble(y[m_sortingColumn]);
 
             return xVal.CompareTo(YVal);
         }
