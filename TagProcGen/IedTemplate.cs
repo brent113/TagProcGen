@@ -274,15 +274,14 @@ namespace TagProcGen
             // Select list of groups of tags with multiple tag names that map to the same server tag entry.
             // In each iedTagEntry group the name / type list by the server mapped full type, ie DNPC[2].
             // There should only be 1 entry, if there's more that means 2 things map to the same MV for example.
-            var tagNameTypeEntriesThatMapToSamePrototypeEntry = _AllTags.SelectMany(iedTagEntry => iedTagEntry.IedTagNameTypeList.GroupBy(iedTagNameTypePair => rtacTemplate.GetServerTagInfoByDevice(iedTagNameTypePair.IedTagTypeName).FullServerTagTypeName
-).Where(tagGroups => tagGroups.Count() > 1
-)
-    ).ToList();
+            var tagNameTypeEntriesThatMapToSamePrototypeEntry = _AllTags.SelectMany(iedTagEntry => iedTagEntry.IedTagNameTypeList.GroupBy(iedTagNameTypePair => rtacTemplate.GetServerTagInfoByDevice(iedTagNameTypePair.IedTagTypeName).FullServerTagTypeName)
+                .Where(tagGroups => tagGroups.Count() > 1))
+                .ToList();
 
             if (tagNameTypeEntriesThatMapToSamePrototypeEntry.Count > 0)
                 throw new Exception(string.Format("Template {0} contains a multiple tags of the same type: \r\n{1} of type {2} and \r\n{3} of type {4}.", xlSheet.Name, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(0).IedTagName, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(0).IedTagTypeName, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(1).IedTagName, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(1).IedTagTypeName
-)
-);
+            )
+            );
 
             // Verify the maximum point number for each type is less than the offset.
             // Create an anonymous type of the first tag type's server type, the point number, and isAbsolute
@@ -294,94 +293,89 @@ namespace TagProcGen
                 serverType = rtacTemplate.GetServerTagInfoByDevice(iedTagEntry.IedTagNameTypeList.First().IedTagTypeName).RootServerTagTypeName,
                 pointNumber = iedTagEntry.PointNumber,
                 isAbsolute = iedTagEntry.PointNumberIsAbsolute
-            }
-    ).Where(tagInfo => tagInfo.isAbsolute == false
-    ).OrderByDescending(tagInfo => tagInfo.pointNumber
-    ).GroupBy(tagInfo => tagInfo.serverType
-    ).Select(groups => new
-    {
-        groups.First().tagName,
-        groups.First().serverType,
-        groups.First().pointNumber
-    }
-    ).Where(maxPoint => maxPoint.pointNumber >= Conversions.ToDouble(Offsets[maxPoint.serverType])
-    ).ToList();
+            })
+                .Where(tagInfo => tagInfo.isAbsolute == false)
+                .OrderByDescending(tagInfo => tagInfo.pointNumber)
+                .GroupBy(tagInfo => tagInfo.serverType)
+                .Select(groups => new
+                {
+                    groups.First().tagName,
+                    groups.First().serverType,
+                    groups.First().pointNumber
+                })
+                .Where(maxPoint => maxPoint.pointNumber >= Convert.ToDouble(Offsets[maxPoint.serverType]))
+                .ToList();
 
             if (maxPointNumberHigherThanOffsetByType.Count > 0)
-                throw new Exception(string.Format("Tag name \"{0}\" with point number {1} is greater than or equal to the offset for the data type {2} at {3}.", maxPointNumberHigherThanOffsetByType.First().tagName, maxPointNumberHigherThanOffsetByType.First().pointNumber, maxPointNumberHigherThanOffsetByType.First().serverType, Offsets[maxPointNumberHigherThanOffsetByType.First().serverType]
-)
-);
+                throw new Exception(string.Format("Tag name \"{0}\" with point number {1} is greater than or equal to the offset for the data type {2} at {3}.",
+                    maxPointNumberHigherThanOffsetByType.First().tagName, maxPointNumberHigherThanOffsetByType.First().pointNumber,
+                    maxPointNumberHigherThanOffsetByType.First().serverType, Offsets[maxPointNumberHigherThanOffsetByType.First().serverType]));
 
             // Verify analog limits are defined in pairs
-            var analogStatusTagData = _AllTags.Select(x => new { tag = x, tagPrototype = rtacTemplate.GetServerTagPrototypeByDevice(x.IedTagNameTypeList.First().IedTagTypeName) }
-    ).Where(x => x.tagPrototype.PointType.IsAnalog & x.tagPrototype.PointType.IsStatus
-    ).ToList();
+            var analogStatusTagData = _AllTags.Select(x => new { tag = x, tagPrototype = rtacTemplate.GetServerTagPrototypeByDevice(x.IedTagNameTypeList.First().IedTagTypeName) })
+                .Where(x => x.tagPrototype.PointType.IsAnalog & x.tagPrototype.PointType.IsStatus)
+                .ToList();
 
             foreach (var tagData in analogStatusTagData)
             {
-                var analogLimits = tagData.tag.ScadaColumns.Where(x => x.Key >= tagData.tagPrototype.NominalColumns.Item1 & x.Key <= tagData.tagPrototype.NominalColumns.Item2
-   ).Where(x => !string.IsNullOrWhiteSpace(x.Value)
-   ).OrderBy(x => Conversions.ToDouble(x.Value)
-   ).ToList();
+                var analogLimits = tagData.tag.ScadaColumns.Where(x => x.Key >= tagData.tagPrototype.NominalColumns.Item1 & x.Key <= tagData.tagPrototype.NominalColumns.Item2)
+                    .Where(x => !string.IsNullOrWhiteSpace(x.Value))
+                    .OrderBy(x => Convert.ToDouble(x.Value))
+                    .ToList();
 
                 // Verify even number of limits
                 if (analogLimits.Count % 2 != 0)
-                    throw new Exception(string.Format("Tag name \"{0}\" has an odd number of limits. Limits must be in pairs.", tagData.tag.IedTagNameTypeList.First().IedTagName
-)
-);
+                    throw new Exception(string.Format("Tag name \"{0}\" has an odd number of limits. Limits must be in pairs.",
+                        tagData.tag.IedTagNameTypeList.First().IedTagName));
 
                 // Verify no duplicates
                 if (analogLimits.Count != analogLimits.Distinct().Count())
-                    throw new Exception(string.Format("Tag name \"{0}\" has a duplicate limit. Limits must be nested.", tagData.tag.IedTagNameTypeList.First().IedTagName
-)
-);
+                    throw new Exception(string.Format("Tag name \"{0}\" has a duplicate limit. Limits must be nested.",
+                        tagData.tag.IedTagNameTypeList.First().IedTagName));
             }
 
             // Verify binary nominals are either 1, 0, or -1
-            var binaryStatusTagsWithInvalidNominalState = _AllTags.Select(x => new { tag = x, tagPrototype = rtacTemplate.GetServerTagPrototypeByDevice(x.IedTagNameTypeList.First().IedTagTypeName) }
-    ).Where(x => x.tagPrototype.PointType.IsBinary & x.tagPrototype.PointType.IsStatus
-    ).Where(x =>
-    {
-        if (!x.tag.ScadaColumns.ContainsKey(x.tagPrototype.NominalColumns.Item1))
-            throw new Exception(string.Format("Tag \"{0}\" is missing required column #{1}", x.tag.IedTagNameTypeList.First().IedTagName, x.tagPrototype.NominalColumns.Item1));
-        int parseNumber;
-        bool parseSuccess;
-        parseSuccess = int.TryParse(x.tag.ScadaColumns[x.tagPrototype.NominalColumns.Item1], out parseNumber);
+            var binaryStatusTagsWithInvalidNominalState = _AllTags.Select(x => new { tag = x, tagPrototype = rtacTemplate.GetServerTagPrototypeByDevice(x.IedTagNameTypeList.First().IedTagTypeName) })
+                .Where(x => x.tagPrototype.PointType.IsBinary & x.tagPrototype.PointType.IsStatus)
+                .Where(x =>
+                {
+                    if (!x.tag.ScadaColumns.ContainsKey(x.tagPrototype.NominalColumns.Item1))
+                        throw new Exception(string.Format("Tag \"{0}\" is missing required column #{1}", x.tag.IedTagNameTypeList.First().IedTagName, x.tagPrototype.NominalColumns.Item1));
+                    bool parseSuccess = int.TryParse(x.tag.ScadaColumns[x.tagPrototype.NominalColumns.Item1], out int parseNumber);
 
-        // Select invalid
-        return !(parseSuccess && parseNumber >= -1 & parseNumber <= 1);
-    }
-    ).ToList();
+                    // Select invalid
+                    return !(parseSuccess && parseNumber >= -1 & parseNumber <= 1);
+                })
+                .ToList();
             if (binaryStatusTagsWithInvalidNominalState.Count > 0)
-                throw new Exception(string.Format("Tag \"{0}\" has an invalid nominal state of \"{1}\".", binaryStatusTagsWithInvalidNominalState.First().tag.IedTagNameTypeList.First().IedTagName, binaryStatusTagsWithInvalidNominalState.First().tag.ScadaColumns[binaryStatusTagsWithInvalidNominalState.First().tagPrototype.NominalColumns.Item1]
-)
-);
+                throw new Exception(string.Format("Tag \"{0}\" has an invalid nominal state of \"{1}\".",
+                    binaryStatusTagsWithInvalidNominalState.First().tag.IedTagNameTypeList.First().IedTagName,
+                    binaryStatusTagsWithInvalidNominalState.First().tag.ScadaColumns[binaryStatusTagsWithInvalidNominalState.First().tagPrototype.NominalColumns.Item1]));
 
             // Verify filters don't reference device not in the template
-            var filtersWithDevicesNotInTemplate = _AllTags.Where(tagEntry => tagEntry.DeviceFilter.DeviceList != null && tagEntry.DeviceFilter.DeviceList.Count > 0
-    ).Where(tagEntry => tagEntry.DeviceFilter.DeviceList.Where(deviceName => !IedScadaNames.Any(iedScadaNameTypePair => (iedScadaNameTypePair.IedName ?? "") == (deviceName ?? "")
-)
-).Count() > 0
-    ).Select(tagEntry => new { TagName = tagEntry.IedTagNameTypeList.First().IedTagName, FilterString = tagEntry.DeviceFilter.ToString() }
-    ).ToList();
+            var filtersWithDevicesNotInTemplate = _AllTags.Where(tagEntry => tagEntry.DeviceFilter.DeviceList != null && tagEntry.DeviceFilter.DeviceList.Count > 0)
+                .Where(tagEntry => tagEntry.DeviceFilter.DeviceList
+                    .Where(deviceName => !IedScadaNames.Any(iedScadaNameTypePair => (iedScadaNameTypePair.IedName ?? "") == (deviceName ?? "")))
+                    .Count() > 0)
+                .Select(tagEntry => new { TagName = tagEntry.IedTagNameTypeList.First().IedTagName, FilterString = tagEntry.DeviceFilter.ToString() })
+                .ToList();
             if (filtersWithDevicesNotInTemplate.Count > 0)
-                throw new Exception(string.Format("Tag \"{0}\" has an invalid filter that references a device not in the template.\r\n\r\nFilter: {1}.", filtersWithDevicesNotInTemplate.First().TagName, filtersWithDevicesNotInTemplate.First().FilterString
-)
-);
+                throw new Exception(string.Format("Tag \"{0}\" has an invalid filter that references a device not in the template.\r\n\r\nFilter: {1}.",
+                    filtersWithDevicesNotInTemplate.First().TagName,
+                    filtersWithDevicesNotInTemplate.First().FilterString));
 
             // Verify controls reference another point in the template
-            var pointNameInfo = _AllTags.Select(iedTagEntry => new { scadaName = iedTagEntry.ScadaPointName, tagPointType = rtacTemplate.GetServerTagPrototypeByDevice(iedTagEntry.IedTagNameTypeList.First().IedTagTypeName).PointType }
-    ).Where(x => (x.scadaName ?? "") != "--"
-    ).ToList();
-            var controlsWithNoLink = pointNameInfo.Where(x => x.tagPointType.IsControl
-    ).Where(x => pointNameInfo.Where(y => y.tagPointType.IsStatus
-).Where(y => (x.scadaName ?? "") == (y.scadaName ?? "")
-).Count() == 0
-    ).ToList();
+            var pointNameInfo = _AllTags.Select(iedTagEntry => new { scadaName = iedTagEntry.ScadaPointName, tagPointType = rtacTemplate.GetServerTagPrototypeByDevice(iedTagEntry.IedTagNameTypeList.First().IedTagTypeName).PointType })
+                .Where(x => (x.scadaName ?? "") != "--")
+                .ToList();
+            var controlsWithNoLink = pointNameInfo.Where(x => x.tagPointType.IsControl)
+                .Where(x => pointNameInfo.Where(y => y.tagPointType.IsStatus)
+                    .Where(y => (x.scadaName ?? "") == (y.scadaName ?? ""))
+                    .Count() == 0)
+                .ToList();
             if (controlsWithNoLink.Count > 0)
-                throw new Exception(string.Format("Tag \"{0}\" is a control with no linked status point.", controlsWithNoLink.First().scadaName
-)
-);
+                throw new Exception(string.Format("Tag \"{0}\" is a control with no linked status point.",
+                    controlsWithNoLink.First().scadaName));
         }
 
         /// <summary>
@@ -411,14 +405,13 @@ namespace TagProcGen
             // Search for tags in this template that have matching:
             // - Point numbers
             // - Root tag type names
-            var TagArrayQuery = AllIedPoints.Where(tagEntry => tagEntry.PointNumber == pointNumber
-    ).Where(tagEntry => tagEntry.IedTagNameTypeList.Any(iedTagNameTypePair => (rtacTemplate.GetServerTagInfoByDevice(iedTagNameTypePair.IedTagTypeName).RootServerTagTypeName ?? "") == (DeviceTagServerTypeName ?? "")
-)
-    ).Where(tagEntry => Conversions.ToBoolean(tagEntry.DeviceFilter == filter)
-    ).ToList();
+            var TagArrayQuery = AllIedPoints.Where(tagEntry => tagEntry.PointNumber == pointNumber)
+                .Where(tagEntry => tagEntry.IedTagNameTypeList.Any(iedTagNameTypePair => (rtacTemplate.GetServerTagInfoByDevice(iedTagNameTypePair.IedTagTypeName).RootServerTagTypeName ?? "") == (DeviceTagServerTypeName ?? "")))
+                .Where(tagEntry => tagEntry.DeviceFilter == filter)
+                .ToList();
 
             if (TagArrayQuery.Count > 1)
-                throw new Exception("Should not be more than 1 tag with the same point number and type: " + Conversions.ToString(pointNumber) + ", " + iedTagType);
+                throw new Exception("Should not be more than 1 tag with the same point number and type: " + Convert.ToString(pointNumber) + ", " + iedTagType);
 
             if (TagArrayQuery.Count == 0)
             {
@@ -450,10 +443,10 @@ namespace TagProcGen
         /// <returns>Device tag data of the linked point.</returns>
         public IedTagEntry GetLinkedStatusPoint(string iedName, string controlPointScadaName, RtacTemplate rtacTemplate)
         {
-            var search = _AllTags.Where(x => rtacTemplate.GetServerTagPrototypeByDevice(x.IedTagNameTypeList.First().IedTagTypeName).PointType.IsStatus
-   ).Where(x => (x.ScadaPointName ?? "") == (controlPointScadaName ?? "")
-   ).Where(x => x.DeviceFilter.ShouldPointBeGenerated(iedName)
-   ).ToList();
+            var search = _AllTags.Where(x => rtacTemplate.GetServerTagPrototypeByDevice(x.IedTagNameTypeList.First().IedTagTypeName).PointType.IsStatus)
+                .Where(x => (x.ScadaPointName ?? "") == (controlPointScadaName ?? ""))
+                .Where(x => x.DeviceFilter.ShouldPointBeGenerated(iedName))
+                .ToList();
 
             // This error should not be thrown because this specific state is checked for during validation.
             if (search.Count != 1)

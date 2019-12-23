@@ -238,10 +238,10 @@ namespace TagProcGen
                 var colonSplit = nominalColumns.Split(new[] { '.', '[', ']' }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (colonSplit.Length == 1)
-                    tagRootPrototype.NominalColumns = new Tuple<int, int>(Conversions.ToInteger(colonSplit[0]), Conversions.ToInteger(colonSplit[0]));
+                    tagRootPrototype.NominalColumns = new Tuple<int, int>(Convert.ToInt32(colonSplit[0]), Convert.ToInt32(colonSplit[0]));
                 else if (colonSplit.Length == 2)
                 {
-                    tagRootPrototype.NominalColumns = new Tuple<int, int>(Conversions.ToInteger(colonSplit[0]), Conversions.ToInteger(colonSplit[1]));
+                    tagRootPrototype.NominalColumns = new Tuple<int, int>(Convert.ToInt32(colonSplit[0]), Convert.ToInt32(colonSplit[1]));
 
                     // Check for even number of columns - analog limits come in pairs. 1:10 = 10-1, should be odd
                     if ((tagRootPrototype.NominalColumns.Item2 - tagRootPrototype.NominalColumns.Item1) % 2 == 0)
@@ -581,7 +581,7 @@ namespace TagProcGen
                 _FullServerTagTypeName = fullServerTagTypeName;
                 _RootServerTagTypeName = r.Groups[1].Value;
                 _IsArray = r.Groups[2].Length > 0;
-                _Index = IsArray ? Conversions.ToInteger(r.Groups[2].Value) : 0;
+                _Index = IsArray ? Convert.ToInt32(r.Groups[2].Value) : 0;
             }
         }
     }

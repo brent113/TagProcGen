@@ -11,14 +11,14 @@ namespace TagProcGen
 
     /// <summary>
 
-/// Builds the RTAC tag processor map
+    /// Builds the RTAC tag processor map
 
-/// </summary>
+    /// </summary>
     public class RtacTagProcessorWorksheet
     {
         /// <summary>
-    /// Keywords that get replaced with other values.
-    /// </summary>
+        /// Keywords that get replaced with other values.
+        /// </summary>
         public class Keywords
         {
             public const string DESTINATION = "{DESTINATION}";
@@ -30,8 +30,8 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Quality wrapping mode enumeration.
-    /// </summary>
+        /// Quality wrapping mode enumeration.
+        /// </summary>
         public enum QualityWrapModeEnum
         {
             /// <summary>Don't wrap tags with quality check.</summary>
@@ -61,16 +61,16 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Add new entry to the tag processor map.
-    /// </summary>
-    /// <param name="scadaTag">SCADA tag name</param>
-    /// <param name="scadaTagDataType">SCADA tag types</param>
-    /// <param name="iedTagName">Device tag name</param>
-    /// <param name="iedDataType">Device tag type</param>
-    /// <param name="pointType">Is the point status or control and analog or binary.</param>
-    /// <param name="scadaRow">SCADA row entry. Used for calculating nominal values.</param>
-    /// <param name="performQualityWrapping">Indicates wheter to substitute nominal data with the source tag quality is bad.</param>
-    /// <param name="nominalValueColumns">Which columns in the SCADA data should be used to generate nominal values.</param>
+        /// Add new entry to the tag processor map.
+        /// </summary>
+        /// <param name="scadaTag">SCADA tag name</param>
+        /// <param name="scadaTagDataType">SCADA tag types</param>
+        /// <param name="iedTagName">Device tag name</param>
+        /// <param name="iedDataType">Device tag type</param>
+        /// <param name="pointType">Is the point status or control and analog or binary.</param>
+        /// <param name="scadaRow">SCADA row entry. Used for calculating nominal values.</param>
+        /// <param name="performQualityWrapping">Indicates wheter to substitute nominal data with the source tag quality is bad.</param>
+        /// <param name="nominalValueColumns">Which columns in the SCADA data should be used to generate nominal values.</param>
         public void AddEntry(string scadaTag, string scadaTagDataType, string iedTagName, string iedDataType, PointTypeInfo pointType, OutputRowEntryDictionary scadaRow, bool performQualityWrapping, Tuple<int, int> nominalValueColumns
     )
         {
@@ -100,17 +100,17 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// The tag processor at RTAC startup sends bad quality data that results in nuisance alarms.
-    /// Wrap tag processor devices in IEC 61131-3 logic to substitute bad quality data with
-    /// placeholder data that will not generate nuisance alarms.
-    /// 
-    /// Data determined as:
-    /// - For status points: SCADA Normal State.
-    /// - For analog points: If alarm limits exist, something that satisfies high / low limits.
-    /// 
-    /// Can write out in multiple ways: By device, by first tag then device group, or by tag.
-    /// By first tag then device group seems to be the best tradeoff betwen granularity and length.
-    /// </summary>
+        /// The tag processor at RTAC startup sends bad quality data that results in nuisance alarms.
+        /// Wrap tag processor devices in IEC 61131-3 logic to substitute bad quality data with
+        /// placeholder data that will not generate nuisance alarms.
+        /// 
+        /// Data determined as:
+        /// - For status points: SCADA Normal State.
+        /// - For analog points: If alarm limits exist, something that satisfies high / low limits.
+        /// 
+        /// Can write out in multiple ways: By device, by first tag then device group, or by tag.
+        /// By first tag then device group seems to be the best tradeoff betwen granularity and length.
+        /// </summary>
         private void WrapDevicesWithQualitySubstitutions(QualityWrapModeEnum wrapMode)
         {
             if (wrapMode != (int)QualityWrapModeEnum.None)
@@ -182,8 +182,8 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Transformer Me._Map into output rows.
-    /// </summary>
+        /// Transformer Me._Map into output rows.
+        /// </summary>
         private void GenerateOutputList()
         {
             foreach (var entry in _Map)
@@ -196,15 +196,15 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Replace standard placeholders in columns.
-    /// </summary>
-    /// <param name="rtacTagProcessorRow">Output row to substitute placeholders in.</param>
-    /// <param name="destination">Destination tag.</param>
-    /// <param name="destinationType">Destination tag type.</param>
-    /// <param name="source">Source tag.</param>
-    /// <param name="sourceType">Source tag type.</param>
-    /// <param name="timeSource">Time source tag.</param>
-    /// <param name="qualitySource">Quality source tag.</param>
+        /// Replace standard placeholders in columns.
+        /// </summary>
+        /// <param name="rtacTagProcessorRow">Output row to substitute placeholders in.</param>
+        /// <param name="destination">Destination tag.</param>
+        /// <param name="destinationType">Destination tag type.</param>
+        /// <param name="source">Source tag.</param>
+        /// <param name="sourceType">Source tag type.</param>
+        /// <param name="timeSource">Time source tag.</param>
+        /// <param name="qualitySource">Quality source tag.</param>
         private void ReplaceRtacTagProcessorKeywords(OutputRowEntryDictionary rtacTagProcessorRow, string destination, string destinationType, string source, string sourceType, string timeSource, string qualitySource
     )
         {
@@ -241,17 +241,17 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Write the tag processor map out to CSV
-    /// </summary>
-    /// <param name="path">Source filename to append output suffix on.</param>
-    /// <param name="wrapMode">0-3, From no tag wrapping to wrap every tag individually.</param>
+        /// Write the tag processor map out to CSV
+        /// </summary>
+        /// <param name="path">Source filename to append output suffix on.</param>
+        /// <param name="wrapMode">0-3, From no tag wrapping to wrap every tag individually.</param>
         public void WriteCsv(string path, QualityWrapModeEnum wrapMode)
         {
             WrapDevicesWithQualitySubstitutions(wrapMode);
 
             GenerateOutputList();
 
-            string csvPath = System.IO.Path.GetDirectoryName(path) + Conversions.ToString(System.IO.Path.DirectorySeparatorChar) + System.IO.Path.GetFileNameWithoutExtension(path) + "_TagProcessor.csv";
+            string csvPath = System.IO.Path.GetDirectoryName(path) + Convert.ToString(System.IO.Path.DirectorySeparatorChar) + System.IO.Path.GetFileNameWithoutExtension(path) + "_TagProcessor.csv";
             using (var csvStreamWriter = new System.IO.StreamWriter(csvPath, false))
             {
                 var csvWriter = new CsvHelper.CsvWriter(csvStreamWriter);
@@ -266,8 +266,8 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Intermediate storage format to generate quality wrapped tag processor entries.
-    /// </summary>
+        /// Intermediate storage format to generate quality wrapped tag processor entries.
+        /// </summary>
         public class TagQualityWrapGenerator
         {
             /// <summary>Defines the conditional to be used to select bad quality points. Replace {TAG} with tag name.</summary>
@@ -285,8 +285,8 @@ namespace TagProcGen
 
             private List<TagProcessorMapEntry> _TagsToWrap;
             /// <summary>
-        /// List of tags to wrap with quality substitution.
-        /// </summary>
+            /// List of tags to wrap with quality substitution.
+            /// </summary>
             public List<TagProcessorMapEntry> TagsToWrap
             {
                 get
@@ -296,34 +296,34 @@ namespace TagProcGen
             }
 
             /// <summary>
-        /// Initialize a new instance of TagQualityWrapGenerator.
-        /// </summary>
+            /// Initialize a new instance of TagQualityWrapGenerator.
+            /// </summary>
             public TagQualityWrapGenerator()
             {
                 _TagsToWrap = new List<TagProcessorMapEntry>();
             }
 
             /// <summary>
-        /// Initialze a new instance of TagQualityWrapGenerator.
-        /// </summary>
-        /// <param name="tagsToWrap">List of all tags to wrap.</param>
+            /// Initialze a new instance of TagQualityWrapGenerator.
+            /// </summary>
+            /// <param name="tagsToWrap">List of all tags to wrap.</param>
             public TagQualityWrapGenerator(List<TagProcessorMapEntry> tagsToWrap)
             {
                 _TagsToWrap = new List<TagProcessorMapEntry>(tagsToWrap);
             }
 
             /// <summary>
-        /// Generate a new list of TagProcessorMapEntry classes that include a quality wrap with nominal values for bad quality tags.
-        /// </summary>
-        /// <returns>List of TagProcessorMapEntry classes with output row information.</returns>
-        /// <remarks>
-        /// Output format:
-        /// If (tag.qual != good) then
-        /// dest = nominal value
-        /// Else
-        /// dest = sourceExpr
-        /// End_if
-        /// </remarks>
+            /// Generate a new list of TagProcessorMapEntry classes that include a quality wrap with nominal values for bad quality tags.
+            /// </summary>
+            /// <returns>List of TagProcessorMapEntry classes with output row information.</returns>
+            /// <remarks>
+            /// Output format:
+            /// If (tag.qual != good) then
+            /// dest = nominal value
+            /// Else
+            /// dest = sourceExpr
+            /// End_if
+            /// </remarks>
             public List<TagProcessorMapEntry> Generate()
             {
                 var outputTags = new List<TagProcessorMapEntry>();
@@ -365,11 +365,11 @@ namespace TagProcGen
             }
 
             /// <summary>
-        /// Generate a tag processor entry for a conditional with the given text and optional tag name.
-        /// </summary>
-        /// <param name="conditionalText">Conditional text to put into the source expression.</param>
-        /// <param name="qualityTag">Optional placeholder to substitute.</param>
-        /// <returns>Tag map entry with the given data.</returns>
+            /// Generate a tag processor entry for a conditional with the given text and optional tag name.
+            /// </summary>
+            /// <param name="conditionalText">Conditional text to put into the source expression.</param>
+            /// <param name="qualityTag">Optional placeholder to substitute.</param>
+            /// <returns>Tag map entry with the given data.</returns>
             public static TagProcessorMapEntry GenerateConditionalTagEntry(string conditionalText, string qualityTag = null)
             {
                 var pointType = new PointTypeInfo(true, true); // Status binary as a placeholder
@@ -383,12 +383,12 @@ namespace TagProcGen
             }
 
             /// <summary>
-        /// Get the nominal value of binary or analog status points from provided SCADA data.
-        /// </summary>
-        /// <param name="pointType">Point type information.</param>
-        /// <param name="scadaColumns">SCADA data to derive nominal values from.</param>
-        /// <param name="nominalValueColumns">Where to look in the SCADA data for the nominal values.</param>
-        /// <returns>String that is the normal state for binaries or average of the two median analog alarms limits.</returns>
+            /// Get the nominal value of binary or analog status points from provided SCADA data.
+            /// </summary>
+            /// <param name="pointType">Point type information.</param>
+            /// <param name="scadaColumns">SCADA data to derive nominal values from.</param>
+            /// <param name="nominalValueColumns">Where to look in the SCADA data for the nominal values.</param>
+            /// <returns>String that is the normal state for binaries or average of the two median analog alarms limits.</returns>
             public static string GetNominalValue(PointTypeInfo pointType, OutputRowEntryDictionary scadaColumns, Tuple<int, int> nominalValueColumns
     )
             {
@@ -396,23 +396,23 @@ namespace TagProcGen
                 {
                     if (scadaColumns.ContainsKey(nominalValueColumns.Item1))
                         // Convert Boolean to IEC 61131-3 TRUE or FALSE
-                        return Conversions.ToBoolean(scadaColumns[nominalValueColumns.Item1]).ToString().ToUpper();
+                        return Convert.ToBoolean(scadaColumns[nominalValueColumns.Item1]).ToString().ToUpper();
                     else
-                        return "False";
+                        return "FALSE";
                 }
                 else
                 {
                     var analogLimits = scadaColumns.Where(x => x.Key >= nominalValueColumns.Item1 & x.Key <= nominalValueColumns.Item2
-).Where(x => !string.IsNullOrWhiteSpace(x.Value)
-).OrderBy(x => Conversions.ToDouble(x.Value)
-).ToList();
-                    int middleStart = Conversions.ToInteger(Math.Floor(analogLimits.Count / (double)2)) - 1;
+                        ).Where(x => !string.IsNullOrWhiteSpace(x.Value)
+                        ).OrderBy(x => Convert.ToDouble(x.Value)
+                        ).ToList();
+                    int middleStart = Convert.ToInt32(Math.Floor(analogLimits.Count / (double)2)) - 1;
 
                     // Must have conditional again in case there are no limits defined.
                     if (middleStart >= 0)
                     {
-                        double average = (Conversions.ToDouble(analogLimits[middleStart].Value) + Conversions.ToDouble(analogLimits[middleStart + 1].Value)) / 2;
-                        return Conversions.ToString(average);
+                        double average = (Convert.ToDouble(analogLimits[middleStart].Value) + Convert.ToDouble(analogLimits[middleStart + 1].Value)) / 2;
+                        return average.ToString();
                     }
                     else
                         return "0";
@@ -421,8 +421,8 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Stores data for each tag processor map entry
-    /// </summary>
+        /// Stores data for each tag processor map entry
+        /// </summary>
         public class TagProcessorMapEntry
         {
             /// <summary>Destination tag name.</summary>
@@ -448,7 +448,7 @@ namespace TagProcGen
             /// <summary>Point type (i.e. status, analog).</summary>
             public PointTypeInfo PointType { get; set; }
             /// <summary>SCADA data associated with the source tag.</summary>
-        /// <remarks>Used for generating SCADA nominal values that will not generate alarms.</remarks>
+            /// <remarks>Used for generating SCADA nominal values that will not generate alarms.</remarks>
             public OutputRowEntryDictionary ScadaRow { get; set; }
             /// <summary>Indicates whether to substitute nominal data when the source tag quality is bad.</summary>
             public bool PerformQualityWrapping { get; set; }
@@ -484,8 +484,8 @@ namespace TagProcGen
             private const string RegexTagName = "$1.$2";
             private const string RegexDeviceName = "$1";
             /// <summary>
-        /// Locates the device name and point name from a source expression.
-        /// </summary>
+            /// Locates the device name and point name from a source expression.
+            /// </summary>
             private void ParseSourceExpression()
             {
                 _ParsedDeviceName = Regex.Replace(SourceExpression, RegexMatch, RegexDeviceName);
@@ -498,16 +498,16 @@ namespace TagProcGen
             }
 
             /// <summary>
-        /// Initialize a new instance of the TagProcessorMapEntry class.
-        /// </summary>
-        /// <param name="destinationTagName">Destination tag name.</param>
-        /// <param name="destinationTagDataType">Destination tag data type.</param>
-        /// <param name="sourceExpression">Source expression.</param>
-        /// <param name="sourceExpressionDataType">Source expression datat type.</param>
-        /// <param name="pointType">Point type (i.e. status, analog). Used for filtering entries in the tag processor.</param>
-        /// <param name="scadaRow">SCADA data associtated with source tag.</param>
-        /// <param name="performQualityWrapping">Indicates wheter to substitute nominal data with the source tag quality is bad.</param>
-        /// <param name="nominalValueColumns">Which columns in the SCADA data should be used to generate nominal values.</param>
+            /// Initialize a new instance of the TagProcessorMapEntry class.
+            /// </summary>
+            /// <param name="destinationTagName">Destination tag name.</param>
+            /// <param name="destinationTagDataType">Destination tag data type.</param>
+            /// <param name="sourceExpression">Source expression.</param>
+            /// <param name="sourceExpressionDataType">Source expression datat type.</param>
+            /// <param name="pointType">Point type (i.e. status, analog). Used for filtering entries in the tag processor.</param>
+            /// <param name="scadaRow">SCADA data associtated with source tag.</param>
+            /// <param name="performQualityWrapping">Indicates wheter to substitute nominal data with the source tag quality is bad.</param>
+            /// <param name="nominalValueColumns">Which columns in the SCADA data should be used to generate nominal values.</param>
             public TagProcessorMapEntry(string destinationTagName, string destinationTagDataType, string sourceExpression, string sourceExpressionDataType, PointTypeInfo pointType, OutputRowEntryDictionary scadaRow, bool performQualityWrapping, Tuple<int, int> nominalValueColumns)
             {
                 DestinationTagName = destinationTagName;
