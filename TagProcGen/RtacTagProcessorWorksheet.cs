@@ -389,8 +389,7 @@ namespace TagProcGen
             /// <param name="scadaColumns">SCADA data to derive nominal values from.</param>
             /// <param name="nominalValueColumns">Where to look in the SCADA data for the nominal values.</param>
             /// <returns>String that is the normal state for binaries or average of the two median analog alarms limits.</returns>
-            public static string GetNominalValue(PointTypeInfo pointType, OutputRowEntryDictionary scadaColumns, Tuple<int, int> nominalValueColumns
-    )
+            public static string GetNominalValue(PointTypeInfo pointType, OutputRowEntryDictionary scadaColumns, Tuple<int, int> nominalValueColumns)
             {
                 if (pointType.IsBinary)
                 {
