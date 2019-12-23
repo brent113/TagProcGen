@@ -396,7 +396,7 @@ namespace TagProcGen
                 {
                     if (scadaColumns.ContainsKey(nominalValueColumns.Item1))
                         // Convert Boolean to IEC 61131-3 TRUE or FALSE
-                        return Convert.ToBoolean(scadaColumns[nominalValueColumns.Item1]).ToString().ToUpper();
+                        return Convert.ToBoolean(Convert.ToInt32(scadaColumns[nominalValueColumns.Item1])).ToString().ToUpper();
                     else
                         return "FALSE";
                 }
