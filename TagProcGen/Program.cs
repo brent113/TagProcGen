@@ -15,6 +15,8 @@ namespace TagProcGen
         [STAThread]
         static int Main(string[] args)
         {
+            var cn = new ConsoleNotifier();
+
             if (args?.Length > 0)
             {
                 if (args.Length != 1 || !File.Exists(args[0]))
@@ -23,7 +25,7 @@ namespace TagProcGen
                     return 1;
                 }
 
-                GenTags.Generate(args[0], new ConsoleNotifier());
+                GenTags.Generate(args[0], cn);
             }
             else
             {
@@ -32,7 +34,7 @@ namespace TagProcGen
                 Application.Run(new FormMain());
             }
 
-            return 0;
+            return cn.ErrorHasOccured ? 1 : 0;
         }
 
         static void WriteUsage()
@@ -48,6 +50,9 @@ namespace TagProcGen
     /// <summary>Console Notifier</summary>
     public class ConsoleNotifier : INotifier
     {
+        /// <summary>Tracks if an error has been logged</summary>
+        public bool ErrorHasOccured { get; set; } = false;
+
         /// <summary>Write to log</summary>
         /// <param name="Log">Log text</param>
         /// <param name="Title">Log Title</param>
@@ -63,13 +68,15 @@ namespace TagProcGen
                     severityText = "Warning"; break;
                 case LogSeverity.Error:
                 default:
-                    severityText = "Error"; break;
+                    severityText = "Error";
+                    ErrorHasOccured = true;
+                    break;
             }
             var logLines = Log.Split('\n').ToList();
             // Print Title / Severity only on first line
             Console.WriteLine("{0, -10} {1, -20} {2}", severityText, Title, logLines[0]);
             logLines.RemoveAt(0);
-            foreach(var s in logLines)
+            foreach (var s in logLines)
                 Console.WriteLine("{0, -10} {1, -20} {2}", "", "", s);
         }
     }
