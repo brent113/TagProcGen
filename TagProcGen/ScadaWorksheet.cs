@@ -11,13 +11,11 @@ namespace TagProcGen
 {
 
     /// <summary>
-
     /// Builds the SCADA worksheet and handles tag name formatting and merging
-
     /// </summary>
     public class ScadaWorksheet
     {
-        private Dictionary<string, string> _Pointers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, string> _Pointers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         /// <summary>
         /// Key: Pointer Name. Value: Cell Reference
         /// </summary>
@@ -29,17 +27,10 @@ namespace TagProcGen
             }
         }
 
-        private Excel.Worksheet _xlSheet;
         /// <summary>
         /// Excel worksheet corresponding to the SCADA template
         /// </summary>
-        public Excel.Worksheet xlSheet
-        {
-            get
-            {
-                return _xlSheet;
-            }
-        }
+        public Excel.Worksheet XlSheet { get; }
 
         /// <summary>
         /// Create a new instance
@@ -47,7 +38,7 @@ namespace TagProcGen
         /// <param name="xlSheet">Excel worksheet corresponding to the SCADA template</param>
         public ScadaWorksheet(Excel.Worksheet xlSheet)
         {
-            _xlSheet = xlSheet;
+            this.XlSheet = xlSheet;
         }
 
         /// <summary>
@@ -66,17 +57,10 @@ namespace TagProcGen
             return ScadaNameTemplate.Replace(Keywords.IED_NAME_KEYWORD, iedName).Replace(Keywords.POINT_NAME_KEYWORD, pointName);
         }
 
-        private Dictionary<string, ScadaTagPrototype> _ScadaTagPrototypes = new Dictionary<string, ScadaTagPrototype>();
         /// <summary>
         /// Dictionary of all SCADA tag prototypes. Key: SCADA type name, Value: Prototype
         /// </summary>
-        public Dictionary<string, ScadaTagPrototype> ScadaTagPrototypes
-        {
-            get
-            {
-                return _ScadaTagPrototypes;
-            }
-        }
+        public Dictionary<string, ScadaTagPrototype> ScadaTagPrototypes { get; } = new Dictionary<string, ScadaTagPrototype>();
 
         /// <summary>
         /// SCADA tag prototype containing type-specific data.
@@ -137,7 +121,7 @@ namespace TagProcGen
         /// Rows of entries used to build the SCADA worksheet. Each row is a column dictionary.
         /// </summary>
         /// <remarks>Main output of this template</remarks>
-        private Dictionary<string, OutputList> _ScadaOutputList = new Dictionary<string, OutputList>();
+        private readonly Dictionary<string, OutputList> _ScadaOutputList = new Dictionary<string, OutputList>();
 
         private int _MaxValidatedTagLength = 0;
         /// <summary>
@@ -168,12 +152,14 @@ namespace TagProcGen
         /// </summary>
         public class Keywords
         {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
             public const string FULL_NAME_KEYWORD = "{NAME}";
             public const string IED_NAME_KEYWORD = "{DEVICENAME}";
             public const string POINT_NAME_KEYWORD = "{POINTNAME}";
             public const string ADDRESS_KEYWORD = "{ADDRESS}";
             public const string KEY_KEYWORD = "{KEY}";
             public const string RECORD_KEYWORD = "{RECORD}";
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         }
 
         /// <summary>
@@ -207,21 +193,11 @@ namespace TagProcGen
         {
             int adjustedAddress = address + Convert.ToInt32(Pointers[Constants.TPL_SCADA_ADDRESS_OFFSET]);
             keyAddress = keyAddress > 0 ? keyAddress + Convert.ToInt32(Pointers[Constants.TPL_SCADA_ADDRESS_OFFSET]) : adjustedAddress;
-            string c = string.Format(keyFormat, adjustedAddress);
             var replacements = new Dictionary<string, string>()
             {
-                {
-                    Keywords.FULL_NAME_KEYWORD,
-                    name
-                },
-                {
-                    Keywords.ADDRESS_KEYWORD,
-                    adjustedAddress.ToString()
-                },
-                {
-                    Keywords.KEY_KEYWORD,
-                    string.Format(keyFormat, keyAddress)
-                }
+                { Keywords.FULL_NAME_KEYWORD, name },
+                { Keywords.ADDRESS_KEYWORD, adjustedAddress.ToString() },
+                { Keywords.KEY_KEYWORD, string.Format(keyFormat, keyAddress) }
             };
 
             scadaRowEntry.ReplaceTagKeywords(replacements);

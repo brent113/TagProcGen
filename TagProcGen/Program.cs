@@ -23,7 +23,7 @@ namespace TagProcGen
                     return 1;
                 }
 
-                GenTags.Generate(args[0]);
+                GenTags.Generate(args[0], new ConsoleNotifier());
             }
             else
             {
@@ -42,6 +42,35 @@ namespace TagProcGen
             Console.WriteLine("");
             Console.WriteLine("Usage:");
             Console.WriteLine("  TagProcGen.exe path_to_configuration.xls[x]");
+        }
+    }
+
+    /// <summary>Console Notifier</summary>
+    public class ConsoleNotifier : INotifier
+    {
+        /// <summary>Write to log</summary>
+        /// <param name="Log">Log text</param>
+        /// <param name="Title">Log Title</param>
+        /// <param name="Severity">Log Severity</param>
+        public void Log(string Log, string Title, LogSeverity Severity)
+        {
+            string severityText;
+            switch (Severity)
+            {
+                case LogSeverity.Info:
+                    severityText = "Info"; break;
+                case LogSeverity.Warning:
+                    severityText = "Warning"; break;
+                case LogSeverity.Error:
+                default:
+                    severityText = "Error"; break;
+            }
+            var logLines = Log.Split('\n').ToList();
+            // Print Title / Severity only on first line
+            Console.WriteLine("{0, -10} {1, -20} {2}", severityText, Title, logLines[0]);
+            logLines.RemoveAt(0);
+            foreach(var s in logLines)
+                Console.WriteLine("{0, -10} {1, -20} {2}", "", "", s);
         }
     }
 }

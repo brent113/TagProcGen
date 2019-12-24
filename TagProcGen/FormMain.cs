@@ -10,14 +10,16 @@ using System.Windows.Forms;
 
 namespace TagProcGen
 {
+    /// <summary>Form Main</summary>
     public partial class FormMain : Form
     {
+        /// <summary>Form Main Constructor</summary>
         public FormMain()
         {
             InitializeComponent();
         }
 
-        private void FormMain_Load(object sender, EventArgs e) 
+        private void FormMain_Load(object sender, EventArgs e)
         {
             Path.Text = Properties.Settings.Default.SavedPath;
         }
@@ -65,9 +67,33 @@ namespace TagProcGen
                 return;
             }
 
-            GenTags.Generate(Path.Text);
+            GenTags.Generate(Path.Text, new MessageBoxNotifier());
 
             Gen.Enabled = true;
+        }
+    }
+
+    /// <summary>MessageBox Notifier</summary>
+    public class MessageBoxNotifier : INotifier
+    {
+        /// <summary>Write to log</summary>
+        /// <param name="Log">Log text</param>
+        /// <param name="Title">Log Title</param>
+        /// <param name="Severity">Log Severity</param>
+        public void Log(string Log, string Title, LogSeverity Severity)
+        {
+            MessageBoxIcon icon;
+            switch (Severity)
+            {
+                case LogSeverity.Info:
+                    icon= MessageBoxIcon.Information; break;
+                case LogSeverity.Warning:
+                    icon= MessageBoxIcon.Warning; break;
+                case LogSeverity.Error:
+                default:
+                    icon= MessageBoxIcon.Error; break;
+            }
+            MessageBox.Show(Log, Title, MessageBoxButtons.OK, icon);
         }
     }
 }

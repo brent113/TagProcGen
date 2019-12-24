@@ -10,9 +10,7 @@ namespace TagProcGen
 {
 
     /// <summary>
-
     /// Builds the RTAC tag processor map
-
     /// </summary>
     public class RtacTagProcessorWorksheet
     {
@@ -21,12 +19,14 @@ namespace TagProcGen
         /// </summary>
         public class Keywords
         {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
             public const string DESTINATION = "{DESTINATION}";
             public const string DESTINATION_TYPE = "{DESTINATION_TYPE}";
             public const string SOURCE = "{SOURCE}";
             public const string SOURCE_TYPE = "{SOURCE_TYPE}";
             public const string TIME_SOURCE = "{TIME_SOURCE}";
             public const string QUALITY_SOURCE = "{QUALITY_SOURCE}";
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         }
 
         /// <summary>
@@ -48,17 +48,10 @@ namespace TagProcGen
         private List<TagProcessorMapEntry> _Map = new List<TagProcessorMapEntry>();
 
         /// <summary>Output list of all tag processor columns.</summary>
-        private OutputList _TagProcessorOutputRows = new OutputList();
+        private readonly OutputList _TagProcessorOutputRows = new OutputList();
 
-        private OutputRowEntryDictionary _TagProcessorColumnsTemplate = new OutputRowEntryDictionary();
         /// <summary>Tag processor columns template to generate output column order.</summary>
-        public OutputRowEntryDictionary TagProcessorColumnsTemplate
-        {
-            get
-            {
-                return _TagProcessorColumnsTemplate;
-            }
-        }
+        public OutputRowEntryDictionary TagProcessorColumnsTemplate { get; } = new OutputRowEntryDictionary();
 
         /// <summary>
         /// Add new entry to the tag processor map.
@@ -145,8 +138,7 @@ namespace TagProcGen
                     {
                         var deviceGroupList = deviceGroup.ToList();
 
-                        var first = new List<TagProcessorMapEntry>();
-                        first.Add(deviceGroupList.First());
+                        var first = new List<TagProcessorMapEntry> { deviceGroupList.First() };
                         var tagWrapper = new TagQualityWrapGenerator(first);
                         qualityWrappedMap.AddRange(tagWrapper.Generate());
 
@@ -167,8 +159,7 @@ namespace TagProcGen
 
                         foreach (var tagEntry in deviceGroupList.ToList())
                         {
-                            var listOfOne = new List<TagProcessorMapEntry>();
-                            listOfOne.Add(tagEntry);
+                            var listOfOne = new List<TagProcessorMapEntry> { tagEntry };
                             var tagWrapper = new TagQualityWrapGenerator(listOfOne);
 
                             qualityWrappedMap.AddRange(tagWrapper.Generate());
@@ -283,24 +274,17 @@ namespace TagProcGen
             /// <summary>Tag keyword to substitute in the templates.</summary>
             public const string TAG_KEYWORD = "{TAG}";
 
-            private List<TagProcessorMapEntry> _TagsToWrap;
             /// <summary>
             /// List of tags to wrap with quality substitution.
             /// </summary>
-            public List<TagProcessorMapEntry> TagsToWrap
-            {
-                get
-                {
-                    return _TagsToWrap;
-                }
-            }
+            public List<TagProcessorMapEntry> TagsToWrap { get; }
 
             /// <summary>
             /// Initialize a new instance of TagQualityWrapGenerator.
             /// </summary>
             public TagQualityWrapGenerator()
             {
-                _TagsToWrap = new List<TagProcessorMapEntry>();
+                TagsToWrap = new List<TagProcessorMapEntry>();
             }
 
             /// <summary>
@@ -309,7 +293,7 @@ namespace TagProcGen
             /// <param name="tagsToWrap">List of all tags to wrap.</param>
             public TagQualityWrapGenerator(List<TagProcessorMapEntry> tagsToWrap)
             {
-                _TagsToWrap = new List<TagProcessorMapEntry>(tagsToWrap);
+                TagsToWrap = new List<TagProcessorMapEntry>(tagsToWrap);
             }
 
             /// <summary>
@@ -329,11 +313,11 @@ namespace TagProcGen
                 var outputTags = new List<TagProcessorMapEntry>();
 
                 // Add first conditional for bad quality
-                string firstTagName = _TagsToWrap.First().ParsedTagName;
+                string firstTagName = TagsToWrap.First().ParsedTagName;
                 outputTags.Add(GenerateConditionalTagEntry(QUALITY_CONDITIONAL_TEMPLATE, firstTagName));
 
                 // Add nominal data
-                foreach (var tag in _TagsToWrap)
+                foreach (var tag in TagsToWrap)
                 {
                     string nominalValue = GetNominalValue(tag.PointType, tag.ScadaRow, tag.NominalValueColumns);
                     string timeSourceTag = TIME_SOURCE_TEMPLATE.Replace(TAG_KEYWORD, tag.ParsedTagName);
@@ -356,7 +340,7 @@ namespace TagProcGen
                 outputTags.Add(GenerateConditionalTagEntry(ELSE_TEMPLATE));
 
                 // Add original data mapping
-                outputTags.AddRange(_TagsToWrap);
+                outputTags.AddRange(TagsToWrap);
 
                 // Add end_if
                 outputTags.Add(GenerateConditionalTagEntry(END_IF_TEMPLATE));

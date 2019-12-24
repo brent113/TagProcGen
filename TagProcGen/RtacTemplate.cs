@@ -9,16 +9,14 @@ namespace TagProcGen
 {
 
     /// <summary>
-
-/// Generates RTAC tags. Stores tag prototypes, handles server tag generation.
-
-/// </summary>
+    /// Generates RTAC tags. Stores tag prototypes, handles server tag generation.
+    /// </summary>
     public class RtacTemplate
     {
-        private Dictionary<string, string> _Pointers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, string> _Pointers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         /// <summary>
-    /// Key: Pointer Name. Value: Cell Reference
-    /// </summary>
+        /// Key: Pointer Name. Value: Cell Reference
+        /// </summary>
         public Dictionary<string, string> Pointers
         {
             get
@@ -27,11 +25,11 @@ namespace TagProcGen
             }
         }
 
-        private Excel.Worksheet _xlSheet;
+        private readonly Excel.Worksheet _xlSheet;
         /// <summary>
-    /// Excel worksheet corresponding to the RTAC template
-    /// </summary>
-        public Excel.Worksheet xlSheet
+        /// Excel worksheet corresponding to the RTAC template
+        /// </summary>
+        public Excel.Worksheet XlSheet
         {
             get
             {
@@ -40,28 +38,28 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Create a new instance
-    /// </summary>
-    /// <param name="xlSheet">Excel worksheet corresponding to the SCADA template</param>
+        /// Create a new instance
+        /// </summary>
+        /// <param name="xlSheet">Excel worksheet corresponding to the SCADA template</param>
         public RtacTemplate(Excel.Worksheet xlSheet)
         {
             _xlSheet = xlSheet;
         }
 
         /// <summary>
-    /// Name of the SCADA server object in the RTAC.
-    /// </summary>
+        /// Name of the SCADA server object in the RTAC.
+        /// </summary>
         public string RtacServerName { get; set; }
 
         /// <summary>
-    /// Server tag alias template.
-    /// </summary>
+        /// Server tag alias template.
+        /// </summary>
         public string AliasNameTemplate { get; set; }
 
-        private Dictionary<string, ServerTagRootPrototype> _RtacTagPrototypes = new Dictionary<string, ServerTagRootPrototype>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, ServerTagRootPrototype> _RtacTagPrototypes = new Dictionary<string, ServerTagRootPrototype>(StringComparer.OrdinalIgnoreCase);
         /// <summary>
-    /// Dictionary of server tag prototypes. Key: Server type name, Value: Prototype Root Type
-    /// </summary>
+        /// Dictionary of server tag prototypes. Key: Server type name, Value: Prototype Root Type
+        /// </summary>
         public Dictionary<string, ServerTagRootPrototype> RtacTagPrototypes
         {
             get
@@ -70,10 +68,10 @@ namespace TagProcGen
             }
         }
 
-        private Dictionary<string, int> _TagTypeRunningAddressOffset = new Dictionary<string, int>();
+        private readonly Dictionary<string, int> _TagTypeRunningAddressOffset = new Dictionary<string, int>();
         /// <summary>
-    /// Starting value of next IED's tags. Incremented by offsets
-    /// </summary>
+        /// Starting value of next IED's tags. Incremented by offsets
+        /// </summary>
         public Dictionary<string, int> TagTypeRunningAddressOffset
         {
             get
@@ -83,8 +81,8 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Class to store server type map info.
-    /// </summary>
+        /// Class to store server type map info.
+        /// </summary>
         public class ServerTagMapInfo
         {
             /// <summary>Name of the server tag type.</summary>
@@ -94,14 +92,14 @@ namespace TagProcGen
         }
 
         /// <remarks>Contains 1:1 map to prototype. Key: Device tag type, Value: Server tag map info.</remarks>
-        private Dictionary<string, ServerTagMapInfo> _IedToServerTypeMap = new Dictionary<string, ServerTagMapInfo>();
+        private readonly Dictionary<string, ServerTagMapInfo> _IedToServerTypeMap = new Dictionary<string, ServerTagMapInfo>();
 
         /// <summary>
-    /// Add a new entry into the device-server tag map.
-    /// </summary>
-    /// <param name="iedTypeName">Device type name.</param>
-    /// <param name="serverTypeName">Server type name.</param>
-    /// <param name="performQualityWrapping">Indicates wheter to substitute nominal data with the source tag quality is bad.</param>
+        /// Add a new entry into the device-server tag map.
+        /// </summary>
+        /// <param name="iedTypeName">Device type name.</param>
+        /// <param name="serverTypeName">Server type name.</param>
+        /// <param name="performQualityWrapping">Indicates wheter to substitute nominal data with the source tag quality is bad.</param>
         public void AddIedServerTagMap(string iedTypeName, string serverTypeName, bool performQualityWrapping)
         {
             var tagMapInfo = new ServerTagMapInfo() { ServerTagTypeName = serverTypeName, PerformQualityWrapping = performQualityWrapping };
@@ -109,10 +107,10 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Get server tag map information for a given device type name.
-    /// </summary>
-    /// <param name="iedTypeName">Device type name.</param>
-    /// <returns>Server tag map information, or nothing if no entry exists.</returns>
+        /// Get server tag map information for a given device type name.
+        /// </summary>
+        /// <param name="iedTypeName">Device type name.</param>
+        /// <returns>Server tag map information, or nothing if no entry exists.</returns>
         public ServerTagMapInfo GetServerTypeByIedType(string iedTypeName)
         {
             if (!_IedToServerTypeMap.ContainsKey(iedTypeName))
@@ -120,11 +118,11 @@ namespace TagProcGen
             return _IedToServerTypeMap[iedTypeName];
         }
 
-        private Dictionary<string, string> _TagAliasSubstitutes = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> _TagAliasSubstitutes = new Dictionary<string, string>();
         /// <summary>
-    /// Placeholders to search for and replace with associated value.
-    /// </summary>
-    /// <remarks>Key: Find, Value: Replace</remarks>
+        /// Placeholders to search for and replace with associated value.
+        /// </summary>
+        /// <remarks>Key: Find, Value: Replace</remarks>
         public Dictionary<string, string> TagAliasSubstitutes
         {
             get
@@ -134,79 +132,82 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// List of all server tags by type. Generated from device templates.
-    /// </summary>
-        private Dictionary<string, OutputList> _RtacOutputList = new Dictionary<string, OutputList>();
+        /// List of all server tags by type. Generated from device templates.
+        /// </summary>
+        private readonly Dictionary<string, OutputList> _RtacOutputList = new Dictionary<string, OutputList>();
 
         /// <summary>
-    /// Keywords that get replaced with other values.
-    /// </summary>
+        /// Keywords that get replaced with other values.
+        /// </summary>
         public class Keywords
         {
-            public const string NAME_KEYWORD = "{NAME}";
+            /// <summary>Name</summary>
+            public const string NAME_KEYWORD = "{NAME}"; 
+            /// <summary>Address</summary>
             public const string ADDRESS_KEYWORD = "{ADDRESS}";
+            /// <summary>Alias</summary>
             public const string ALIAS_KEYWORD = "{ALIAS}";
-
+            /// <summary>Control</summary>
             public const string CONTROL_KEYWORD = "{CTRL}";
         }
 
         /// <summary>
-    /// Server tag prototype root structure
-    /// </summary>
+        /// Server tag prototype root structure
+        /// </summary>
         public class ServerTagRootPrototype
         {
             /// <summary>
-        /// List of child prototype entries. Non-array types have 1 entry.
-        /// </summary>
-        /// <remarks>Array types like DNPC etc will have multiple formats</remarks>
+            /// List of child prototype entries. Non-array types have 1 entry.
+            /// </summary>
+            /// <remarks>Array types like DNPC etc will have multiple formats</remarks>
             public List<ServerTagPrototypeEntry> TagPrototypeEntries = new List<ServerTagPrototypeEntry>();
 
             /// <summary>
-        /// Column to sort on
-        /// </summary>
+            /// Column to sort on
+            /// </summary>
             public int SortingColumn;
 
             /// <summary>
-        /// Point type: either binary / analog and status / control.
-        /// </summary>
+            /// Point type: either binary / analog and status / control.
+            /// </summary>
             public PointTypeInfo PointType;
 
             /// <summary>
-        /// If the type is an analog type with limits this denotes the min and max column range that stores those limits.
-        /// </summary>
-        /// <remarks>
-        /// Used for calculating nominal analog values for quality substitution.
-        /// For binary points, both tuple values are the same.
-        /// </remarks>
+            /// If the type is an analog type with limits this denotes the min and max column range that stores those limits.
+            /// </summary>
+            /// <remarks>
+            /// Used for calculating nominal analog values for quality substitution.
+            /// For binary points, both tuple values are the same.
+            /// </remarks>
             public Tuple<int, int> NominalColumns;
         }
 
         /// <summary>
-    /// Server tag prototype child structure
-    /// </summary>
+        /// Server tag prototype child structure
+        /// </summary>
         public class ServerTagPrototypeEntry
         {
             /// <summary>
-        /// Server tag name format with placeholder for address.
-        /// </summary>
-        /// <remarks>Markup supported by String.Format supported</remarks>
+            /// Server tag name format with placeholder for address.
+            /// </summary>
+            /// <remarks>Markup supported by String.Format supported</remarks>
             public string ServerTagNameTemplate;
 
             /// <summary>
-        /// Standard data all server tags of this type have
-        /// </summary>
+            /// Standard data all server tags of this type have
+            /// </summary>
             public OutputRowEntryDictionary StandardColumns = new OutputRowEntryDictionary();
         }
 
         /// <summary>
-    /// Load a new server tag prototype entry. Creates new prototype or adds information to existing array prototype.
-    /// </summary>
-    /// <param name="tagInfo">Tag name and index information.</param>
-    /// <param name="nameTemplate">Formatting template for generated tags.</param>
-    /// <param name="defaultColumnData">Default data all tags have.</param>
-    /// <param name="sortingColumn">Column to sort alphanumerically on before writing out. Only needs to be specified once per prototype.</param>
-    /// <param name="pointTypeText">Type of the point, either binary / analog and status / control.</param>
-    /// <param name="nominalColumns">String denoting the presence of nominal columns in a format like "23" or "12:25".</param>
+        /// Load a new server tag prototype entry. Creates new prototype or adds information to existing array prototype.
+        /// </summary>
+        /// <param name="tagInfo">Tag name and index information.</param>
+        /// <param name="nameTemplate">Formatting template for generated tags.</param>
+        /// <param name="defaultColumnData">Default data all tags have.</param>
+        /// <param name="sortingColumn">Column to sort alphanumerically on before writing out. Only needs to be specified once per prototype.</param>
+        /// <param name="pointTypeText">Type of the point, either binary / analog and status / control.</param>
+        /// <param name="nominalColumns">String denoting the presence of nominal columns in a format like "23" or "12:25".</param>
         public void AddTagPrototypeEntry(ServerTagInfo tagInfo, string nameTemplate, string defaultColumnData, int sortingColumn, string pointTypeText, string nominalColumns
     )
         {
@@ -260,9 +261,8 @@ namespace TagProcGen
             // Store prototype entry
             var newTagPrototypeEntry = new ServerTagPrototypeEntry();
             {
-                var withBlock = newTagPrototypeEntry;
-                withBlock.ServerTagNameTemplate = nameTemplate;
-                defaultColumnData.ParseColumnDataPairs(withBlock.StandardColumns);
+                newTagPrototypeEntry.ServerTagNameTemplate = nameTemplate;
+                defaultColumnData.ParseColumnDataPairs(newTagPrototypeEntry.StandardColumns);
             }
 
             // Store new prototype entry
@@ -270,9 +270,9 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Ensure all loaded tag prototypes have a valid sorting column, point information,
-    /// and status points have a nominal indication column.
-    /// </summary>
+        /// Ensure all loaded tag prototypes have a valid sorting column, point information,
+        /// and status points have a nominal indication column.
+        /// </summary>
         public void ValidateTagPrototypes()
         {
             foreach (var ta in RtacTagPrototypes)
@@ -287,10 +287,10 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Returns the information of a valid tag, otherwise throws an exception.
-    /// </summary>
-    /// <param name="iedTagName">Device tag name to validate.</param>
-    /// <returns>TagInfo structure of valid tag.</returns>
+        /// Returns the information of a valid tag, otherwise throws an exception.
+        /// </summary>
+        /// <param name="iedTagName">Device tag name to validate.</param>
+        /// <returns>TagInfo structure of valid tag.</returns>
         public ServerTagInfo ValidateTag(string iedTagName)
         {
             var tagMapInfo = GetServerTypeByIedType(iedTagName);
@@ -305,22 +305,22 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Return the server tag associated with th given device tag.
-    /// </summary>
-    /// <param name="iedTagType">Name of device tag to get server info for.</param>
-    /// <returns>Server tag information.</returns>
-    /// <remarks>Ex: operSPC-T -> DNPC, in TagInfo container</remarks>
+        /// Return the server tag associated with th given device tag.
+        /// </summary>
+        /// <param name="iedTagType">Name of device tag to get server info for.</param>
+        /// <returns>Server tag information.</returns>
+        /// <remarks>Ex: operSPC-T -> DNPC, in TagInfo container</remarks>
         public ServerTagInfo GetServerTagInfoByDevice(string iedTagType)
         {
             return ValidateTag(iedTagType);
         }
 
         /// <summary>
-    /// Return the server tag associated with th given device tag.
-    /// </summary>
-    /// <param name="iedTagType">Name of device tag to get server prototype for.</param>
-    /// <returns>Server tag root prototype.</returns>
-    /// <remarks>Ex: operSPC-T -> DNPC</remarks>
+        /// Return the server tag associated with th given device tag.
+        /// </summary>
+        /// <param name="iedTagType">Name of device tag to get server prototype for.</param>
+        /// <returns>Server tag root prototype.</returns>
+        /// <remarks>Ex: operSPC-T -> DNPC</remarks>
         public ServerTagRootPrototype GetServerTagPrototypeByDevice(string iedTagType)
         {
             var Tag = GetServerTagInfoByDevice(iedTagType);
@@ -329,11 +329,11 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Returns the specific server prototype entry associated with th given device tag.
-    /// </summary>
-    /// <param name="iedTagType">Name of device tag to get server prototype entry for.</param>
-    /// <returns>Server tag prototype entry.</returns>
-    /// <remarks>Ex: operSPC-T -> DNPC[2]</remarks>
+        /// Returns the specific server prototype entry associated with th given device tag.
+        /// </summary>
+        /// <param name="iedTagType">Name of device tag to get server prototype entry for.</param>
+        /// <returns>Server tag prototype entry.</returns>
+        /// <remarks>Ex: operSPC-T -> DNPC[2]</remarks>
         public ServerTagPrototypeEntry GetServerTagEntryByDevice(string iedTagType)
         {
             var Tag = GetServerTagInfoByDevice(iedTagType);
@@ -343,10 +343,10 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Returns the text after the 2nd dot in an array tag. Returns empty string if type is not an array type.
-    /// </summary>
-    /// <param name="tagInfo">Tag information to get array suffix for.</param>
-    /// <returns>String containing the characters after the 2nd dot in a tag format. Ex: Result of input {SERVER}.BO_{0:D5}.operLatchOn is operLatchOn.</returns>
+        /// Returns the text after the 2nd dot in an array tag. Returns empty string if type is not an array type.
+        /// </summary>
+        /// <param name="tagInfo">Tag information to get array suffix for.</param>
+        /// <returns>String containing the characters after the 2nd dot in a tag format. Ex: Result of input {SERVER}.BO_{0:D5}.operLatchOn is operLatchOn.</returns>
         public string GetArraySuffix(ServerTagInfo tagInfo)
         {
             string format = RtacTagPrototypes[tagInfo.RootServerTagTypeName].TagPrototypeEntries[tagInfo.Index].ServerTagNameTemplate;
@@ -359,11 +359,11 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Generate a server tag name from a given prototype name template and address.
-    /// </summary>
-    /// <param name="tagPrototypeEntry">Tag prototype entry's format to use.</param>
-    /// <param name="address">Address to substitute in.</param>
-    /// <returns>Formatted server tag name.</returns>
+        /// Generate a server tag name from a given prototype name template and address.
+        /// </summary>
+        /// <param name="tagPrototypeEntry">Tag prototype entry's format to use.</param>
+        /// <param name="address">Address to substitute in.</param>
+        /// <returns>Formatted server tag name.</returns>
         public string GenerateServerTagNameByAddress(ServerTagPrototypeEntry tagPrototypeEntry, int address)
         {
             string tagName = tagPrototypeEntry.ServerTagNameTemplate.Replace("{SERVER}", RtacServerName);
@@ -371,22 +371,22 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Increment generation base address by the given amount.
-    /// </summary>
-    /// <param name="rtacTagName">Server tag type name.</param>
-    /// <param name="incrementVal">Value to increment base address by.</param>
+        /// Increment generation base address by the given amount.
+        /// </summary>
+        /// <param name="rtacTagName">Server tag type name.</param>
+        /// <param name="incrementVal">Value to increment base address by.</param>
         public void IncrementRtacTagBaseAddressByRtacTagType(string rtacTagName, int incrementVal)
         {
             TagTypeRunningAddressOffset[rtacTagName] += incrementVal;
         }
 
         /// <summary>
-    /// Replace standard placeholders in columns.
-    /// </summary>
-    /// <param name="rtacDataRow">Row of data to replace placeholders.</param>
-    /// <param name="rtacTagName">Server tag name.</param>
-    /// <param name="tagAddress">Server tag address.</param>
-    /// <param name="tagAlias">Server tag alias.</param>
+        /// Replace standard placeholders in columns.
+        /// </summary>
+        /// <param name="rtacDataRow">Row of data to replace placeholders.</param>
+        /// <param name="rtacTagName">Server tag name.</param>
+        /// <param name="tagAddress">Server tag address.</param>
+        /// <param name="tagAlias">Server tag alias.</param>
         public void ReplaceRtacKeywords(OutputRowEntryDictionary rtacDataRow, string rtacTagName, string tagAddress, string tagAlias)
         {
             var replacements = new Dictionary<string, string>()
@@ -410,10 +410,10 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Add a tag row to the output type collection.
-    /// </summary>
-    /// <param name="rtacTagTypeName">Type name to add output to.</param>
-    /// <param name="rtacRow">Data to add.</param>
+        /// Add a tag row to the output type collection.
+        /// </summary>
+        /// <param name="rtacTagTypeName">Type name to add output to.</param>
+        /// <param name="rtacRow">Data to add.</param>
         public void AddRtacTagOutput(string rtacTagTypeName, OutputRowEntryDictionary rtacRow)
         {
             if (!_RtacOutputList.ContainsKey(rtacTagTypeName))
@@ -423,11 +423,11 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Return the alias of a server tag given a SCADA name and direction.
-    /// </summary>
-    /// <param name="scadaName">SCADA name to process.</param>
-    /// <param name="pointType">Used to determine if the control suffix needs to be appended.</param>
-    /// <returns>Server tag alias.</returns>
+        /// Return the alias of a server tag given a SCADA name and direction.
+        /// </summary>
+        /// <param name="scadaName">SCADA name to process.</param>
+        /// <param name="pointType">Used to determine if the control suffix needs to be appended.</param>
+        /// <returns>Server tag alias.</returns>
         public string GetRtacAlias(string scadaName, PointTypeInfo pointType)
         {
             if (pointType.IsControl)
@@ -440,9 +440,9 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Validate a tag alias. Throws error if invalid.
-    /// </summary>
-    /// <param name="tagAlias">Tag alias to validate.</param>
+        /// Validate a tag alias. Throws error if invalid.
+        /// </summary>
+        /// <param name="tagAlias">Tag alias to validate.</param>
         public void ValidateTagAlias(string tagAlias)
         {
             var r = Regex.Match(tagAlias, @"^[A-Za-z0-9_]+\s*$", RegexOptions.None);
@@ -451,9 +451,9 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Write all servers tag types to CSV.
-    /// </summary>
-    /// <param name="path">Source filename to append output suffix on.</param>
+        /// Write all servers tag types to CSV.
+        /// </summary>
+        /// <param name="path">Source filename to append output suffix on.</param>
         public void WriteAllServerTags(string path)
         {
             foreach (var tagGroup in _RtacOutputList)
@@ -461,10 +461,10 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Write the specified server tag type to CSV.
-    /// </summary>
-    /// <param name="type">Tag type to write out.</param>
-    /// <param name="path">Source filename to append output suffix on.</param>
+        /// Write the specified server tag type to CSV.
+        /// </summary>
+        /// <param name="type">Tag type to write out.</param>
+        /// <param name="path">Source filename to append output suffix on.</param>
         private void WriteServerTagCSV(KeyValuePair<string, OutputList> type, string path)
         {
             string typeName = type.Key;
@@ -494,15 +494,15 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Parse tag information.
-    /// </summary>
-    /// <remarks>Helper class to parse tag info for array-capable tags</remarks>
+        /// Parse tag information.
+        /// </summary>
+        /// <remarks>Helper class to parse tag info for array-capable tags</remarks>
         public class ServerTagInfo
         {
             private string _RootServerTagTypeName;
             /// <summary>
-        /// Root tag type name, such as DNPC
-        /// </summary>
+            /// Root tag type name, such as DNPC
+            /// </summary>
             public string RootServerTagTypeName
             {
                 get
@@ -513,8 +513,8 @@ namespace TagProcGen
 
             private string _FullServerTagTypeName;
             /// <summary>
-        /// Full tag type name, such as DNPC[2]
-        /// </summary>
+            /// Full tag type name, such as DNPC[2]
+            /// </summary>
             public string FullServerTagTypeName
             {
                 get
@@ -529,8 +529,8 @@ namespace TagProcGen
 
             private bool _IsArray;
             /// <summary>
-        /// Is tag an array type such as DNPC[2]
-        /// </summary>
+            /// Is tag an array type such as DNPC[2]
+            /// </summary>
             public bool IsArray
             {
                 get
@@ -541,8 +541,8 @@ namespace TagProcGen
 
             private int _Index;
             /// <summary>
-        /// Index of array tag types such as DNPC[2]
-        /// </summary>
+            /// Index of array tag types such as DNPC[2]
+            /// </summary>
             public int Index
             {
                 get
@@ -552,25 +552,25 @@ namespace TagProcGen
             }
 
             /// <summary>
-        /// Initialize a new instance of TagInfo with no tag.
-        /// </summary>
+            /// Initialize a new instance of TagInfo with no tag.
+            /// </summary>
             public ServerTagInfo()
             {
             }
 
             /// <summary>
-        /// Initialize a new instance of TagInfo with the given tag name.
-        /// </summary>
-        /// <param name="fullServerTagTypeName">Tag type name to parse</param>
+            /// Initialize a new instance of TagInfo with the given tag name.
+            /// </summary>
+            /// <param name="fullServerTagTypeName">Tag type name to parse</param>
             public ServerTagInfo(string fullServerTagTypeName)
             {
                 ParseServerTagTypeInfo(fullServerTagTypeName);
             }
 
             /// <summary>
-        /// Parse given tag type name into root type name and index,
-        /// </summary>
-        /// <param name="fullServerTagTypeName">Tag type name to parse</param>
+            /// Parse given tag type name into root type name and index,
+            /// </summary>
+            /// <param name="fullServerTagTypeName">Tag type name to parse</param>
             private void ParseServerTagTypeInfo(string fullServerTagTypeName)
             {
                 // Note (?: ) is a non capture group

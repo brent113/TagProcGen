@@ -13,7 +13,7 @@ namespace TagProcGen
     /// </summary>
     public class IedTemplate
     {
-        private Dictionary<string, string> _Pointers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, string> _Pointers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         /// <summary>
         /// Key: Pointer Name. Value: Cell Reference
         /// </summary>
@@ -25,11 +25,11 @@ namespace TagProcGen
             }
         }
 
-        private Excel.Worksheet _xlSheet;
+        private readonly Excel.Worksheet _xlSheet;
         /// <summary>
         /// Excel worksheet corresponding to the IED template
         /// </summary>
-        public Excel.Worksheet xlSheet
+        public Excel.Worksheet XlSheet
         {
             get
             {
@@ -46,7 +46,7 @@ namespace TagProcGen
             _xlSheet = xlSheet;
         }
 
-        private Dictionary<string, string> _Offsets = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private readonly Dictionary<string, string> _Offsets = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         /// <summary>
         /// Stores device address alignment (i.e. 50 status points per device).
         /// </summary>
@@ -59,7 +59,7 @@ namespace TagProcGen
             }
         }
 
-        private List<IedTagEntry> _AllTags = new List<IedTagEntry>();
+        private readonly List<IedTagEntry> _AllTags = new List<IedTagEntry>();
         /// <summary>
         /// Contains the SCADA and device data for all points in the template.
         /// </summary>
@@ -83,7 +83,7 @@ namespace TagProcGen
             public string ScadaName;
         }
 
-        private List<IedScadaNamePair> _IedScadaNames = new List<IedScadaNamePair>();
+        private readonly List<IedScadaNamePair> _IedScadaNames = new List<IedScadaNamePair>();
         /// <summary>
         /// List of device and SCADA name pairs to generate point lists for.
         /// </summary>
@@ -100,6 +100,7 @@ namespace TagProcGen
         /// </summary>
         public class Keywords
         {
+            /// <summary>IED Name</summary>
             public const string IED_NAME_KEYWORD = "{IED}";
         }
 
@@ -140,7 +141,7 @@ namespace TagProcGen
             private const string NOT_PREDICATE = "NOT";
             private const char DELIMITER = ',';
 
-            private string _filterString;
+            private readonly string _filterString;
 
             /// <summary>The filter verb.</summary>
             public FilterPredicateEnum FilterPredicate;
@@ -279,7 +280,7 @@ namespace TagProcGen
                 .ToList();
 
             if (tagNameTypeEntriesThatMapToSamePrototypeEntry.Count > 0)
-                throw new Exception(string.Format("Template {0} contains a multiple tags of the same type: \r\n{1} of type {2} and \r\n{3} of type {4}.", xlSheet.Name, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(0).IedTagName, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(0).IedTagTypeName, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(1).IedTagName, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(1).IedTagTypeName
+                throw new Exception(string.Format("Template {0} contains a multiple tags of the same type: \r\n{1} of type {2} and \r\n{3} of type {4}.", XlSheet.Name, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(0).IedTagName, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(0).IedTagTypeName, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(1).IedTagName, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(1).IedTagTypeName
             )
             );
 

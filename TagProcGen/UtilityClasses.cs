@@ -8,13 +8,12 @@ namespace TagProcGen
 {
 
     /// <summary>
-
-/// Global constants.
-
-/// </summary>
+    /// Global constants.
+    /// </summary>
     public class Constants
     {
         // Initial Pointer
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public const string TPL_DEF = "A3";
 
         // Important Excel worksheet names
@@ -56,58 +55,30 @@ namespace TagProcGen
         public const string STATUS_ANALOG = "STATUSANALOG";
         public const string CONTROL_BINARY = "CONTROLBINARY";
         public const string CONTROL_ANALOG = "CONTROLANALOG";
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 
     /// <summary>
-
-/// Represents points that are analog or binary, both status and control.
-
-/// </summary>
+    /// Represents points that are analog or binary, both status and control.
+    /// </summary>
     public class PointTypeInfo
     {
-        private string _pointTypeName;
+        private readonly string _pointTypeName;
 
-        private bool _IsStatus;
         /// <summary>Returns True if the point is a status type.</summary>
-        public bool IsStatus
-        {
-            get
-            {
-                return _IsStatus;
-            }
-        }
+        public bool IsStatus { get; }
         /// <summary>Returns True if the point is a control type.</summary>
-        public bool IsControl
-        {
-            get
-            {
-                return !_IsStatus;
-            }
-        }
-
-        private bool _IsBinary;
+        public bool IsControl => !IsStatus;
         /// <summary>Returns True if the point is a binary type.</summary>
-        public bool IsBinary
-        {
-            get
-            {
-                return _IsBinary;
-            }
-        }
+        public bool IsBinary { get; }
         /// <summary>Returns True if the point is an analog type.</summary>
-        public bool IsAnalog
-        {
-            get
-            {
-                return !_IsBinary;
-            }
-        }
+        public bool IsAnalog => !IsBinary;
 
         /// <summary>
-    /// Initialize a new instance of PointTypeInfo from text.
-    /// </summary>
-    /// <param name="pointTypeText">Text to parse point type information for.</param>
-    /// <remarks>Text should be like: StatusAnalog, or ControlBinary</remarks>
+        /// Initialize a new instance of PointTypeInfo from text.
+        /// </summary>
+        /// <param name="pointTypeText">Text to parse point type information for.</param>
+        /// <remarks>Text should be like: StatusAnalog, or ControlBinary</remarks>
         public PointTypeInfo(string pointTypeText)
         {
             _pointTypeName = pointTypeText.ToUpper();
@@ -124,25 +95,25 @@ namespace TagProcGen
             if (!AllTypes.Contains(_pointTypeName))
                 throw new Exception(string.Format("Point type {0} is not a valid point type.", _pointTypeName));
 
-            _IsStatus = StatusTypes.Contains(_pointTypeName);
-            _IsBinary = BinaryTypes.Contains(_pointTypeName);
+            IsStatus = StatusTypes.Contains(_pointTypeName);
+            IsBinary = BinaryTypes.Contains(_pointTypeName);
         }
 
         /// <summary>
-    /// Initialize a new instance of PointTypeInfo from values.
-    /// </summary>
-    /// <param name="isStatus">Indicates the point is a status point.</param>
-    /// <param name="isBinary">Indicates the point is a binary point.</param>
+        /// Initialize a new instance of PointTypeInfo from values.
+        /// </summary>
+        /// <param name="isStatus">Indicates the point is a status point.</param>
+        /// <param name="isBinary">Indicates the point is a binary point.</param>
         public PointTypeInfo(bool isStatus, bool isBinary)
         {
-            _IsStatus = isStatus;
-            _IsBinary = isBinary;
+            IsStatus = isStatus;
+            IsBinary = isBinary;
         }
 
         /// <summary>
-    /// Returns a string that represents the current object.
-    /// </summary>
-    /// <returns>The point type name as a string.</returns>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>The point type name as a string.</returns>
         public override string ToString()
         {
             return _pointTypeName;
@@ -150,51 +121,45 @@ namespace TagProcGen
     }
 
     /// <summary>
-
-/// Custom comparer that sorts a list of output rows by the given sorting column alphanumerically.
-
-/// </summary>
+    /// Custom comparer that sorts a list of output rows by the given sorting column alphanumerically.
+    /// </summary>
     public class BySortingColumn : IComparer<OutputRowEntryDictionary>
     {
-        private int m_sortingColumn;
+        private readonly int _sortingColumn;
 
         /// <summary>
-    /// Initialize a new instance of BySortingColumn.
-    /// </summary>
-    /// <param name="sortingColumn">Column number to sort by.</param>
-        public BySortingColumn(int sortingColumn)
-        {
-            m_sortingColumn = sortingColumn;
-        }
+        /// Initialize a new instance of BySortingColumn.
+        /// </summary>
+        /// <param name="sortingColumn">Column number to sort by.</param>
+        public BySortingColumn(int sortingColumn) => _sortingColumn = sortingColumn;
+
 
         /// <summary>
-    /// Compare two values.
-    /// </summary>
-    /// <param name="x">Value1 to compare.</param>
-    /// <param name="y">Value2 to compare.</param>
-    /// <returns>X less than Y: Less than 0. X=Y: 0. X greater than Y: Greater than 0.</returns>
+        /// Compare two values.
+        /// </summary>
+        /// <param name="x">Value1 to compare.</param>
+        /// <param name="y">Value2 to compare.</param>
+        /// <returns>X less than Y: Less than 0. X=Y: 0. X greater than Y: Greater than 0.</returns>
         public int Compare(OutputRowEntryDictionary x, OutputRowEntryDictionary y)
         {
-            double xVal = Convert.ToDouble(x[m_sortingColumn]);
-            double YVal = Convert.ToDouble(y[m_sortingColumn]);
+            double xVal = Convert.ToDouble(x[_sortingColumn]);
+            double YVal = Convert.ToDouble(y[_sortingColumn]);
 
             return xVal.CompareTo(YVal);
         }
     }
 
     /// <summary>
-
-/// Utilities that are used by various function throughout the program.
-
-/// </summary>
+    /// Utilities that are used by various function throughout the program.
+    /// </summary>
     public static class SharedUtils
     {
         /// <summary>
-    /// Read 2 columns of data into a Key: Value structure. Optional list of parameters to verify were successfully read in.
-    /// </summary>
-    /// <param name="start">Excel range to begin reading data pairs at.</param>
-    /// <param name="dict">Dictionary to store data pairs in.</param>
-    /// <param name="ExpectedParameters">List of parameters that must be in the dictionary or an error will be thrown.</param>
+        /// Read 2 columns of data into a Key: Value structure. Optional list of parameters to verify were successfully read in.
+        /// </summary>
+        /// <param name="start">Excel range to begin reading data pairs at.</param>
+        /// <param name="dict">Dictionary to store data pairs in.</param>
+        /// <param name="ExpectedParameters">List of parameters that must be in the dictionary or an error will be thrown.</param>
         public static void ReadPairRange(Excel.Range start, Dictionary<string, string> dict, params string[] ExpectedParameters)
         {
             while (!string.IsNullOrEmpty((string)start.Value))
@@ -211,10 +176,10 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Convert an output row dictionary into a sparse string array where the 1-based output row column indices are converted to a 0-based string array index.
-    /// </summary>
-    /// <param name="outputRow">Row data to convert into a string array.</param>
-    /// <returns>Sparsely populated string array.</returns>
+        /// Convert an output row dictionary into a sparse string array where the 1-based output row column indices are converted to a 0-based string array index.
+        /// </summary>
+        /// <param name="outputRow">Row data to convert into a string array.</param>
+        /// <returns>Sparsely populated string array.</returns>
         public static string[] OutputRowEntryDictionaryToArray(OutputRowEntryDictionary outputRow)
         {
             // Create string array (0 based) from max column index (1 based)
@@ -230,17 +195,15 @@ namespace TagProcGen
     }
 
     /// <summary>
-
-/// Contains extension methods
-
-/// </summary>
+    /// Contains extension methods
+    /// </summary>
     public static class ExtensionMethods
     {
         /// <summary>
-    /// Parse a string containing formatted column / data pairs into the output row dictionary format.
-    /// </summary>
-    /// <param name="columnDataPairString">String to parse. Ex: [2, {NAME}];[3, {ADDRESS}];[5, {ALIAS}]</param>
-    /// <param name="columnDataDict">Output dictionary to store parsed data in.</param>
+        /// Parse a string containing formatted column / data pairs into the output row dictionary format.
+        /// </summary>
+        /// <param name="columnDataPairString">String to parse. Ex: [2, {NAME}];[3, {ADDRESS}];[5, {ALIAS}]</param>
+        /// <param name="columnDataDict">Output dictionary to store parsed data in.</param>
         public static void ParseColumnDataPairs(this string columnDataPairString, OutputRowEntryDictionary columnDataDict)
         {
             if (columnDataPairString.Length == 0)
@@ -255,8 +218,7 @@ namespace TagProcGen
                     throw new Exception("Malformed column / data pair: " + colPair);
                 var t = colPair.Substring(1, colPair.Length - 2).Split(',');
 
-                int colIndex;
-                if (!int.TryParse(t[0].Trim(), out colIndex))
+                if (!int.TryParse(t[0].Trim(), out int colIndex))
                     throw new Exception("Invalid Column Index: unable to convert \"" + t[0].Trim() + "\" to an integer");
 
                 string colData = t[1].Trim();
@@ -266,10 +228,10 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Apply replacements to column keywords like {NAME} and {ADDRESS}
-    /// </summary>
-    /// <param name="columns">Column data pair dictionary to update</param>
-    /// <param name="replacements">Dictionary of keywords (like {NAME}) and their replacement</param>
+        /// Apply replacements to column keywords like {NAME} and {ADDRESS}
+        /// </summary>
+        /// <param name="columns">Column data pair dictionary to update</param>
+        /// <param name="replacements">Dictionary of keywords (like {NAME}) and their replacement</param>
         public static void ReplaceTagKeywords(this OutputRowEntryDictionary columns, Dictionary<string, string> replacements)
         {
             var keys = new List<int>(columns.Keys.ToList());
@@ -281,12 +243,12 @@ namespace TagProcGen
         }
 
         /// <summary>
-    /// Search a string for a character and return the Nth character.
-    /// </summary>
-    /// <param name="s">String to search.</param>
-    /// <param name="t">Character to search for.</param>
-    /// <param name="n">Instance number of the character.</param>
-    /// <returns>Returns the Nth index as an Integer.</returns>
+        /// Search a string for a character and return the Nth character.
+        /// </summary>
+        /// <param name="s">String to search.</param>
+        /// <param name="t">Character to search for.</param>
+        /// <param name="n">Instance number of the character.</param>
+        /// <returns>Returns the Nth index as an Integer.</returns>
         public static int GetNthIndex(this string s, char t, int n)
         {
             int count = 0;
