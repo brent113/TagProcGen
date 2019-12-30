@@ -13,29 +13,15 @@ namespace TagProcGen
     /// </summary>
     public class RtacTemplate
     {
-        private readonly Dictionary<string, string> _Pointers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         /// <summary>
         /// Key: Pointer Name. Value: Cell Reference
         /// </summary>
-        public Dictionary<string, string> Pointers
-        {
-            get
-            {
-                return _Pointers;
-            }
-        }
+        public Dictionary<string, string> Pointers { get; } = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
-        private readonly Excel.Worksheet _xlSheet;
         /// <summary>
         /// Excel worksheet corresponding to the RTAC template
         /// </summary>
-        public Excel.Worksheet XlSheet
-        {
-            get
-            {
-                return _xlSheet;
-            }
-        }
+        public Excel.Worksheet XlSheet { get; }
 
         /// <summary>
         /// Create a new instance
@@ -43,7 +29,7 @@ namespace TagProcGen
         /// <param name="xlSheet">Excel worksheet corresponding to the SCADA template</param>
         public RtacTemplate(Excel.Worksheet xlSheet)
         {
-            _xlSheet = xlSheet;
+            XlSheet = xlSheet;
         }
 
         /// <summary>
@@ -56,40 +42,15 @@ namespace TagProcGen
         /// </summary>
         public string AliasNameTemplate { get; set; }
 
-        private readonly Dictionary<string, ServerTagRootPrototype> _RtacTagPrototypes = new Dictionary<string, ServerTagRootPrototype>(StringComparer.OrdinalIgnoreCase);
         /// <summary>
         /// Dictionary of server tag prototypes. Key: Server type name, Value: Prototype Root Type
         /// </summary>
-        public Dictionary<string, ServerTagRootPrototype> RtacTagPrototypes
-        {
-            get
-            {
-                return _RtacTagPrototypes;
-            }
-        }
+        public Dictionary<string, ServerTagRootPrototype> RtacTagPrototypes { get; } = new Dictionary<string, ServerTagRootPrototype>(StringComparer.OrdinalIgnoreCase);
 
-        private readonly Dictionary<string, int> _TagTypeRunningAddressOffset = new Dictionary<string, int>();
         /// <summary>
         /// Starting value of next IED's tags. Incremented by offsets
         /// </summary>
-        public Dictionary<string, int> TagTypeRunningAddressOffset
-        {
-            get
-            {
-                return _TagTypeRunningAddressOffset;
-            }
-        }
-
-        /// <summary>
-        /// Class to store server type map info.
-        /// </summary>
-        public class ServerTagMapInfo
-        {
-            /// <summary>Name of the server tag type.</summary>
-            public string ServerTagTypeName;
-            /// <summary>Indicates whether to substitute nominal data when the source tag is bad quality.</summary>
-            public bool PerformQualityWrapping;
-        }
+        public Dictionary<string, int> TagTypeRunningAddressOffset { get; } = new Dictionary<string, int>();
 
         /// <remarks>Contains 1:1 map to prototype. Key: Device tag type, Value: Server tag map info.</remarks>
         private readonly Dictionary<string, ServerTagMapInfo> _IedToServerTypeMap = new Dictionary<string, ServerTagMapInfo>();
@@ -134,69 +95,21 @@ namespace TagProcGen
         /// <summary>
         /// List of all server tags by type. Generated from device templates.
         /// </summary>
-        private readonly Dictionary<string, OutputList> _RtacOutputList = new Dictionary<string, OutputList>();
+        private readonly Dictionary<string, OutputList> RtacOutputList = new Dictionary<string, OutputList>();
 
         /// <summary>
         /// Keywords that get replaced with other values.
         /// </summary>
-        public class Keywords
+        private class Keywords
         {
             /// <summary>Name</summary>
-            public const string NAME_KEYWORD = "{NAME}"; 
+            public const string NameKeyword = "{NAME}";
             /// <summary>Address</summary>
-            public const string ADDRESS_KEYWORD = "{ADDRESS}";
+            public const string AddressKeyword = "{ADDRESS}";
             /// <summary>Alias</summary>
-            public const string ALIAS_KEYWORD = "{ALIAS}";
+            public const string AliasKeyword = "{ALIAS}";
             /// <summary>Control</summary>
-            public const string CONTROL_KEYWORD = "{CTRL}";
-        }
-
-        /// <summary>
-        /// Server tag prototype root structure
-        /// </summary>
-        public class ServerTagRootPrototype
-        {
-            /// <summary>
-            /// List of child prototype entries. Non-array types have 1 entry.
-            /// </summary>
-            /// <remarks>Array types like DNPC etc will have multiple formats</remarks>
-            public List<ServerTagPrototypeEntry> TagPrototypeEntries = new List<ServerTagPrototypeEntry>();
-
-            /// <summary>
-            /// Column to sort on
-            /// </summary>
-            public int SortingColumn;
-
-            /// <summary>
-            /// Point type: either binary / analog and status / control.
-            /// </summary>
-            public PointTypeInfo PointType;
-
-            /// <summary>
-            /// If the type is an analog type with limits this denotes the min and max column range that stores those limits.
-            /// </summary>
-            /// <remarks>
-            /// Used for calculating nominal analog values for quality substitution.
-            /// For binary points, both tuple values are the same.
-            /// </remarks>
-            public Tuple<int, int> NominalColumns;
-        }
-
-        /// <summary>
-        /// Server tag prototype child structure
-        /// </summary>
-        public class ServerTagPrototypeEntry
-        {
-            /// <summary>
-            /// Server tag name format with placeholder for address.
-            /// </summary>
-            /// <remarks>Markup supported by String.Format supported</remarks>
-            public string ServerTagNameTemplate;
-
-            /// <summary>
-            /// Standard data all server tags of this type have
-            /// </summary>
-            public OutputRowEntryDictionary StandardColumns = new OutputRowEntryDictionary();
+            public const string ControlKeyword = "{CTRL}";
         }
 
         /// <summary>
@@ -208,9 +121,15 @@ namespace TagProcGen
         /// <param name="sortingColumn">Column to sort alphanumerically on before writing out. Only needs to be specified once per prototype.</param>
         /// <param name="pointTypeText">Type of the point, either binary / analog and status / control.</param>
         /// <param name="nominalColumns">String denoting the presence of nominal columns in a format like "23" or "12:25".</param>
-        public void AddTagPrototypeEntry(ServerTagInfo tagInfo, string nameTemplate, string defaultColumnData, int sortingColumn, string pointTypeText, string nominalColumns
-    )
+        public void AddTagPrototypeEntry(ServerTagInfo tagInfo, string nameTemplate, string defaultColumnData,
+                                         int sortingColumn, string pointTypeText, string nominalColumns)
         {
+            tagInfo.ThrowIfNull(nameof(tagInfo));
+            nameTemplate.ThrowIfNull(nameof(nameTemplate));
+            defaultColumnData.ThrowIfNull(nameof(defaultColumnData));
+            pointTypeText.ThrowIfNull(nameof(pointTypeText));
+            nominalColumns.ThrowIfNull(nameof(nominalColumns));
+
 
             // Get existing tag, or create new
             ServerTagRootPrototype tagRootPrototype;
@@ -239,19 +158,17 @@ namespace TagProcGen
                 var colonSplit = nominalColumns.Split(new[] { '.', '[', ']' }, StringSplitOptions.RemoveEmptyEntries);
 
                 if (colonSplit.Length == 1)
-                    tagRootPrototype.NominalColumns = new Tuple<int, int>(Convert.ToInt32(colonSplit[0]), Convert.ToInt32(colonSplit[0]));
+                    tagRootPrototype.NominalColumns = (Convert.ToInt32(colonSplit[0]), Convert.ToInt32(colonSplit[0]));
                 else if (colonSplit.Length == 2)
                 {
-                    tagRootPrototype.NominalColumns = new Tuple<int, int>(Convert.ToInt32(colonSplit[0]), Convert.ToInt32(colonSplit[1]));
+                    tagRootPrototype.NominalColumns = (Convert.ToInt32(colonSplit[0]), Convert.ToInt32(colonSplit[1]));
 
                     // Check for even number of columns - analog limits come in pairs. 1:10 = 10-1, should be odd
-                    if ((tagRootPrototype.NominalColumns.Item2 - tagRootPrototype.NominalColumns.Item1) % 2 == 0)
-                        throw new Exception(string.Format("Tag prototype {0} has an odd number of nominal value columns. Only even number of columns allowed.", tagInfo.RootServerTagTypeName
-)
-);
+                    if ((tagRootPrototype.NominalColumns.upper - tagRootPrototype.NominalColumns.lower) % 2 == 0)
+                        throw new TagGenerationException($"Tag prototype {tagInfo.RootServerTagTypeName} has an odd number of nominal value columns. Only even number of columns allowed.");
                 }
                 else
-                    throw new Exception("Invalid analog limit column range. Expecting format like '10 or [11..20]'");
+                    throw new TagGenerationException("Invalid analog limit column range. Expecting format like '10 or [11..20]'");
             }
 
             // Ensure the array has a placeholder for the incoming index
@@ -278,11 +195,11 @@ namespace TagProcGen
             foreach (var ta in RtacTagPrototypes)
             {
                 if (ta.Value.SortingColumn < 0)
-                    throw new Exception(string.Format("Tag prototype {0} is missing a valid sorting column.", ta.Key));
+                    throw new TagGenerationException(string.Format("Tag prototype {0} is missing a valid sorting column.", ta.Key));
                 if (ta.Value.PointType == null)
-                    throw new Exception(string.Format("Tag prototype {0} is missing a valid data direction.", ta.Key));
-                if (ta.Value.PointType.IsStatus && ta.Value.NominalColumns == null)
-                    throw new Exception(string.Format("Tag prototype {0} is a status type but is missing valid nominal columns.", ta.Key));
+                    throw new TagGenerationException(string.Format("Tag prototype {0} is missing a valid data direction.", ta.Key));
+                if (ta.Value.PointType.IsStatus && (ta.Value.NominalColumns.lower == -1 || ta.Value.NominalColumns.upper == -1))
+                    throw new TagGenerationException(string.Format("Tag prototype {0} is a status type but is missing valid nominal columns.", ta.Key));
             }
         }
 
@@ -349,6 +266,8 @@ namespace TagProcGen
         /// <returns>String containing the characters after the 2nd dot in a tag format. Ex: Result of input {SERVER}.BO_{0:D5}.operLatchOn is operLatchOn.</returns>
         public string GetArraySuffix(ServerTagInfo tagInfo)
         {
+            tagInfo.ThrowIfNull(nameof(tagInfo));
+
             string format = RtacTagPrototypes[tagInfo.RootServerTagTypeName].TagPrototypeEntries[tagInfo.Index].ServerTagNameTemplate;
 
             int secondDotIndex = format.GetNthIndex('.', 2);
@@ -366,6 +285,8 @@ namespace TagProcGen
         /// <returns>Formatted server tag name.</returns>
         public string GenerateServerTagNameByAddress(ServerTagPrototypeEntry tagPrototypeEntry, int address)
         {
+            tagPrototypeEntry.ThrowIfNull(nameof(tagPrototypeEntry));
+
             string tagName = tagPrototypeEntry.ServerTagNameTemplate.Replace("{SERVER}", RtacServerName);
             return string.Format(tagName, address);
         }
@@ -387,20 +308,20 @@ namespace TagProcGen
         /// <param name="rtacTagName">Server tag name.</param>
         /// <param name="tagAddress">Server tag address.</param>
         /// <param name="tagAlias">Server tag alias.</param>
-        public void ReplaceRtacKeywords(OutputRowEntryDictionary rtacDataRow, string rtacTagName, string tagAddress, string tagAlias)
+        public static void ReplaceRtacKeywords(OutputRowEntryDictionary rtacDataRow, string rtacTagName, string tagAddress, string tagAlias)
         {
             var replacements = new Dictionary<string, string>()
             {
                 {
-                    Keywords.NAME_KEYWORD,
+                    Keywords.NameKeyword,
                     rtacTagName
                 },
                 {
-                    Keywords.ADDRESS_KEYWORD,
+                    Keywords.AddressKeyword,
                     tagAddress
                 },
                 {
-                    Keywords.ALIAS_KEYWORD,
+                    Keywords.AliasKeyword,
                     tagAlias
                 }
             };
@@ -416,10 +337,10 @@ namespace TagProcGen
         /// <param name="rtacRow">Data to add.</param>
         public void AddRtacTagOutput(string rtacTagTypeName, OutputRowEntryDictionary rtacRow)
         {
-            if (!_RtacOutputList.ContainsKey(rtacTagTypeName))
-                _RtacOutputList[rtacTagTypeName] = new OutputList();
+            if (!RtacOutputList.ContainsKey(rtacTagTypeName))
+                RtacOutputList[rtacTagTypeName] = new OutputList();
 
-            _RtacOutputList[rtacTagTypeName].Add(rtacRow);
+            RtacOutputList[rtacTagTypeName].Add(rtacRow);
         }
 
         /// <summary>
@@ -430,20 +351,22 @@ namespace TagProcGen
         /// <returns>Server tag alias.</returns>
         public string GetRtacAlias(string scadaName, PointTypeInfo pointType)
         {
+            pointType.ThrowIfNull(nameof(pointType));
+
             if (pointType.IsControl)
-                scadaName += Keywords.CONTROL_KEYWORD;
+                scadaName += Keywords.ControlKeyword;
 
             foreach (var s in TagAliasSubstitutes)
                 scadaName = scadaName.Replace(s.Key, s.Value);
 
-            return AliasNameTemplate.Replace(Keywords.NAME_KEYWORD, scadaName);
+            return AliasNameTemplate.Replace(Keywords.NameKeyword, scadaName);
         }
 
         /// <summary>
         /// Validate a tag alias. Throws error if invalid.
         /// </summary>
         /// <param name="tagAlias">Tag alias to validate.</param>
-        public void ValidateTagAlias(string tagAlias)
+        public static void ValidateTagAlias(string tagAlias)
         {
             var r = Regex.Match(tagAlias, @"^[A-Za-z0-9_]+\s*$", RegexOptions.None);
             if (!r.Success)
@@ -456,7 +379,7 @@ namespace TagProcGen
         /// <param name="path">Source filename to append output suffix on.</param>
         public void WriteAllServerTags(string path)
         {
-            foreach (var tagGroup in _RtacOutputList)
+            foreach (var tagGroup in RtacOutputList)
                 WriteServerTagCSV(tagGroup, path);
         }
 
@@ -479,110 +402,138 @@ namespace TagProcGen
             string csvPath = System.IO.Path.GetDirectoryName(path) + System.IO.Path.DirectorySeparatorChar + System.IO.Path.GetFileNameWithoutExtension(path) + "_RtacServerTags_" + typeName + ".csv";
             using (var csvStreamWriter = new System.IO.StreamWriter(csvPath, false))
             {
-                var csvWriter = new CsvHelper.CsvWriter(csvStreamWriter);
-
-                // Remove address hack from earlier in the generation section
-                tagGroup.ForEach(x => x[RtacTagPrototypes[typeName].SortingColumn] = Math.Truncate(Convert.ToDouble(x[RtacTagPrototypes[typeName].SortingColumn])).ToString());
-
-                foreach (var tag in tagGroup)
+                using (var csvWriter = new CsvHelper.CsvWriter(csvStreamWriter))
                 {
-                    foreach (var s in SharedUtils.OutputRowEntryDictionaryToArray(tag))
-                        csvWriter.WriteField(s);
-                    csvWriter.NextRecord();
+                    // Remove address hack from earlier in the generation section
+                    tagGroup.ForEach(x => x[RtacTagPrototypes[typeName].SortingColumn] = Math.Truncate(Convert.ToDouble(x[RtacTagPrototypes[typeName].SortingColumn])).ToString());
+
+                    foreach (var tag in tagGroup)
+                    {
+                        foreach (var s in SharedUtils.OutputRowEntryDictionaryToArray(tag))
+                            csvWriter.WriteField(s);
+                        csvWriter.NextRecord();
+                    }
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// Server tag prototype child structure
+    /// </summary>
+    public class ServerTagPrototypeEntry
+    {
+        /// <summary>
+        /// Server tag name format with placeholder for address.
+        /// </summary>
+        /// <remarks>Markup supported by String.Format supported</remarks>
+        public string ServerTagNameTemplate { get; set; }
 
         /// <summary>
-        /// Parse tag information.
+        /// Standard data all server tags of this type have
         /// </summary>
-        /// <remarks>Helper class to parse tag info for array-capable tags</remarks>
-        public class ServerTagInfo
+        public OutputRowEntryDictionary StandardColumns { get; } = new OutputRowEntryDictionary();
+    }
+
+    /// <summary>
+    /// Class to store server type map info.
+    /// </summary>
+    public class ServerTagMapInfo
+    {
+        /// <summary>Name of the server tag type.</summary>
+        public string ServerTagTypeName { get; set; }
+        /// <summary>Indicates whether to substitute nominal data when the source tag is bad quality.</summary>
+        public bool PerformQualityWrapping { get; set; }
+    }
+
+    /// <summary>
+    /// Server tag prototype root structure
+    /// </summary>
+    public class ServerTagRootPrototype
+    {
+        /// <summary>
+        /// List of child prototype entries. Non-array types have 1 entry.
+        /// </summary>
+        /// <remarks>Array types like DNPC etc will have multiple formats</remarks>
+        public List<ServerTagPrototypeEntry> TagPrototypeEntries { get; } = new List<ServerTagPrototypeEntry>();
+
+        /// <summary>
+        /// Column to sort on
+        /// </summary>
+        public int SortingColumn { get; set; }
+
+        /// <summary>
+        /// Point type: either binary / analog and status / control.
+        /// </summary>
+        public PointTypeInfo PointType { get; set; }
+
+        /// <summary>
+        /// If the type is an analog type with limits this denotes the min and max column range that stores those limits.
+        /// </summary>
+        /// <remarks>
+        /// Used for calculating nominal analog values for quality substitution.
+        /// For binary points, both tuple values are the same.
+        /// </remarks>
+        public (int lower, int upper) NominalColumns { get; set; } = (-1, -1);
+    }
+
+    /// <summary>
+    /// Parse tag information.
+    /// </summary>
+    /// <remarks>Helper class to parse tag info for array-capable tags</remarks>
+    public class ServerTagInfo
+    {
+        /// <summary>
+        /// Root tag type name, such as DNPC
+        /// </summary>
+        public string RootServerTagTypeName { get; private set; }
+
+        private string fullServerTagTypeName;
+        /// <summary>
+        /// Full tag type name, such as DNPC[2]
+        /// </summary>
+        public string FullServerTagTypeName
         {
-            private string _RootServerTagTypeName;
-            /// <summary>
-            /// Root tag type name, such as DNPC
-            /// </summary>
-            public string RootServerTagTypeName
-            {
-                get
-                {
-                    return _RootServerTagTypeName;
-                }
-            }
+            get => fullServerTagTypeName;
+            set => ParseServerTagTypeInfo(value);
+        }
 
-            private string _FullServerTagTypeName;
-            /// <summary>
-            /// Full tag type name, such as DNPC[2]
-            /// </summary>
-            public string FullServerTagTypeName
-            {
-                get
-                {
-                    return _FullServerTagTypeName;
-                }
-                set
-                {
-                    ParseServerTagTypeInfo(value);
-                }
-            }
+        /// <summary>
+        /// Is tag an array type such as DNPC[2]
+        /// </summary>
+        public bool IsArray { get; private set; }
 
-            private bool _IsArray;
-            /// <summary>
-            /// Is tag an array type such as DNPC[2]
-            /// </summary>
-            public bool IsArray
-            {
-                get
-                {
-                    return _IsArray;
-                }
-            }
+        /// <summary>
+        /// Index of array tag types such as DNPC[2]
+        /// </summary>
+        public int Index { get; private set; }
 
-            private int _Index;
-            /// <summary>
-            /// Index of array tag types such as DNPC[2]
-            /// </summary>
-            public int Index
-            {
-                get
-                {
-                    return _Index;
-                }
-            }
+        /// <summary>
+        /// Initialize a new instance of TagInfo.
+        /// </summary>
+        public ServerTagInfo() { }
 
-            /// <summary>
-            /// Initialize a new instance of TagInfo with no tag.
-            /// </summary>
-            public ServerTagInfo()
-            {
-            }
+        /// <summary>
+        /// Initialize a new instance of TagInfo with the given tag name.
+        /// </summary>
+        /// <param name="fullServerTagTypeName">Tag type name to parse</param>
+        public ServerTagInfo(string fullServerTagTypeName) => ParseServerTagTypeInfo(fullServerTagTypeName);
 
-            /// <summary>
-            /// Initialize a new instance of TagInfo with the given tag name.
-            /// </summary>
-            /// <param name="fullServerTagTypeName">Tag type name to parse</param>
-            public ServerTagInfo(string fullServerTagTypeName)
-            {
-                ParseServerTagTypeInfo(fullServerTagTypeName);
-            }
+        /// <summary>
+        /// Parse given tag type name into root type name and index,
+        /// </summary>
+        /// <param name="fullServerTagTypeName">Tag type name to parse</param>
+        private void ParseServerTagTypeInfo(string fullServerTagTypeName)
+        {
+            // Note (?: ) is a non capture group
+            var r = Regex.Match(fullServerTagTypeName, @"(\w+)(?:\[(\d+)\])?", RegexOptions.None);
+            if (!r.Success)
+                throw new ArgumentException("Invalid tag type name: " + fullServerTagTypeName);
 
-            /// <summary>
-            /// Parse given tag type name into root type name and index,
-            /// </summary>
-            /// <param name="fullServerTagTypeName">Tag type name to parse</param>
-            private void ParseServerTagTypeInfo(string fullServerTagTypeName)
-            {
-                // Note (?: ) is a non capture group
-                var r = Regex.Match(fullServerTagTypeName, @"(\w+)(?:\[(\d+)\])?", RegexOptions.None);
-                if (!r.Success)
-                    throw new ArgumentException("Invalid tag type name: " + fullServerTagTypeName);
-
-                _FullServerTagTypeName = fullServerTagTypeName;
-                _RootServerTagTypeName = r.Groups[1].Value;
-                _IsArray = r.Groups[2].Length > 0;
-                _Index = IsArray ? Convert.ToInt32(r.Groups[2].Value) : 0;
-            }
+            this.fullServerTagTypeName = fullServerTagTypeName;
+            RootServerTagTypeName = r.Groups[1].Value;
+            IsArray = r.Groups[2].Length > 0;
+            Index = IsArray ? Convert.ToInt32(r.Groups[2].Value) : 0;
         }
     }
 }

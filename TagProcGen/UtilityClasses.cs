@@ -1,6 +1,6 @@
-﻿using System.Linq;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using System.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 using OutputRowEntryDictionary = System.Collections.Generic.Dictionary<int, string>;
 
@@ -10,51 +10,51 @@ namespace TagProcGen
     /// <summary>
     /// Global constants.
     /// </summary>
-    public class Constants
+    public static class Constants
     {
         // Initial Pointer
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public const string TPL_DEF = "A3";
+        public const string TplDef = "A3";
 
         // Important Excel worksheet names
-        public const string TPL_SHEET_PREFIX = "TPL_";
-        public const string TPL_DEF_SHEET = "TPL_Def";
-        public const string TPL_RTAC_SHEET = "TPL_RTAC";
-        public const string TPL_SCADA_SHEET = "TPL_SCADA";
+        public const string TplSheetPrefix = "TPL_";
+        public const string TplDefSheet = "TPL_Def";
+        public const string TplRtacSheet = "TPL_RTAC";
+        public const string TplScadaSheet = "TPL_SCADA";
 
         // Global Template Reference Constants
-        public const string TPL_RTAC_DEF = "TPL_RTAC_DEF";
-        public const string TPL_SCADA_DEF = "TPL_SCADA_DEF";
-        public const string TPL_IED_DEF = "TPL_IED_DEF";
+        public const string TplRtacDef = "TPL_RTAC_DEF";
+        public const string TplScadaDef = "TPL_SCADA_DEF";
+        public const string TplIedDef = "TPL_IED_DEF";
 
         // Custom Map Constants
-        public const string TPL_TAG_MAP = "TPL_TAG_MAP";
-        public const string TPL_RTAC_TAGS = "TPL_RTAC_TAGS";
+        public const string TplTagMap = "TPL_TAG_MAP";
+        public const string TplRtacTags = "TPL_RTAC_TAGS";
 
         // RTAC Template Reference Constants
-        public const string TPL_RTAC_TAG_PROTO = "TPL_RTAC_TAG_PROTO";
-        public const string TPL_RTAC_MAP_NAME = "TPL_RTAC_MAP_NAME";
-        public const string TPL_RTAC_TAG_MAP = "TPL_RTAC_TAG_MAP";
-        public const string TPL_RTAC_ALIAS_SUB = "TPL_RTAC_ALIAS_SUB";
-        public const string TPL_RTAC_TAG_PROC_COLS = "TPL_RTAC_TAG_PROC_COLS";
-        public const string TPL_RTAC_TAG_PROC_WRAP_MODE = "TPL_RTAC_TAG_PROC_WRAP_MODE";
+        public const string TplRtacTagProto = "TPL_RTAC_TAG_PROTO";
+        public const string TplRtacMapName = "TPL_RTAC_MAP_NAME";
+        public const string TplRtacTagMap = "TPL_RTAC_TAG_MAP";
+        public const string TplRtacAliasSub = "TPL_RTAC_ALIAS_SUB";
+        public const string TplRtacTagProcCols = "TPL_RTAC_TAG_PROC_COLS";
+        public const string TplRtacTagProcWrapMode = "TPL_RTAC_TAG_PROC_WRAP_MODE";
 
         // SCADA Template Reference Constants
-        public const string TPL_SCADA_NAME_FORMAT = "TPL_SCADA_NAME_FORMAT";
-        public const string TPL_SCADA_MAX_NAME_LENGTH = "TPL_SCADA_MAX_NAME_LENGTH";
-        public const string TPL_SCADA_TAG_PROTO = "TPL_SCADA_TAG_PROTO";
-        public const string TPL_SCADA_ADDRESS_OFFSET = "TPL_SCADA_ADDRESS_OFFSET";
+        public const string TplScadaNameFormat = "TPL_SCADA_NAME_FORMAT";
+        public const string TplScadaMaxNameLength = "TPL_SCADA_MAX_NAME_LENGTH";
+        public const string TplScadaTagProto = "TPL_SCADA_TAG_PROTO";
+        public const string TplScadaAddressOffset = "TPL_SCADA_ADDRESS_OFFSET";
 
         // IED Template Reference Constants
-        public const string TPL_DATA = "TPL_DATA";
-        public const string TPL_IED_NAMES = "TPL_IED_NAMES";
-        public const string TPL_OFFSETS = "TPL_OFFSETS";
+        public const string TplData = "TPL_DATA";
+        public const string TplIedNames = "TPL_IED_NAMES";
+        public const string TplOffsets = "TPL_OFFSETS";
 
         // Point Type Constants
-        public const string STATUS_BINARY = "STATUSBINARY";
-        public const string STATUS_ANALOG = "STATUSANALOG";
-        public const string CONTROL_BINARY = "CONTROLBINARY";
-        public const string CONTROL_ANALOG = "CONTROLANALOG";
+        public const string StatusBinary = "STATUSBINARY";
+        public const string StatusAnalog = "STATUSANALOG";
+        public const string ControlBinary = "CONTROLBINARY";
+        public const string ControlAnalog = "CONTROLANALOG";
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     }
 
@@ -81,19 +81,21 @@ namespace TagProcGen
         /// <remarks>Text should be like: StatusAnalog, or ControlBinary</remarks>
         public PointTypeInfo(string pointTypeText)
         {
+            pointTypeText.ThrowIfNull(nameof(pointTypeText));
+
             _pointTypeName = pointTypeText.ToUpper();
 
             var AllTypes = new[] {
-                Constants.STATUS_BINARY,
-                Constants.STATUS_ANALOG,
-                Constants.CONTROL_BINARY,
-                Constants.CONTROL_ANALOG
+                Constants.StatusBinary,
+                Constants.StatusAnalog,
+                Constants.ControlBinary,
+                Constants.ControlAnalog
             };
-            var StatusTypes = new[] { Constants.STATUS_BINARY, Constants.STATUS_ANALOG };
-            var BinaryTypes = new[] { Constants.STATUS_BINARY, Constants.CONTROL_BINARY };
+            var StatusTypes = new[] { Constants.StatusBinary, Constants.StatusAnalog };
+            var BinaryTypes = new[] { Constants.StatusBinary, Constants.ControlBinary };
 
             if (!AllTypes.Contains(_pointTypeName))
-                throw new Exception(string.Format("Point type {0} is not a valid point type.", _pointTypeName));
+                throw new TagGenerationException(string.Format("Point type {0} is not a valid point type.", _pointTypeName));
 
             IsStatus = StatusTypes.Contains(_pointTypeName);
             IsBinary = BinaryTypes.Contains(_pointTypeName);
@@ -142,6 +144,9 @@ namespace TagProcGen
         /// <returns>X less than Y: Less than 0. X=Y: 0. X greater than Y: Greater than 0.</returns>
         public int Compare(OutputRowEntryDictionary x, OutputRowEntryDictionary y)
         {
+            x.ThrowIfNull(nameof(x));
+            y.ThrowIfNull(nameof(y));
+
             double xVal = Convert.ToDouble(x[_sortingColumn]);
             double YVal = Convert.ToDouble(y[_sortingColumn]);
 
@@ -162,6 +167,9 @@ namespace TagProcGen
         /// <param name="ExpectedParameters">List of parameters that must be in the dictionary or an error will be thrown.</param>
         public static void ReadPairRange(Excel.Range start, Dictionary<string, string> dict, params string[] ExpectedParameters)
         {
+            start.ThrowIfNull(nameof(start));
+            dict.ThrowIfNull(nameof(dict));
+
             while (!string.IsNullOrEmpty((string)start.Value))
             {
                 dict[(string)start.Value] = (string)start.get_Offset(0, 1).Text;
@@ -171,7 +179,7 @@ namespace TagProcGen
             foreach (var p in ExpectedParameters)
             {
                 if (!dict.ContainsKey(p))
-                    throw new Exception("Unable to locate pointer.\r\n\r\nMissing: \"" + p + "\" from " + start.Parent.Name);
+                    throw new TagGenerationException("Unable to locate pointer.\r\n\r\nMissing: \"" + p + "\" from " + start.Parent.Name);
             }
         }
 
@@ -182,6 +190,8 @@ namespace TagProcGen
         /// <returns>Sparsely populated string array.</returns>
         public static string[] OutputRowEntryDictionaryToArray(OutputRowEntryDictionary outputRow)
         {
+            outputRow.ThrowIfNull(nameof(outputRow));
+
             // Create string array (0 based) from max column index (1 based)
             int arrayUBound = outputRow.Max(kv => kv.Key) - 1;
             var s = new string[arrayUBound + 1];
@@ -206,25 +216,27 @@ namespace TagProcGen
         /// <param name="columnDataDict">Output dictionary to store parsed data in.</param>
         public static void ParseColumnDataPairs(this string columnDataPairString, OutputRowEntryDictionary columnDataDict)
         {
-            if (columnDataPairString.Length == 0)
-                return;
-            // Split col / data pairs - example format: [1, True];[2, {NAME}]
-            foreach (var colPair in columnDataPairString.Split(';'))
-            {
-                if (colPair.Length == 0)
-                    throw new Exception("Malformed column / data pair: " + columnDataPairString);
-                // strip [ and ]
-                if (colPair[0] != '[' | colPair[colPair.Length - 1] != ']')
-                    throw new Exception("Malformed column / data pair: " + colPair);
-                var t = colPair.Substring(1, colPair.Length - 2).Split(',');
+            columnDataPairString.ThrowIfNull(nameof(columnDataPairString));
+            columnDataDict.ThrowIfNull(nameof(columnDataDict));
 
-                if (!int.TryParse(t[0].Trim(), out int colIndex))
-                    throw new Exception("Invalid Column Index: unable to convert \"" + t[0].Trim() + "\" to an integer");
+            if (columnDataPairString.Length != 0)
+                // Split col / data pairs - example format: [1, True];[2, {NAME}]
+                foreach (var colPair in columnDataPairString.Split(';'))
+                {
+                    if (colPair.Length == 0)
+                        throw new TagGenerationException("Malformed column / data pair: " + columnDataPairString);
+                    // strip [ and ]
+                    if (colPair[0] != '[' | colPair[colPair.Length - 1] != ']')
+                        throw new TagGenerationException("Malformed column / data pair: " + colPair);
+                    var t = colPair.Substring(1, colPair.Length - 2).Split(',');
 
-                string colData = t[1].Trim();
+                    if (!int.TryParse(t[0].Trim(), out int colIndex))
+                        throw new TagGenerationException("Invalid Column Index: unable to convert \"" + t[0].Trim() + "\" to an integer");
 
-                columnDataDict.Add(colIndex, colData);
-            }
+                    string colData = t[1].Trim();
+
+                    columnDataDict.Add(colIndex, colData);
+                }
         }
 
         /// <summary>
@@ -234,8 +246,10 @@ namespace TagProcGen
         /// <param name="replacements">Dictionary of keywords (like {NAME}) and their replacement</param>
         public static void ReplaceTagKeywords(this OutputRowEntryDictionary columns, Dictionary<string, string> replacements)
         {
-            var keys = new List<int>(columns.Keys.ToList());
-            foreach (var columnKey in keys)
+            columns.ThrowIfNull(nameof(columns));
+            replacements.ThrowIfNull(nameof(replacements));
+
+            foreach (var columnKey in columns.Keys)
             {
                 foreach (var rep in replacements)
                     columns[columnKey] = columns[columnKey].Replace(rep.Key, rep.Value);
@@ -251,6 +265,8 @@ namespace TagProcGen
         /// <returns>Returns the Nth index as an Integer.</returns>
         public static int GetNthIndex(this string s, char t, int n)
         {
+            s.ThrowIfNull(nameof(s));
+
             int count = 0;
             for (int i = 0, loopTo = s.Length - 1; i <= loopTo; i++)
             {

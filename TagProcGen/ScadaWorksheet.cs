@@ -54,44 +54,13 @@ namespace TagProcGen
         /// <returns>SCADA Name</returns>
         public string ScadaNameGenerator(string iedName, string pointName)
         {
-            return ScadaNameTemplate.Replace(Keywords.IED_NAME_KEYWORD, iedName).Replace(Keywords.POINT_NAME_KEYWORD, pointName);
+            return ScadaNameTemplate.Replace(Keywords.IedNameKeyword, iedName).Replace(Keywords.PointNameKeyword, pointName);
         }
 
         /// <summary>
         /// Dictionary of all SCADA tag prototypes. Key: SCADA type name, Value: Prototype
         /// </summary>
         public Dictionary<string, ScadaTagPrototype> ScadaTagPrototypes { get; } = new Dictionary<string, ScadaTagPrototype>();
-
-        /// <summary>
-        /// SCADA tag prototype containing type-specific data.
-        /// </summary>
-        public class ScadaTagPrototype
-        {
-            /// <summary>
-            /// Standard data all SCADA tags of this type have.
-            /// </summary>
-            public OutputRowEntryDictionary StandardColumns = new OutputRowEntryDictionary();
-
-            /// <summary>
-            /// Format to generate key from address.
-            /// </summary>
-            public string KeyFormat;
-
-            /// <summary>
-            /// Header row of output CSV.
-            /// </summary>
-            public string CsvHeader;
-
-            /// <summary>
-            /// Default data equivalent to a new blank record from DataExplorer to merge custom data into.
-            /// </summary>
-            public string CsvRowDefaults;
-
-            /// <summary>
-            /// Column to sort on
-            /// </summary>
-            public int SortingColumn;
-        }
 
         /// <summary>
         /// Add a new SCADA prototype entry from the given data.
@@ -150,15 +119,15 @@ namespace TagProcGen
         /// <summary>
         /// Keywords that get replaced with other values.
         /// </summary>
-        public class Keywords
+        private class Keywords
         {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
             public const string FULL_NAME_KEYWORD = "{NAME}";
-            public const string IED_NAME_KEYWORD = "{DEVICENAME}";
-            public const string POINT_NAME_KEYWORD = "{POINTNAME}";
-            public const string ADDRESS_KEYWORD = "{ADDRESS}";
-            public const string KEY_KEYWORD = "{KEY}";
-            public const string RECORD_KEYWORD = "{RECORD}";
+            public const string IedNameKeyword = "{DEVICENAME}";
+            public const string PointNameKeyword = "{POINTNAME}";
+            public const string AddressKeywork = "{ADDRESS}";
+            public const string KeyKeyword = "{KEY}";
+            public const string RecordKeyword = "{RECORD}";
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         }
 
@@ -168,11 +137,13 @@ namespace TagProcGen
         /// <param name="tagName">Tag name to validate.</param>
         public void ValidateTagName(string tagName)
         {
+            tagName.ThrowIfNull(nameof(tagName));
+
             var r = Regex.Match(tagName, "^[A-Za-z0-9 ]+$", RegexOptions.None);
             if (!r.Success)
                 throw new ArgumentException("Invalid tag name: " + tagName);
 
-            if (tagName.Length > Convert.ToInt32(Pointers[Constants.TPL_SCADA_MAX_NAME_LENGTH]))
+            if (tagName.Length > Convert.ToInt32(Pointers[Constants.TplScadaMaxNameLength]))
                 throw new ArgumentException("Tag name too long: " + tagName);
             if (tagName.Length > _MaxValidatedTagLength)
             {
@@ -191,13 +162,13 @@ namespace TagProcGen
         /// <param name="keyAddress">Optional parameter to use a different address when generating a key. Do not apply any offset.</param>
         public void ReplaceScadaKeywords(OutputRowEntryDictionary scadaRowEntry, string name, int address, string keyFormat, int keyAddress = -1)
         {
-            int adjustedAddress = address + Convert.ToInt32(Pointers[Constants.TPL_SCADA_ADDRESS_OFFSET]);
-            keyAddress = keyAddress > 0 ? keyAddress + Convert.ToInt32(Pointers[Constants.TPL_SCADA_ADDRESS_OFFSET]) : adjustedAddress;
+            int adjustedAddress = address + Convert.ToInt32(Pointers[Constants.TplScadaAddressOffset]);
+            keyAddress = keyAddress > 0 ? keyAddress + Convert.ToInt32(Pointers[Constants.TplScadaAddressOffset]) : adjustedAddress;
             var replacements = new Dictionary<string, string>()
             {
                 { Keywords.FULL_NAME_KEYWORD, name },
-                { Keywords.ADDRESS_KEYWORD, adjustedAddress.ToString() },
-                { Keywords.KEY_KEYWORD, string.Format(keyFormat, keyAddress) }
+                { Keywords.AddressKeywork, adjustedAddress.ToString() },
+                { Keywords.KeyKeyword, string.Format(keyFormat, keyAddress) }
             };
 
             scadaRowEntry.ReplaceTagKeywords(replacements);
@@ -245,42 +216,74 @@ namespace TagProcGen
             string csvPath = System.IO.Path.GetDirectoryName(path) + System.IO.Path.DirectorySeparatorChar + System.IO.Path.GetFileNameWithoutExtension(path) + "_ScadaTags_" + typeName + ".csv";
             using (var csvStreamWriter = new System.IO.StreamWriter(csvPath, false))
             {
-                var csvWriter = new CsvHelper.CsvWriter(csvStreamWriter);
-
-                // Write header
-                ScadaTagPrototypes[typeName].CsvHeader.Split(',').ToList().ForEach(x => csvWriter.WriteField(x));
-                csvWriter.NextRecord();
-
-
-                // Parse default columns and types to substitute data into
-                var newRow = ScadaTagPrototypes[typeName].CsvRowDefaults.Split(',').Select(s =>
+                using (var csvWriter = new CsvHelper.CsvWriter(csvStreamWriter))
                 {
-                    var isString = !int.TryParse(s, out int i);
-                    var Value = s;
-                    if (isString)
-                        Value = Value.Replace(Convert.ToString('"'), "");
-                    return new { Value, isString };
-                }).ToList();
-
-                // Write out to CSV
-                int record = 1;
-                foreach (var c in tagGroup)
-                {
-                    for (int i = 1, loopTo = newRow.Count(); i <= loopTo; i++)
-                    {
-                        if (c.ContainsKey(i) && !string.IsNullOrWhiteSpace(c[i]))
-                        {
-                            if ((c[i] ?? "") == Keywords.RECORD_KEYWORD)
-                                c[i] = Convert.ToString(record);
-                            csvWriter.WriteField(c[i], newRow[i - 1].isString);
-                        }
-                        else
-                            csvWriter.WriteField(newRow[i - 1].Value, newRow[i - 1].isString);
-                    }
+                    // Write header
+                    ScadaTagPrototypes[typeName].CsvHeader.Split(',').ToList().ForEach(x => csvWriter.WriteField(x));
                     csvWriter.NextRecord();
-                    record += 1;
+
+
+                    // Parse default columns and types to substitute data into
+                    var newRow = ScadaTagPrototypes[typeName].CsvRowDefaults.Split(',').Select(s =>
+                    {
+                        var isString = !int.TryParse(s, out int i);
+                        var Value = s;
+                        if (isString)
+                            Value = Value.Replace(Convert.ToString('"'), "");
+                        return new { Value, isString };
+                    }).ToList();
+
+                    // Write out to CSV
+                    int record = 1;
+                    foreach (var c in tagGroup)
+                    {
+                        for (int i = 1, loopTo = newRow.Count; i <= loopTo; i++)
+                        {
+                            if (c.ContainsKey(i) && !string.IsNullOrWhiteSpace(c[i]))
+                            {
+                                if ((c[i] ?? "") == Keywords.RecordKeyword)
+                                    c[i] = Convert.ToString(record);
+                                csvWriter.WriteField(c[i], newRow[i - 1].isString);
+                            }
+                            else
+                                csvWriter.WriteField(newRow[i - 1].Value, newRow[i - 1].isString);
+                        }
+                        csvWriter.NextRecord();
+                        record += 1;
+                    }
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// SCADA tag prototype containing type-specific data.
+    /// </summary>
+    public class ScadaTagPrototype
+    {
+        /// <summary>
+        /// Standard data all SCADA tags of this type have.
+        /// </summary>
+        public OutputRowEntryDictionary StandardColumns { get; } = new OutputRowEntryDictionary();
+
+        /// <summary>
+        /// Format to generate key from address.
+        /// </summary>
+        public string KeyFormat { get; set; }
+
+        /// <summary>
+        /// Header row of output CSV.
+        /// </summary>
+        public string CsvHeader { get; set; }
+
+        /// <summary>
+        /// Default data equivalent to a new blank record from DataExplorer to merge custom data into.
+        /// </summary>
+        public string CsvRowDefaults { get; set; }
+
+        /// <summary>
+        /// Column to sort on
+        /// </summary>
+        public int SortingColumn { get; set; }
     }
 }

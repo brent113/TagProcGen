@@ -15,7 +15,7 @@ namespace TagProcGen
         [STAThread]
         static int Main(string[] args)
         {
-            var cn = new ConsoleNotifier();
+            var notifier = new ConsoleNotifier();
 
             if (args?.Length > 0)
             {
@@ -25,16 +25,19 @@ namespace TagProcGen
                     return 1;
                 }
 
-                GenTags.Generate(args[0], cn);
+                GenTags.Generate(args[0], notifier);
             }
             else
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
+#pragma warning disable CA2000 // Dispose objects before losing scope
                 Application.Run(new FormMain());
+#pragma warning restore CA2000 // Dispose objects before losing scope
+
             }
 
-            return cn.ErrorHasOccured ? 1 : 0;
+            return notifier.ErrorHasOccured ? 1 : 0;
         }
 
         static void WriteUsage()
@@ -59,6 +62,8 @@ namespace TagProcGen
         /// <param name="Severity">Log Severity</param>
         public void Log(string Log, string Title, LogSeverity Severity)
         {
+            Log.ThrowIfNull(nameof(Log));
+
             string severityText;
             switch (Severity)
             {

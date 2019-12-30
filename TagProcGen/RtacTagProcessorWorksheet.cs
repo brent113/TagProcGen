@@ -17,15 +17,15 @@ namespace TagProcGen
         /// <summary>
         /// Keywords that get replaced with other values.
         /// </summary>
-        public class Keywords
+        private static class Keywords
         {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-            public const string DESTINATION = "{DESTINATION}";
-            public const string DESTINATION_TYPE = "{DESTINATION_TYPE}";
-            public const string SOURCE = "{SOURCE}";
-            public const string SOURCE_TYPE = "{SOURCE_TYPE}";
-            public const string TIME_SOURCE = "{TIME_SOURCE}";
-            public const string QUALITY_SOURCE = "{QUALITY_SOURCE}";
+            public const string Destination = "{DESTINATION}";
+            public const string DestinationType = "{DESTINATION_TYPE}";
+            public const string Source = "{SOURCE}";
+            public const string SourceType = "{SOURCE_TYPE}";
+            public const string TimeSource = "{TIME_SOURCE}";
+            public const string QualitySource = "{QUALITY_SOURCE}";
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         }
 
@@ -64,9 +64,17 @@ namespace TagProcGen
         /// <param name="scadaRow">SCADA row entry. Used for calculating nominal values.</param>
         /// <param name="performQualityWrapping">Indicates wheter to substitute nominal data with the source tag quality is bad.</param>
         /// <param name="nominalValueColumns">Which columns in the SCADA data should be used to generate nominal values.</param>
-        public void AddEntry(string scadaTag, string scadaTagDataType, string iedTagName, string iedDataType, PointTypeInfo pointType, OutputRowEntryDictionary scadaRow, bool performQualityWrapping, Tuple<int, int> nominalValueColumns
-    )
+        public void AddEntry(string scadaTag, string scadaTagDataType, string iedTagName, string iedDataType,
+                             PointTypeInfo pointType, OutputRowEntryDictionary scadaRow, bool performQualityWrapping,
+                             (int lower, int upper) nominalValueColumns)
         {
+            scadaTag.ThrowIfNull(nameof(scadaTag));
+            scadaTagDataType.ThrowIfNull(nameof(scadaTagDataType));
+            iedTagName.ThrowIfNull(nameof(iedTagName));
+            iedDataType.ThrowIfNull(nameof(iedDataType));
+            pointType.ThrowIfNull(nameof(pointType));
+            scadaRow.ThrowIfNull(nameof(scadaRow));
+
             string destTag, destType, sourceTag, sourceType;
             if (pointType.IsStatus)
             {
@@ -87,9 +95,8 @@ namespace TagProcGen
             else
                 throw new ArgumentException("Invalid Direction");
 
-            _Map.Add(new TagProcessorMapEntry(destTag, destType, sourceTag, sourceType, pointType, scadaRow, performQualityWrapping, nominalValueColumns
-    )
-    );
+            _Map.Add(new TagProcessorMapEntry(destTag, destType, sourceTag, sourceType, pointType, scadaRow,
+                                              performQualityWrapping, nominalValueColumns));
         }
 
         /// <summary>
@@ -196,33 +203,33 @@ namespace TagProcGen
         /// <param name="sourceType">Source tag type.</param>
         /// <param name="timeSource">Time source tag.</param>
         /// <param name="qualitySource">Quality source tag.</param>
-        private void ReplaceRtacTagProcessorKeywords(OutputRowEntryDictionary rtacTagProcessorRow, string destination, string destinationType, string source, string sourceType, string timeSource, string qualitySource
+        private static void ReplaceRtacTagProcessorKeywords(OutputRowEntryDictionary rtacTagProcessorRow, string destination, string destinationType, string source, string sourceType, string timeSource, string qualitySource
     )
         {
             var replacements = new Dictionary<string, string>()
             {
                 {
-                    Keywords.DESTINATION,
+                    Keywords.Destination,
                     destination
                 },
                 {
-                    Keywords.DESTINATION_TYPE,
+                    Keywords.DestinationType,
                     destinationType
                 },
                 {
-                    Keywords.SOURCE,
+                    Keywords.Source,
                     source
                 },
                 {
-                    Keywords.SOURCE_TYPE,
+                    Keywords.SourceType,
                     sourceType
                 },
                 {
-                    Keywords.TIME_SOURCE,
+                    Keywords.TimeSource,
                     timeSource
                 },
                 {
-                    Keywords.QUALITY_SOURCE,
+                    Keywords.QualitySource,
                     qualitySource
                 }
             };
@@ -245,13 +252,14 @@ namespace TagProcGen
             string csvPath = System.IO.Path.GetDirectoryName(path) + Convert.ToString(System.IO.Path.DirectorySeparatorChar) + System.IO.Path.GetFileNameWithoutExtension(path) + "_TagProcessor.csv";
             using (var csvStreamWriter = new System.IO.StreamWriter(csvPath, false))
             {
-                var csvWriter = new CsvHelper.CsvWriter(csvStreamWriter);
-
-                foreach (var c in _TagProcessorOutputRows)
+                using (var csvWriter = new CsvHelper.CsvWriter(csvStreamWriter))
                 {
-                    foreach (var s in SharedUtils.OutputRowEntryDictionaryToArray(c))
-                        csvWriter.WriteField(s);
-                    csvWriter.NextRecord();
+                    foreach (var c in _TagProcessorOutputRows)
+                    {
+                        foreach (var s in SharedUtils.OutputRowEntryDictionaryToArray(c))
+                            csvWriter.WriteField(s);
+                        csvWriter.NextRecord();
+                    }
                 }
             }
         }
@@ -259,20 +267,20 @@ namespace TagProcGen
         /// <summary>
         /// Intermediate storage format to generate quality wrapped tag processor entries.
         /// </summary>
-        public class TagQualityWrapGenerator
+        private class TagQualityWrapGenerator
         {
             /// <summary>Defines the conditional to be used to select bad quality points. Replace {TAG} with tag name.</summary>
-            public const string QUALITY_CONDITIONAL_TEMPLATE = "IF ({TAG}.q.validity <> good) THEN";
+            public const string QualityConditionalTemplate = "IF ({TAG}.q.validity <> good) THEN";
             /// <summary>Else format.</summary>
-            public const string ELSE_TEMPLATE = "ELSE";
+            public const string ElseTemplate = "ELSE";
             /// <summary>End if format.</summary>
-            public const string END_IF_TEMPLATE = "END_IF";
+            public const string EndIfTemplate = "END_IF";
             /// <summary>Time source template. Replace {TAG} with tag name.</summary>
-            public const string TIME_SOURCE_TEMPLATE = "{TAG}.t";
+            public const string TimeSourceTemplate = "{TAG}.t";
             /// <summary>Quality source template. Replace {TAG} with tag name.</summary>
-            public const string QUALITY_SOURCE_TEMPLATE = "{TAG}.q";
+            public const string QualitySourceTemplate = "{TAG}.q";
             /// <summary>Tag keyword to substitute in the templates.</summary>
-            public const string TAG_KEYWORD = "{TAG}";
+            public const string TagKeyword = "{TAG}";
 
             /// <summary>
             /// List of tags to wrap with quality substitution.
@@ -314,14 +322,14 @@ namespace TagProcGen
 
                 // Add first conditional for bad quality
                 string firstTagName = TagsToWrap.First().ParsedTagName;
-                outputTags.Add(GenerateConditionalTagEntry(QUALITY_CONDITIONAL_TEMPLATE, firstTagName));
+                outputTags.Add(GenerateConditionalTagEntry(QualityConditionalTemplate, firstTagName));
 
                 // Add nominal data
                 foreach (var tag in TagsToWrap)
                 {
                     string nominalValue = GetNominalValue(tag.PointType, tag.ScadaRow, tag.NominalValueColumns);
-                    string timeSourceTag = TIME_SOURCE_TEMPLATE.Replace(TAG_KEYWORD, tag.ParsedTagName);
-                    string qualitySourceTag = QUALITY_SOURCE_TEMPLATE.Replace(TAG_KEYWORD, tag.ParsedTagName);
+                    string timeSourceTag = TimeSourceTemplate.Replace(TagKeyword, tag.ParsedTagName);
+                    string qualitySourceTag = QualitySourceTemplate.Replace(TagKeyword, tag.ParsedTagName);
 
                     var nominalTag = new TagProcessorMapEntry()
                     {
@@ -337,13 +345,13 @@ namespace TagProcGen
                 }
 
                 // Add else
-                outputTags.Add(GenerateConditionalTagEntry(ELSE_TEMPLATE));
+                outputTags.Add(GenerateConditionalTagEntry(ElseTemplate));
 
                 // Add original data mapping
                 outputTags.AddRange(TagsToWrap);
 
                 // Add end_if
-                outputTags.Add(GenerateConditionalTagEntry(END_IF_TEMPLATE));
+                outputTags.Add(GenerateConditionalTagEntry(EndIfTemplate));
 
                 return outputTags;
             }
@@ -359,7 +367,7 @@ namespace TagProcGen
                 var pointType = new PointTypeInfo(true, true); // Status binary as a placeholder
                 var mapEntry = new TagProcessorMapEntry()
                 {
-                    SourceExpression = qualityTag == null ? conditionalText : conditionalText.Replace(TAG_KEYWORD, qualityTag),
+                    SourceExpression = qualityTag == null ? conditionalText : conditionalText.Replace(TagKeyword, qualityTag),
                     PointType = pointType
                 };
 
@@ -373,19 +381,19 @@ namespace TagProcGen
             /// <param name="scadaColumns">SCADA data to derive nominal values from.</param>
             /// <param name="nominalValueColumns">Where to look in the SCADA data for the nominal values.</param>
             /// <returns>String that is the normal state for binaries or average of the two median analog alarms limits.</returns>
-            public static string GetNominalValue(PointTypeInfo pointType, OutputRowEntryDictionary scadaColumns, Tuple<int, int> nominalValueColumns)
+            public static string GetNominalValue(PointTypeInfo pointType, OutputRowEntryDictionary scadaColumns, (int lower, int upper) nominalValueColumns)
             {
                 if (pointType.IsBinary)
                 {
-                    if (scadaColumns.ContainsKey(nominalValueColumns.Item1))
+                    if (scadaColumns.ContainsKey(nominalValueColumns.lower))
                         // Convert Boolean to IEC 61131-3 TRUE or FALSE
-                        return Convert.ToBoolean(Convert.ToInt32(scadaColumns[nominalValueColumns.Item1])).ToString().ToUpper();
+                        return Convert.ToBoolean(Convert.ToInt32(scadaColumns[nominalValueColumns.lower])).ToString().ToUpper();
                     else
                         return "FALSE";
                 }
                 else
                 {
-                    var analogLimits = scadaColumns.Where(x => x.Key >= nominalValueColumns.Item1 & x.Key <= nominalValueColumns.Item2
+                    var analogLimits = scadaColumns.Where(x => x.Key >= nominalValueColumns.lower & x.Key <= nominalValueColumns.upper
                         ).Where(x => !string.IsNullOrWhiteSpace(x.Value)
                         ).OrderBy(x => Convert.ToDouble(x.Value)
                         ).ToList();
@@ -406,7 +414,7 @@ namespace TagProcGen
         /// <summary>
         /// Stores data for each tag processor map entry
         /// </summary>
-        public class TagProcessorMapEntry
+        private class TagProcessorMapEntry
         {
             /// <summary>Destination tag name.</summary>
             public string DestinationTagName { get; set; }
@@ -432,11 +440,11 @@ namespace TagProcGen
             public PointTypeInfo PointType { get; set; }
             /// <summary>SCADA data associated with the source tag.</summary>
             /// <remarks>Used for generating SCADA nominal values that will not generate alarms.</remarks>
-            public OutputRowEntryDictionary ScadaRow { get; set; }
+            public OutputRowEntryDictionary ScadaRow { get; private set; }
             /// <summary>Indicates whether to substitute nominal data when the source tag quality is bad.</summary>
             public bool PerformQualityWrapping { get; set; }
             /// <summary>Column numbers in the SCADA row data that contains the nominal data information.</summary>
-            public Tuple<int, int> NominalValueColumns { get; set; }
+            public (int lower, int upper) NominalValueColumns { get; set; }
 
             /// <summary>Time source tag to use when using tag quality substitution.</summary>
             public string TimeSourceTagName { get; set; }
@@ -491,7 +499,10 @@ namespace TagProcGen
             /// <param name="scadaRow">SCADA data associtated with source tag.</param>
             /// <param name="performQualityWrapping">Indicates wheter to substitute nominal data with the source tag quality is bad.</param>
             /// <param name="nominalValueColumns">Which columns in the SCADA data should be used to generate nominal values.</param>
-            public TagProcessorMapEntry(string destinationTagName, string destinationTagDataType, string sourceExpression, string sourceExpressionDataType, PointTypeInfo pointType, OutputRowEntryDictionary scadaRow, bool performQualityWrapping, Tuple<int, int> nominalValueColumns)
+            public TagProcessorMapEntry(string destinationTagName, string destinationTagDataType,
+                                        string sourceExpression, string sourceExpressionDataType,
+                                        PointTypeInfo pointType, OutputRowEntryDictionary scadaRow,
+                                        bool performQualityWrapping, (int lower, int upper) nominalValueColumns)
             {
                 DestinationTagName = destinationTagName;
                 DestinationTagDataType = destinationTagDataType;

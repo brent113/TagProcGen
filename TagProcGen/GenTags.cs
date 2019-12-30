@@ -18,27 +18,27 @@ namespace TagProcGen
         /// <summary>
         /// List of global template reference lookup pairs
         /// </summary>
-        public static Dictionary<string, string> GlobalPointers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        private static readonly Dictionary<string, string> GlobalPointers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
         // Worksheet References.
         /// <summary>Global Excel application reference.</summary>
-        public static Excel.Application xlApp;
+        private static Excel.Application xlApp;
         /// <summary>Global Excel Workbook reference.</summary>
-        public static Excel.Workbook xlWorkbook;
+        private static Excel.Workbook xlWorkbook;
         /// <summary>Global template reference to definitions worksheet.</summary>
-        public static Excel.Worksheet xlDef;
+        private static Excel.Worksheet xlDef;
 
         // Data templates for storing data.
         /// <summary>RTAC server tags template.</summary>
-        public static RtacTemplate TPL_Rtac;
+        private static RtacTemplate TPL_Rtac;
         /// <summary>Every loaded device template.</summary>
-        public static List<IedTemplate> IedTemplates;
+        private static List<IedTemplate> IedTemplates;
 
         // Output worksheet generators.
         /// <summary>RTAC tag processor worksheet template</summary>
-        public static RtacTagProcessorWorksheet TPL_TagProcessor;
+        private static RtacTagProcessorWorksheet TPL_TagProcessor;
         /// <summary>SCADA worksheet template.</summary>
-        public static ScadaWorksheet TPL_Scada;
+        private static ScadaWorksheet TPL_Scada;
 
         /// <summary>
         /// Master function that orchestrates the generation process. Calls each responsible function in turn.
@@ -47,6 +47,8 @@ namespace TagProcGen
         /// <param name="logger">Log Notifier</param>
         public static void Generate(string path, INotifier logger)
         {
+            logger.ThrowIfNull(nameof(logger));
+
             string Processing = "";
             try
             {
@@ -70,7 +72,7 @@ namespace TagProcGen
                 }
 
                 Processing = "Writing Tag Map";
-                TPL_TagProcessor.WriteCsv(path, (RtacTagProcessorWorksheet.QualityWrapModeEnum)Convert.ToInt32(TPL_Rtac.Pointers[Constants.TPL_RTAC_TAG_PROC_WRAP_MODE]));
+                TPL_TagProcessor.WriteCsv(path, (RtacTagProcessorWorksheet.QualityWrapModeEnum)Convert.ToInt32(TPL_Rtac.Pointers[Constants.TplRtacTagProcWrapMode]));
 
                 Processing = "Writing SCADA Tags";
                 TPL_Scada.WriteAllSCADATags(path);
@@ -78,7 +80,7 @@ namespace TagProcGen
                 Processing = "Writing RTAC Tags";
                 TPL_Rtac.WriteAllServerTags(path);
             }
-            catch (Exception ex)
+            catch (TagGenerationException ex)
             {
                 logger.Log("Could not successfully generate tag map. Error text:\r\n\r\n" + ex.Message + "\r\n\r\nOccured while: " + Processing, "Error", LogSeverity.Error);
                 return;
@@ -106,19 +108,19 @@ namespace TagProcGen
         /// </summary>
         public static void LocateTemplates()
         {
-            xlDef = xlWorkbook.Sheets[Constants.TPL_DEF_SHEET];
+            xlDef = xlWorkbook.Sheets[Constants.TplDefSheet];
 
             TPL_TagProcessor = new RtacTagProcessorWorksheet();
 
-            TPL_Rtac = new RtacTemplate(xlWorkbook.Sheets[Constants.TPL_RTAC_SHEET]);
+            TPL_Rtac = new RtacTemplate(xlWorkbook.Sheets[Constants.TplRtacSheet]);
 
-            TPL_Scada = new ScadaWorksheet(xlWorkbook.Sheets[Constants.TPL_SCADA_SHEET]);
+            TPL_Scada = new ScadaWorksheet(xlWorkbook.Sheets[Constants.TplScadaSheet]);
 
             IedTemplates = new List<IedTemplate>();
-            var specialSheets = new[] { Constants.TPL_DEF_SHEET, Constants.TPL_RTAC_SHEET, Constants.TPL_SCADA_SHEET };
+            var specialSheets = new[] { Constants.TplDefSheet, Constants.TplRtacSheet, Constants.TplScadaSheet };
             foreach (Excel.Worksheet sht in xlWorkbook.Sheets)
             {
-                if (sht.Name.StartsWith(Constants.TPL_SHEET_PREFIX) & !specialSheets.Contains(sht.Name))
+                if (sht.Name.StartsWith(Constants.TplSheetPrefix) & !specialSheets.Contains(sht.Name))
                     IedTemplates.Add(new IedTemplate(sht));
             }
         }
@@ -129,18 +131,18 @@ namespace TagProcGen
         public static void LoadPointers()
         {
             // Definition sheet pointers
-            SharedUtils.ReadPairRange(xlDef.get_Range(Constants.TPL_DEF), GlobalPointers, Constants.TPL_RTAC_DEF, Constants.TPL_SCADA_DEF, Constants.TPL_IED_DEF);
+            SharedUtils.ReadPairRange(xlDef.get_Range(Constants.TplDef), GlobalPointers, Constants.TplRtacDef, Constants.TplScadaDef, Constants.TplIedDef);
 
             // RTAC sheet pointers
-            SharedUtils.ReadPairRange(TPL_Rtac.XlSheet.get_Range(GlobalPointers[Constants.TPL_RTAC_DEF]), TPL_Rtac.Pointers, Constants.TPL_RTAC_MAP_NAME, Constants.TPL_RTAC_TAG_PROTO, Constants.TPL_RTAC_TAG_MAP, Constants.TPL_RTAC_ALIAS_SUB, Constants.TPL_RTAC_TAG_PROC_COLS, Constants.TPL_RTAC_TAG_PROC_WRAP_MODE);
+            SharedUtils.ReadPairRange(TPL_Rtac.XlSheet.get_Range(GlobalPointers[Constants.TplRtacDef]), TPL_Rtac.Pointers, Constants.TplRtacMapName, Constants.TplRtacTagProto, Constants.TplRtacTagMap, Constants.TplRtacAliasSub, Constants.TplRtacTagProcCols, Constants.TplRtacTagProcWrapMode);
 
             // SCADA sheet pointers
-            SharedUtils.ReadPairRange(TPL_Scada.XlSheet.get_Range(GlobalPointers[Constants.TPL_SCADA_DEF]), TPL_Scada.Pointers, Constants.TPL_SCADA_NAME_FORMAT, Constants.TPL_SCADA_MAX_NAME_LENGTH, Constants.TPL_SCADA_TAG_PROTO, Constants.TPL_SCADA_ADDRESS_OFFSET);
+            SharedUtils.ReadPairRange(TPL_Scada.XlSheet.get_Range(GlobalPointers[Constants.TplScadaDef]), TPL_Scada.Pointers, Constants.TplScadaNameFormat, Constants.TplScadaMaxNameLength, Constants.TplScadaTagProto, Constants.TplScadaAddressOffset);
 
             // IED pointers
             foreach (var t in IedTemplates)
                 // Pointers
-                SharedUtils.ReadPairRange(t.XlSheet.get_Range(GlobalPointers[Constants.TPL_IED_DEF]), t.Pointers, Constants.TPL_DATA, Constants.TPL_IED_NAMES, Constants.TPL_OFFSETS);
+                SharedUtils.ReadPairRange(t.XlSheet.get_Range(GlobalPointers[Constants.TplIedDef]), t.Pointers, Constants.TplData, Constants.TplIedNames, Constants.TplOffsets);
         }
 
         /// <summary>
@@ -150,14 +152,14 @@ namespace TagProcGen
         {
             Excel.Range c;
             // Read name
-            TPL_Rtac.RtacServerName = System.Convert.ToString(TPL_Rtac.XlSheet.get_Range(TPL_Rtac.Pointers[Constants.TPL_RTAC_MAP_NAME]).Text);
-            TPL_Rtac.AliasNameTemplate = System.Convert.ToString(TPL_Rtac.XlSheet.get_Range(TPL_Rtac.Pointers[Constants.TPL_RTAC_MAP_NAME]).get_Offset(0, 1).Text);
+            TPL_Rtac.RtacServerName = System.Convert.ToString(TPL_Rtac.XlSheet.get_Range(TPL_Rtac.Pointers[Constants.TplRtacMapName]).Text);
+            TPL_Rtac.AliasNameTemplate = System.Convert.ToString(TPL_Rtac.XlSheet.get_Range(TPL_Rtac.Pointers[Constants.TplRtacMapName]).get_Offset(0, 1).Text);
 
             // Read tag prototypes, splitting when necessary
-            c = TPL_Rtac.XlSheet.get_Range(TPL_Rtac.Pointers[Constants.TPL_RTAC_TAG_PROTO]);
+            c = TPL_Rtac.XlSheet.get_Range(TPL_Rtac.Pointers[Constants.TplRtacTagProto]);
             while (!string.IsNullOrEmpty(Convert.ToString(c.Text)))
             {
-                var tag = new RtacTemplate.ServerTagInfo(Convert.ToString(c.Text));
+                var tag = new ServerTagInfo(Convert.ToString(c.Text));
                 string prototypeFormat = Convert.ToString(c.get_Offset(0, 1).Text);
                 string colDataPairString = Convert.ToString(c.get_Offset(0, 2).Text);
                 string sortingColumnRaw = Convert.ToString(c.get_Offset(0, 3).Text);
@@ -174,7 +176,7 @@ namespace TagProcGen
             TPL_Rtac.ValidateTagPrototypes();
 
             // Read tag type map
-            c = TPL_Rtac.XlSheet.get_Range(TPL_Rtac.Pointers[Constants.TPL_RTAC_TAG_MAP]);
+            c = TPL_Rtac.XlSheet.get_Range(TPL_Rtac.Pointers[Constants.TplRtacTagMap]);
             while (!string.IsNullOrEmpty(Convert.ToString(c.Text)))
             {
                 string iedType = Convert.ToString(c.Text);
@@ -183,7 +185,7 @@ namespace TagProcGen
 
                 bool parseSuccess = bool.TryParse(performQualityMappingRaw, out bool performQualityMapping);
                 if (!parseSuccess)
-                    throw new Exception(string.Format("Invalid quality wrapping flag for IED Type map entry {0}", iedType));
+                    throw new TagGenerationException(string.Format("Invalid quality wrapping flag for IED Type map entry {0}", iedType));
 
                 TPL_Rtac.AddIedServerTagMap(iedType, rtacType, performQualityMapping);
 
@@ -191,10 +193,10 @@ namespace TagProcGen
             }
 
             // Read Tag Alias Substitutions
-            SharedUtils.ReadPairRange(TPL_Rtac.XlSheet.get_Range(TPL_Rtac.Pointers[Constants.TPL_RTAC_ALIAS_SUB]), TPL_Rtac.TagAliasSubstitutes);
+            SharedUtils.ReadPairRange(TPL_Rtac.XlSheet.get_Range(TPL_Rtac.Pointers[Constants.TplRtacAliasSub]), TPL_Rtac.TagAliasSubstitutes);
 
             // Read Tag processor Columns
-            ((string)TPL_Rtac.XlSheet.get_Range(TPL_Rtac.Pointers[Constants.TPL_RTAC_TAG_PROC_COLS]).Text).ParseColumnDataPairs(TPL_TagProcessor.TagProcessorColumnsTemplate);
+            ((string)TPL_Rtac.XlSheet.get_Range(TPL_Rtac.Pointers[Constants.TplRtacTagProcCols]).Text).ParseColumnDataPairs(TPL_TagProcessor.TagProcessorColumnsTemplate);
         }
 
         /// <summary>
@@ -203,11 +205,11 @@ namespace TagProcGen
         public static void ReadScada()
         {
             // Read name format
-            var c = TPL_Scada.XlSheet.get_Range(TPL_Scada.Pointers[Constants.TPL_SCADA_NAME_FORMAT]);
+            var c = TPL_Scada.XlSheet.get_Range(TPL_Scada.Pointers[Constants.TplScadaNameFormat]);
             TPL_Scada.ScadaNameTemplate = Convert.ToString(c.Text);
 
             // Read SCADA prototypes
-            c = TPL_Scada.XlSheet.get_Range(TPL_Scada.Pointers[Constants.TPL_SCADA_TAG_PROTO]);
+            c = TPL_Scada.XlSheet.get_Range(TPL_Scada.Pointers[Constants.TplScadaTagProto]);
             while (!string.IsNullOrEmpty(Convert.ToString(c.Text)))
             {
                 string pointTypeName = Convert.ToString(c.Text);
@@ -221,7 +223,7 @@ namespace TagProcGen
                     sortingColumn = -1;
 
                 if (sortingColumn < 0)
-                    throw new Exception(string.Format("SCADA prototype {0} is missing a valid sorting column.", pointTypeName));
+                    throw new TagGenerationException(string.Format("SCADA prototype {0} is missing a valid sorting column.", pointTypeName));
 
                 TPL_Scada.AddTagPrototypeEntry(pointTypeName, defaultColumnData, keyFormat, csvHeader, csvRowDefaults, sortingColumn);
 
@@ -235,16 +237,18 @@ namespace TagProcGen
         /// <param name="t">Device template to read.</param>
         public static void ReadTemplate(IedTemplate t)
         {
+            t.ThrowIfNull(nameof(t));
+
             Excel.Range c;
 
             // Read offsets
-            SharedUtils.ReadPairRange(t.XlSheet.get_Range(t.Pointers[Constants.TPL_OFFSETS]), t.Offsets);
+            SharedUtils.ReadPairRange(t.XlSheet.get_Range(t.Pointers[Constants.TplOffsets]), t.Offsets);
 
             // Read IED and SCADA names
-            c = t.XlSheet.get_Range(t.Pointers[Constants.TPL_IED_NAMES]);
+            c = t.XlSheet.get_Range(t.Pointers[Constants.TplIedNames]);
             while (!string.IsNullOrEmpty(Convert.ToString(c.Text)))
             {
-                t.IedScadaNames.Add(new IedTemplate.IedScadaNamePair()
+                t.IedScadaNames.Add(new IedScadaNamePair()
                 {
                     IedName = Convert.ToString(c.Text),
                     ScadaName = Convert.ToString(c.get_Offset(0, 1).Text)
@@ -254,13 +258,13 @@ namespace TagProcGen
             }
 
             // Read tag data
-            c = t.XlSheet.get_Range(t.Pointers[Constants.TPL_DATA]);
+            c = t.XlSheet.get_Range(t.Pointers[Constants.TplData]);
             // for speed locate the last row, then do 1 large read
             while (!string.IsNullOrEmpty(Convert.ToString(c.get_Offset(10, 0).Text))) // read by 10s
                 c = c.get_Offset(10, 0);
             while (!string.IsNullOrEmpty(Convert.ToString(c.get_Offset(1, 0).Text))) // read by 1s
                 c = c.get_Offset(1, 0);
-            var dataTable = t.XlSheet.get_Range(t.XlSheet.get_Range(t.Pointers[Constants.TPL_DATA]).Address + ":" + c.get_Offset(0, 7).Address).Value2;
+            var dataTable = t.XlSheet.get_Range(t.XlSheet.get_Range(t.Pointers[Constants.TplData]).Address + ":" + c.get_Offset(0, 7).Address).Value2;
 
             for (int i = 1, loopTo = dataTable.GetLength(0); i <= loopTo; i++)
             {
@@ -278,16 +282,16 @@ namespace TagProcGen
                     int pointNumber;
                     bool pointNumberIsAbsolute;
                     if (pointNumberRaw.Length == 0)
-                        throw new Exception("Point number missing");
-                    pointNumberIsAbsolute = (pointNumberRaw.Substring(0, 1) ?? "") == "=";
+                        throw new TagGenerationException("Point number missing");
+                    pointNumberIsAbsolute = pointNumberRaw.Substring(0, 1) == "=";
                     pointNumber = Convert.ToInt32(pointNumberIsAbsolute ? pointNumberRaw.Substring(1) : pointNumberRaw);
 
-                    var filter = new IedTemplate.FilterInfo(filterRaw);
+                    var filter = new FilterInfo(filterRaw);
                     var dataEntry = t.GetOrCreateTagEntry(iedTagType, filter, pointNumber, TPL_Rtac);
-                    dataEntry.DeviceFilter = new IedTemplate.FilterInfo(filterRaw);
+                    dataEntry.DeviceFilter = filter;
                     dataEntry.PointNumber = pointNumber;
                     dataEntry.PointNumberIsAbsolute = pointNumberIsAbsolute;
-                    dataEntry.IedTagNameTypeList.Add(new IedTemplate.IedTagNameTypePair() { IedTagName = iedTagName, IedTagTypeName = iedTagType });
+                    dataEntry.IedTagNameTypeList.Add(new IedTagNameTypePair() { IedTagName = iedTagName, IedTagTypeName = iedTagType });
 
                     if (rtacColumns.Length > 0)
                         rtacColumns.ParseColumnDataPairs((OutputRowEntryDictionary)dataEntry.RtacColumns);
@@ -308,10 +312,12 @@ namespace TagProcGen
         /// <param name="t">Template to generate data for.</param>
         public static void GenIEDTagProcMap(IedTemplate t)
         {
+            t.ThrowIfNull(nameof(t));
+
             foreach (var iedScadaNamePair in t.IedScadaNames)
             {
                 // Generate Data tag map and server tags from IEDs
-                foreach (var tag in t.AllIedPoints)
+                foreach (var tag in t.IedTagEntryList)
                 {
                     // Skip tag generation if this tag is filtered out
                     if (!tag.DeviceFilter.ShouldPointBeGenerated(iedScadaNamePair.IedName))
@@ -337,7 +343,7 @@ namespace TagProcGen
                         TPL_Scada.ValidateTagName(scadaFullName);
 
                         rtacAlias = TPL_Rtac.GetRtacAlias(scadaFullName, newTagRootPrototype.PointType);
-                        TPL_Rtac.ValidateTagAlias(rtacAlias);
+                        RtacTemplate.ValidateTagAlias(rtacAlias);
                     }
                     // End calc in advance
 
@@ -352,7 +358,7 @@ namespace TagProcGen
                         }
                         catch
                         {
-                            throw new Exception("Invalid SCADA column definitions - duplicate columns present.");
+                            throw new TagGenerationException("Invalid SCADA column definitions - duplicate columns present.");
                         }
 
                         // todo: replace with linked address if control
@@ -385,7 +391,7 @@ namespace TagProcGen
                         }
                         catch
                         {
-                            throw new Exception("Invalid RTAC column definitions - duplicate columns present.");
+                            throw new TagGenerationException("Invalid RTAC column definitions - duplicate columns present.");
                         }
 
                         // Point name from format
@@ -396,13 +402,12 @@ namespace TagProcGen
                             // Begin tag map processing
                             // Check if there's an IED tag that maps to the current tag prototype
                             int idx = index; // Required because iteration variables cannot be used in queries
-                            var iedTag = (from ied in tag.IedTagNameTypeList
-                                          where TPL_Rtac.GetServerTagInfoByDevice(ied.IedTagTypeName).Index == idx
-                                          select ied
-    ).ToList();
+                            var iedTag = tag.IedTagNameTypeList
+                                .Where(ied => TPL_Rtac.GetServerTagInfoByDevice(ied.IedTagTypeName).Index == idx)
+                                .ToList();
 
                             if (iedTag.Count > 1)
-                                throw new Exception("Too many tags that map to " + rtacTagInfoRootName + ". Tag = " + iedTag.First().IedTagName);
+                                throw new TagGenerationException("Too many tags that map to " + rtacTagInfoRootName + ". Tag = " + iedTag.First().IedTagName);
 
                             if (iedTag.Count == 1)
                             {
@@ -417,8 +422,7 @@ namespace TagProcGen
                                 string rtacServerTagName = "Tags." + rtacAlias + rtacTagSuffix;
                                 string rtacServerTagType = rtacServerTagTypeMap.ServerTagTypeName;
 
-                                TPL_TagProcessor.AddEntry(rtacServerTagName, rtacServerTagType, iedTagName, iedTagTypeName, newTagRootPrototype.PointType, scadaColumns, rtacServerTagTypeMap.PerformQualityWrapping, newTagRootPrototype.NominalColumns
-    );
+                                TPL_TagProcessor.AddEntry(rtacServerTagName, rtacServerTagType, iedTagName, iedTagTypeName, newTagRootPrototype.PointType, scadaColumns, rtacServerTagTypeMap.PerformQualityWrapping, newTagRootPrototype.NominalColumns);
                             }
                             // Tag map processing done
 
@@ -426,7 +430,7 @@ namespace TagProcGen
                             // for when potentially duplicate addresses get sorted, ie: array type
                             double fractionalAddress = Convert.ToDouble(index) / Convert.ToDouble(newTagRootPrototype.TagPrototypeEntries.Count);
 
-                            TPL_Rtac.ReplaceRtacKeywords(rtacColumns, tagName, Convert.ToString((double)address + fractionalAddress), rtacAlias);
+                            RtacTemplate.ReplaceRtacKeywords(rtacColumns, tagName, Convert.ToString((double)address + fractionalAddress), rtacAlias);
                             TPL_Rtac.AddRtacTagOutput(rtacTagInfoRootName, rtacColumns);
                         }
                     }
