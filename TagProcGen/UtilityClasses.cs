@@ -249,7 +249,8 @@ namespace TagProcGen
             columns.ThrowIfNull(nameof(columns));
             replacements.ThrowIfNull(nameof(replacements));
 
-            foreach (var columnKey in columns.Keys)
+            var keyCopy = columns.Keys.ToList();
+            foreach (var columnKey in keyCopy)
             {
                 foreach (var rep in replacements)
                     columns[columnKey] = columns[columnKey].Replace(rep.Key, rep.Value);
