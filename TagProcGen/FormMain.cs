@@ -86,12 +86,12 @@ namespace TagProcGen
             switch (Severity)
             {
                 case LogSeverity.Info:
-                    icon= MessageBoxIcon.Information; break;
+                    icon = MessageBoxIcon.Information; break;
                 case LogSeverity.Warning:
-                    icon= MessageBoxIcon.Warning; break;
+                    icon = MessageBoxIcon.Warning; break;
                 case LogSeverity.Error:
                 default:
-                    icon= MessageBoxIcon.Error; break;
+                    icon = MessageBoxIcon.Error; break;
             }
             MessageBox.Show(Log, Title, MessageBoxButtons.OK, icon);
         }

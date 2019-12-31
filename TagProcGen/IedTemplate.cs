@@ -14,20 +14,20 @@ namespace TagProcGen
     public class IedTemplate
     {
         /// <summary>
+        /// Create a new instance
+        /// </summary>
+        /// <param name="templateName">Name of template</param>
+        public IedTemplate(string templateName) => TemplateName = templateName;
+
+        /// <summary>
         /// Key: Pointer Name. Value: Cell Reference
         /// </summary>
         public Dictionary<string, string> Pointers { get; } = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
-        /// Excel worksheet corresponding to the IED template
+        /// IED template worksheet name
         /// </summary>
-        public Excel.Worksheet XlSheet { get; }
-
-        /// <summary>
-        /// Create a new instance
-        /// </summary>
-        /// <param name="xlSheet">Excel worksheet corresponding to the SCADA template</param>
-        public IedTemplate(Excel.Worksheet xlSheet) => XlSheet = xlSheet;
+        public string TemplateName { get; }
 
         /// <summary>
         /// Stores device address alignment (i.e. 50 status points per device).
@@ -65,19 +65,26 @@ namespace TagProcGen
         /// - All filters refer to device contained in the template
         /// - Controls reference another point in the template
         /// </summary>
-        /// <param name="rtacTemplate">RTAC template to resolve data types in.</param>
+        /// <param name="rtacTemplate">RTAC template, used for tag information</param>
         public void Validate(RtacTemplate rtacTemplate)
         {
+            rtacTemplate.ThrowIfNull(nameof(rtacTemplate));
+
             // Select list of groups of tags with multiple tag names that map to the same server tag entry.
             // In each iedTagEntry group the name / type list by the server mapped full type, ie DNPC[2].
             // There should only be 1 entry, if there's more that means 2 things map to the same MV for example.
-            var tagNameTypeEntriesThatMapToSamePrototypeEntry = IedTagEntryList.SelectMany(iedTagEntry => iedTagEntry.IedTagNameTypeList.GroupBy(iedTagNameTypePair => rtacTemplate.GetServerTagInfoByDevice(iedTagNameTypePair.IedTagTypeName).FullServerTagTypeName)
-                .Where(tagGroups => tagGroups.Count() > 1))
+            var tagNameTypeEntriesThatMapToSamePrototypeEntry = 
+                IedTagEntryList.SelectMany(iedTagEntry => iedTagEntry.IedTagNameTypeList.GroupBy(iedTagNameTypePair => rtacTemplate.GetServerTagInfoByDevice(iedTagNameTypePair.IedTagTypeName).FullServerTagTypeName)
+                                                                                        .Where(tagGroups => tagGroups.Count() > 1))
                 .ToList();
 
             if (tagNameTypeEntriesThatMapToSamePrototypeEntry.Count > 0)
-                throw new TagGenerationException(string.Format("Template {0} contains a multiple tags of the same type: \r\n{1} of type {2} and \r\n{3} of type {4}.", XlSheet.Name, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(0).IedTagName, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(0).IedTagTypeName, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(1).IedTagName, tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(1).IedTagTypeName
-            )
+                throw new TagGenerationException(string.Format("Template {0} contains a multiple tags of the same type: \r\n{1} of type {2} and \r\n{3} of type {4}.",
+                                                               rtacTemplate.TemplateName,
+                                                               tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(0).IedTagName,
+                                                               tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(0).IedTagTypeName,
+                                                               tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(1).IedTagName,
+                                                               tagNameTypeEntriesThatMapToSamePrototypeEntry.First().ElementAt(1).IedTagTypeName)
             );
 
             // Verify the maximum point number for each type is less than the offset.
@@ -235,9 +242,13 @@ namespace TagProcGen
         /// <returns>Device tag data of the linked point.</returns>
         public IedTagEntry GetLinkedStatusPoint(string iedName, string controlPointScadaName, RtacTemplate rtacTemplate)
         {
-            var search = IedTagEntryList.Where(x => rtacTemplate.GetServerTagPrototypeByDevice(x.IedTagNameTypeList.First().IedTagTypeName).PointType.IsStatus)
-                .Where(x => (x.ScadaPointName ?? "") == (controlPointScadaName ?? ""))
-                .Where(x => x.DeviceFilter.ShouldPointBeGenerated(iedName))
+            iedName.ThrowIfNull(nameof(iedName));
+            controlPointScadaName.ThrowIfNull(nameof(controlPointScadaName));
+            rtacTemplate.ThrowIfNull(nameof(rtacTemplate));
+
+            var search = IedTagEntryList.Where(iedTagEntry => rtacTemplate.GetServerTagPrototypeByDevice(iedTagEntry.IedTagNameTypeList.First().IedTagTypeName).PointType.IsStatus)
+                .Where(iedTagEntry => iedTagEntry.ScadaPointName == controlPointScadaName)
+                .Where(iedTagEntry => iedTagEntry.DeviceFilter.ShouldPointBeGenerated(iedName))
                 .ToList();
 
             // This error should not be thrown because this specific state is checked for during validation.
@@ -322,12 +333,14 @@ namespace TagProcGen
         /// <returns>True if point should be generated for provided device name.</returns>
         public bool ShouldPointBeGenerated(string iedName)
         {
-            if ((int)FilterPredicate == (int)FilterPredicateEnum.SOME)
+            if (FilterPredicate == FilterPredicateEnum.SOME)
                 return DeviceList.Contains(iedName);
-            else if ((int)FilterPredicate == (int)FilterPredicateEnum.NOT)
+            else if (FilterPredicate == FilterPredicateEnum.NOT)
                 return !DeviceList.Contains(iedName);
-            else
+            else if (FilterPredicate == FilterPredicateEnum.ALL)
                 return true;
+            else
+                throw new TagGenerationException($"Invalid Filter: {this.ToString()}");
         }
 
         /// <summary>

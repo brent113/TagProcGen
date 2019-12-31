@@ -14,23 +14,20 @@ namespace TagProcGen
     public class RtacTemplate
     {
         /// <summary>
+        /// Create a new instance
+        /// </summary>
+        /// <param name="templateName">RTAC template sheet name</param>
+        public RtacTemplate(string templateName) => TemplateName = templateName;
+
+        /// <summary>
         /// Key: Pointer Name. Value: Cell Reference
         /// </summary>
         public Dictionary<string, string> Pointers { get; } = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>
-        /// Excel worksheet corresponding to the RTAC template
+        /// RTAC template worksheet name
         /// </summary>
-        public Excel.Worksheet XlSheet { get; }
-
-        /// <summary>
-        /// Create a new instance
-        /// </summary>
-        /// <param name="xlSheet">Excel worksheet corresponding to the SCADA template</param>
-        public RtacTemplate(Excel.Worksheet xlSheet)
-        {
-            XlSheet = xlSheet;
-        }
+        public string TemplateName { get; }
 
         /// <summary>
         /// Name of the SCADA server object in the RTAC.

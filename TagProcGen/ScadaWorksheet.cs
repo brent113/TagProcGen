@@ -15,31 +15,21 @@ namespace TagProcGen
     /// </summary>
     public class ScadaWorksheet
     {
-        private readonly Dictionary<string, string> _Pointers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-        /// <summary>
-        /// Key: Pointer Name. Value: Cell Reference
-        /// </summary>
-        public Dictionary<string, string> Pointers
-        {
-            get
-            {
-                return _Pointers;
-            }
-        }
-
-        /// <summary>
-        /// Excel worksheet corresponding to the SCADA template
-        /// </summary>
-        public Excel.Worksheet XlSheet { get; }
-
         /// <summary>
         /// Create a new instance
         /// </summary>
-        /// <param name="xlSheet">Excel worksheet corresponding to the SCADA template</param>
-        public ScadaWorksheet(Excel.Worksheet xlSheet)
-        {
-            this.XlSheet = xlSheet;
-        }
+        /// <param name="templateName">SCADA template worksheet name</param>
+        public ScadaWorksheet(string templateName) => TemplateName = templateName;
+
+        /// <summary>
+        /// Key: Pointer Name. Value: Cell Reference
+        /// </summary>
+        public Dictionary<string, string> Pointers { get; } = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// SCADA template worksheet name
+        /// </summary>
+        public string TemplateName { get; }
 
         /// <summary>
         /// Template format to join the IED and Point names into the SCADA name.
