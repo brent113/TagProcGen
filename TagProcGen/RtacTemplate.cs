@@ -209,11 +209,11 @@ namespace TagProcGen
         {
             var tagMapInfo = GetServerTypeByIedType(iedTagName);
             if (tagMapInfo == null)
-                throw new ArgumentException("Unable to locate tag mapping.\r\n\r\nMissing: \"" + iedTagName + "\" in tag map.");
+                throw new TagGenerationException("Unable to locate tag mapping.\r\n\r\nMissing: \"" + iedTagName + "\" in tag map.");
 
             var Tag = new ServerTagInfo(tagMapInfo.ServerTagTypeName);
             if (!RtacTagPrototypes.ContainsKey(Tag.RootServerTagTypeName))
-                throw new ArgumentException("Unable to locate tag prototype.\r\n\r\nMissing: \"" + Tag.RootServerTagTypeName + "\" in tag prototype.");
+                throw new TagGenerationException("Unable to locate tag prototype.\r\n\r\nMissing: \"" + Tag.RootServerTagTypeName + "\" in tag prototype.");
 
             return Tag;
         }
@@ -367,7 +367,7 @@ namespace TagProcGen
         {
             var r = Regex.Match(tagAlias, @"^[A-Za-z0-9_]+\s*$", RegexOptions.None);
             if (!r.Success)
-                throw new ArgumentException("Invalid tag name: " + tagAlias);
+                throw new TagGenerationException("Invalid tag name: " + tagAlias);
         }
 
         /// <summary>
@@ -394,7 +394,7 @@ namespace TagProcGen
             tagGroup.Sort(comparer);
 
             if (!RtacTagPrototypes.ContainsKey(typeName))
-                throw new ArgumentException("Unable to locate tag prototype.\r\n\r\nMissing: \"" + typeName + "\" in tag prototype.");
+                throw new TagGenerationException("Unable to locate tag prototype.\r\n\r\nMissing: \"" + typeName + "\" in tag prototype.");
 
             string csvPath = System.IO.Path.GetDirectoryName(path) + System.IO.Path.DirectorySeparatorChar + System.IO.Path.GetFileNameWithoutExtension(path) + "_RtacServerTags_" + typeName + ".csv";
             using (var csvStreamWriter = new System.IO.StreamWriter(csvPath, false))
@@ -525,7 +525,7 @@ namespace TagProcGen
             // Note (?: ) is a non capture group
             var r = Regex.Match(fullServerTagTypeName, @"(\w+)(?:\[(\d+)\])?", RegexOptions.None);
             if (!r.Success)
-                throw new ArgumentException("Invalid tag type name: " + fullServerTagTypeName);
+                throw new TagGenerationException("Invalid tag type name: " + fullServerTagTypeName);
 
             this.fullServerTagTypeName = fullServerTagTypeName;
             RootServerTagTypeName = r.Groups[1].Value;

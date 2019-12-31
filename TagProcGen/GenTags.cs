@@ -375,10 +375,7 @@ namespace TagProcGen
                     // Calc in advance some basic info
                     int address = Convert.ToInt32(tag.PointNumberIsAbsolute ? tag.PointNumber : addressBase + tag.PointNumber);
 
-                    string scadaFullName = "";
-
-                    scadaFullName = TPL_Scada.ScadaNameGenerator(iedScadaNamePair.ScadaName, tag.ScadaPointName);
-
+                    string scadaFullName = TPL_Scada.ScadaNameGenerator(iedScadaNamePair.ScadaName, tag.ScadaPointName);
                     TPL_Scada.ValidateTagName(scadaFullName);
 
                     var scadaTagPrototype = TPL_Scada.ScadaTagPrototypes[newTagRootPrototype.PointType.ToString()];

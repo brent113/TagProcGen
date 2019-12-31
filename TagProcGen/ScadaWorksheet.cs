@@ -131,10 +131,10 @@ namespace TagProcGen
 
             var r = Regex.Match(tagName, "^[A-Za-z0-9 ]+$", RegexOptions.None);
             if (!r.Success)
-                throw new ArgumentException("Invalid tag name: " + tagName);
+                throw new TagGenerationException("Invalid tag name: " + tagName);
 
             if (tagName.Length > Convert.ToInt32(Pointers[Constants.TplScadaMaxNameLength]))
-                throw new ArgumentException("Tag name too long: " + tagName);
+                throw new TagGenerationException("Tag name too long: " + tagName);
             if (tagName.Length > _MaxValidatedTagLength)
             {
                 _MaxValidatedTagLength = tagName.Length;
@@ -201,7 +201,7 @@ namespace TagProcGen
             tagGroup.Sort(comparer);
 
             if (!ScadaTagPrototypes.ContainsKey(typeName))
-                throw new ArgumentException("Unable to locate tag prototype.\r\n\r\nMissing: \"" + typeName + "\" in tag prototype.");
+                throw new TagGenerationException("Unable to locate tag prototype.\r\n\r\nMissing: \"" + typeName + "\" in tag prototype.");
 
             string csvPath = System.IO.Path.GetDirectoryName(path) + System.IO.Path.DirectorySeparatorChar + System.IO.Path.GetFileNameWithoutExtension(path) + "_ScadaTags_" + typeName + ".csv";
             using (var csvStreamWriter = new System.IO.StreamWriter(csvPath, false))

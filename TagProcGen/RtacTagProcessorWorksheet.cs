@@ -93,7 +93,7 @@ namespace TagProcGen
                 sourceType = scadaTagDataType;
             }
             else
-                throw new ArgumentException("Invalid Direction");
+                throw new TagGenerationException("Invalid Direction");
 
             _Map.Add(new TagProcessorMapEntry(destTag, destType, sourceTag, sourceType, pointType, scadaRow,
                                               performQualityWrapping, nominalValueColumns));
