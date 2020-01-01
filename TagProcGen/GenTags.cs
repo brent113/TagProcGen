@@ -506,20 +506,32 @@ namespace TagProcGen
         /// <param name="path">Template path</param>
         private static void WriteFingerprint(string path)
         {
-            return;
-
             string csvPath = System.IO.Path.GetDirectoryName(path) + System.IO.Path.DirectorySeparatorChar + System.IO.Path.GetFileNameWithoutExtension(path) + "_Fingerprint.csv";
             using (var csvStreamWriter = new System.IO.StreamWriter(csvPath, false))
             {
                 using (var csvWriter = new CsvHelper.CsvWriter(csvStreamWriter))
                 {
-                    var header = "";
+                    var header = "Template,IED Tag,SCADA Tag,Address,RTAC Data,SCADA Data";
                     header.Split(',').ToList().ForEach(x => csvWriter.WriteField(x));
                     csvWriter.NextRecord();
 
-                    foreach (var t in IedTemplates)
+                    foreach (var template in IedTemplates)
                     {
+                        var enabledTags = template.IedTagEntryList.Where(tag => tag.DeviceFilter.FilterPredicate == FilterPredicateEnum.ALL)
+                            .Where(tag => tag.ScadaPointName != "--")
+                            .ToList();
 
+                        foreach (var tag in enabledTags)
+                        {
+                            csvWriter.WriteField(template.TemplateName);
+                            csvWriter.WriteField(string.Join(";", tag.IedTagNameTypeList.Select(t => $"{t.IedTagName}:{t.IedTagTypeName}")), true);
+                            csvWriter.WriteField(tag.ScadaPointName);
+                            csvWriter.WriteField(tag.PointNumber);
+                            csvWriter.WriteField(string.Join(";", tag.RtacColumns.Select(kv => $"[{kv.Key}, {kv.Value}]")));
+                            csvWriter.WriteField(string.Join(";", tag.ScadaColumns.Select(kv => $"[{kv.Key}, {kv.Value}]")));
+
+                            csvWriter.NextRecord();
+                        }
                     }
                 }
             }
