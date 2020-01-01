@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <HelpKI>
-  <HelpKINode Title="AddEntry method" Url="html/e54d04d6-8e3b-f548-a9e5-bd7b90ad3b84.htm" />
+  <HelpKINode Title="AddEntry method" Url="html/5375f9c4-c675-d833-8f1b-90e99bc89f32.htm" />
   <HelpKINode Title="AddIedServerTagMap method" Url="html/28df6172-ccb7-3edd-8294-7c67d6384560.htm" />
   <HelpKINode Title="AddRtacTagOutput method" Url="html/33e6cdab-eab3-afe8-f828-1cfa0f8e9827.htm" />
   <HelpKINode Title="AddScadaTagOutput method" Url="html/2e30f636-ee91-e7bd-b93d-79c2493c660f.htm" />
   <HelpKINode Title="AddTagPrototypeEntry method">
-    <HelpKINode Title="RtacTemplate.AddTagPrototypeEntry Method " Url="html/2921f849-af36-b247-3686-1b323b4f71dc.htm" />
+    <HelpKINode Title="RtacTemplate.AddTagPrototypeEntry Method " Url="html/c23f4178-9c46-08e9-c751-9fad456219d0.htm" />
     <HelpKINode Title="ScadaWorksheet.AddTagPrototypeEntry Method " Url="html/caf835c1-6c66-c5e7-6fd3-7a6211be4152.htm" />
   </HelpKINode>
   <HelpKINode Title="AliasNameTemplate property" Url="html/43d205cf-56d6-9a71-151d-fbc218622dc8.htm" />
-  <HelpKINode Title="ALL enumeration member" Url="html/710074b3-e1cc-caa5-c21b-fa494094ac08.htm" />
-  <HelpKINode Title="AllIedPoints property" Url="html/fc1beab4-d262-323a-afa2-dd589789a12e.htm" />
+  <HelpKINode Title="ALL enumeration member" Url="html/ebe0b324-24c8-358b-0b23-cce096ab7024.htm" />
   <HelpKINode Title="BySortingColumn class">
     <HelpKINode Title="BySortingColumn Class" Url="html/0c1cab49-fd46-dbd5-f385-bc2afc68d8d2.htm" />
     <HelpKINode Title="constructor" Url="html/c1e5996c-3b7f-7af1-299c-bcd75939d7c5.htm" />
@@ -19,14 +18,24 @@
   <HelpKINode Title="BySortingColumn.BySortingColumn constructor" Url="html/c1e5996c-3b7f-7af1-299c-bcd75939d7c5.htm" />
   <HelpKINode Title="BySortingColumn.Compare method" Url="html/732fb19a-0f7d-4415-c4f3-b3b4ad051ada.htm" />
   <HelpKINode Title="Compare method" Url="html/732fb19a-0f7d-4415-c4f3-b3b4ad051ada.htm" />
-  <HelpKINode Title="CsvHeader field" Url="html/1d23d115-2ddc-0810-3de7-1c8f908e026a.htm" />
-  <HelpKINode Title="CsvRowDefaults field" Url="html/357f6c7e-7547-71fa-3f43-e9ce48b02a73.htm" />
-  <HelpKINode Title="DestinationTagDataType property" Url="html/c8ddc9ab-cbe0-9baf-341b-d7f2e9304481.htm" />
-  <HelpKINode Title="DestinationTagName property" Url="html/011c1f86-1b03-5007-8590-930aec87d475.htm" />
-  <HelpKINode Title="DeviceFilter field" Url="html/4571dacb-e233-6cf3-62b8-9b578ee001f9.htm" />
-  <HelpKINode Title="DeviceList field" Url="html/3a1b2d8d-92b3-63d5-429c-5ba9286fd41e.htm" />
-  <HelpKINode Title="ELSE_TEMPLATE field" Url="html/9738bf0f-6ca9-d24e-e5a2-5e011244de4d.htm" />
-  <HelpKINode Title="END_IF_TEMPLATE field" Url="html/0801c56c-d08f-1982-2b27-b6d804f12f0b.htm" />
+  <HelpKINode Title="ConsoleNotifier class">
+    <HelpKINode Title="ConsoleNotifier Class" Url="html/2e417df9-86c2-0be1-3464-aef300ced3dd.htm" />
+    <HelpKINode Title="constructor" Url="html/f98b8093-6e58-e574-caa3-96120562a2a7.htm" />
+    <HelpKINode Title="methods" Url="html/0b78853d-933e-740b-bf9f-15a20a87dc55.htm" />
+    <HelpKINode Title="properties" Url="html/d17ce141-26df-f1cc-3ec4-bd91d7c8b548.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ConsoleNotifier.ConsoleNotifier constructor" Url="html/f98b8093-6e58-e574-caa3-96120562a2a7.htm" />
+  <HelpKINode Title="ConsoleNotifier.ErrorHasOccured property" Url="html/801eaf49-1bae-c053-86a1-6245cd97dae3.htm" />
+  <HelpKINode Title="ConsoleNotifier.Log method" Url="html/ceef4e17-c54a-2f6e-15b3-b1a1ac1da3ab.htm" />
+  <HelpKINode Title="CsvHeader property" Url="html/e7f8f933-b4a3-4d90-e3bf-a21386d11971.htm" />
+  <HelpKINode Title="CsvRowDefaults property" Url="html/fecb624f-36f9-f967-9780-ea894f7e6946.htm" />
+  <HelpKINode Title="DeviceFilter property" Url="html/09b58aaf-5393-82fd-8e2d-fc58327743f8.htm" />
+  <HelpKINode Title="DeviceList property" Url="html/a0210fa3-c263-2b4f-c648-867463c7276f.htm" />
+  <HelpKINode Title="Dispose method" Url="html/8f22b8d2-1c6e-5642-2c6c-a85e57873850.htm" />
+  <HelpKINode Title="Equality operator" Url="html/f641cbe9-75e3-c6ab-8b21-e2b5440cf37c.htm" />
+  <HelpKINode Title="Equals method" Url="html/a97a3844-271b-7fa0-3944-e845e9e7f4f0.htm" />
+  <HelpKINode Title="Error enumeration member" Url="html/17ab0b30-4173-dcec-3766-dc01c81ae8ec.htm" />
+  <HelpKINode Title="ErrorHasOccured property" Url="html/801eaf49-1bae-c053-86a1-6245cd97dae3.htm" />
   <HelpKINode Title="ExtensionMethods class">
     <HelpKINode Title="ExtensionMethods Class" Url="html/0980ef94-9ff3-d8a2-d83e-6adaec44bd9c.htm" />
     <HelpKINode Title="methods" Url="html/d501d5ce-1971-e8bb-1ec3-92731a339bd6.htm" />
@@ -35,154 +44,156 @@
   <HelpKINode Title="ExtensionMethods.ParseColumnDataPairs method" Url="html/56d6a340-e257-ed29-dd74-714e5e8700c1.htm" />
   <HelpKINode Title="ExtensionMethods.ReplaceTagKeywords method" Url="html/4e5ba965-4421-bd5a-4e17-e1a1e2492859.htm" />
   <HelpKINode Title="FilterInfo class">
-    <HelpKINode Title="fields" Url="html/a1108283-9053-3003-d2ef-5b6397eb722b.htm" />
-    <HelpKINode Title="methods" Url="html/c58870db-319d-22c1-e8ea-570dea1be220.htm" />
+    <HelpKINode Title="FilterInfo Class" Url="html/ff122135-3fbf-334f-5789-748a27fdf2fd.htm" />
+    <HelpKINode Title="constructor" Url="html/ec8dd4ec-f4a3-fe77-b1c0-b841d368b4b0.htm" />
+    <HelpKINode Title="methods" Url="html/c01612d1-61be-577f-6c10-f74d2b666c9d.htm" />
+    <HelpKINode Title="operators" Url="html/45f50ebe-93c2-7eb4-d372-5c815925329c.htm" />
+    <HelpKINode Title="properties" Url="html/ee67c316-48a8-fd0f-ab6b-f29b8dc4d8a3.htm" />
   </HelpKINode>
-  <HelpKINode Title="FilterPredicate field" Url="html/d2d67128-8177-1fee-c185-2894a6e470b5.htm" />
-  <HelpKINode Title="FullServerTagTypeName property" Url="html/3ad8e2a8-76fb-b561-0ddf-160c52a799b9.htm" />
-  <HelpKINode Title="Generate method">
-    <HelpKINode Title="GenTags.Generate Method " Url="html/d142aaed-f8e9-2c58-2cb1-dd89b67df50b.htm" />
-    <HelpKINode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator.Generate Method " Url="html/9aebaf6e-2ffe-d5b5-2433-efe836144e66.htm" />
+  <HelpKINode Title="FilterInfo.DeviceList property" Url="html/a0210fa3-c263-2b4f-c648-867463c7276f.htm" />
+  <HelpKINode Title="FilterInfo.Equality operator" Url="html/f641cbe9-75e3-c6ab-8b21-e2b5440cf37c.htm" />
+  <HelpKINode Title="FilterInfo.Equals method" Url="html/a97a3844-271b-7fa0-3944-e845e9e7f4f0.htm" />
+  <HelpKINode Title="FilterInfo.FilterInfo constructor" Url="html/ec8dd4ec-f4a3-fe77-b1c0-b841d368b4b0.htm" />
+  <HelpKINode Title="FilterInfo.FilterPredicate property" Url="html/5d310a27-e194-feb5-da82-8cd4125cdbeb.htm" />
+  <HelpKINode Title="FilterInfo.GetHashCode method" Url="html/c7d17ddb-3da3-a324-9120-d23348de5b0e.htm" />
+  <HelpKINode Title="FilterInfo.Inequality operator" Url="html/f352ab18-6275-e739-1881-f531470a2a00.htm" />
+  <HelpKINode Title="FilterInfo.ShouldPointBeGenerated method" Url="html/eea0628c-0fa0-4ef7-d749-782a7e51c82b.htm" />
+  <HelpKINode Title="FilterInfo.ToString method" Url="html/a1774bd0-6e89-44fa-a003-2fdcddf5ccc4.htm" />
+  <HelpKINode Title="FilterPredicate property" Url="html/5d310a27-e194-feb5-da82-8cd4125cdbeb.htm" />
+  <HelpKINode Title="FilterPredicateEnum enumeration" Url="html/ebe0b324-24c8-358b-0b23-cce096ab7024.htm" />
+  <HelpKINode Title="FormMain class">
+    <HelpKINode Title="FormMain Class" Url="html/b4f13e51-1dc7-fbfb-943e-5b32e1651e6e.htm" />
+    <HelpKINode Title="constructor" Url="html/75b827d5-70e9-8ff1-fcce-992e8ac30f24.htm" />
+    <HelpKINode Title="events" Url="html/a76ae382-5c82-9835-7ffb-89a2b5d314a9.htm" />
+    <HelpKINode Title="methods" Url="html/f16bcb74-5cf4-6c99-57d6-c11c162f3b0a.htm" />
+    <HelpKINode Title="properties" Url="html/1299b905-48f1-a8f1-a998-397d4feff77a.htm" />
   </HelpKINode>
-  <HelpKINode Title="GenerateConditionalTagEntry method" Url="html/accce18b-7fc0-9248-3c30-9410a4bdc210.htm" />
-  <HelpKINode Title="GenerateServerTagNameByAddress method" Url="html/861756af-1834-41a3-ccbb-f3c33e5b6f6a.htm" />
-  <HelpKINode Title="GenIEDTagProcMap method" Url="html/95bc7934-0d79-6743-5a0b-a3e2406a54be.htm" />
+  <HelpKINode Title="FormMain.Dispose method" Url="html/8f22b8d2-1c6e-5642-2c6c-a85e57873850.htm" />
+  <HelpKINode Title="FormMain.FormMain constructor" Url="html/75b827d5-70e9-8ff1-fcce-992e8ac30f24.htm" />
+  <HelpKINode Title="FullServerTagTypeName property" Url="html/49efb06a-a48e-37ec-879f-5724c19e7232.htm" />
+  <HelpKINode Title="Generate method" Url="html/07023849-36a9-88c7-034d-f98e2e4e6350.htm" />
+  <HelpKINode Title="GenerateServerTagNameByAddress method" Url="html/9d9054c0-7782-8de3-2c35-a11d853c2b19.htm" />
   <HelpKINode Title="GenTags class">
     <HelpKINode Title="GenTags Class" Url="html/1ade3047-3e97-9c85-fb41-72e606840297.htm" />
-    <HelpKINode Title="fields" Url="html/457884b8-91eb-011d-3be1-d4827472e291.htm" />
     <HelpKINode Title="methods" Url="html/21c91835-a0fa-19b4-3d1b-f4535ff8f384.htm" />
   </HelpKINode>
-  <HelpKINode Title="GenTags.Generate method" Url="html/d142aaed-f8e9-2c58-2cb1-dd89b67df50b.htm" />
-  <HelpKINode Title="GenTags.GenIEDTagProcMap method" Url="html/95bc7934-0d79-6743-5a0b-a3e2406a54be.htm" />
-  <HelpKINode Title="GenTags.GlobalPointers field" Url="html/8b1672dd-96e4-2f1d-510f-f36ff4af087d.htm" />
-  <HelpKINode Title="GenTags.IedTemplates field" Url="html/4699e947-b5cb-1cbe-dc7c-fb9732e643ed.htm" />
-  <HelpKINode Title="GenTags.InitExcel method" Url="html/1b9a2187-8dd3-9686-4875-2e18a4345f47.htm" />
-  <HelpKINode Title="GenTags.LoadPointers method" Url="html/3eae3da9-543f-af76-e6d7-65d7af103374.htm" />
-  <HelpKINode Title="GenTags.LocateTemplates method" Url="html/6c8f9230-1d52-c724-f9aa-3799f95fc47d.htm" />
-  <HelpKINode Title="GenTags.ReadRtac method" Url="html/926183a3-2e7a-f671-1b97-39ee6b33f838.htm" />
-  <HelpKINode Title="GenTags.ReadScada method" Url="html/96e77905-600a-46dd-65a7-4af9efdcfa13.htm" />
-  <HelpKINode Title="GenTags.ReadTemplate method" Url="html/08ac1331-b599-58dc-058f-c4736b935180.htm" />
-  <HelpKINode Title="GenTags.TPL_Rtac field" Url="html/b5461686-d33c-e251-8eca-d13fa6ae1a77.htm" />
-  <HelpKINode Title="GenTags.TPL_Scada field" Url="html/26205f3a-7c52-9996-d7e1-99e32af6d31e.htm" />
-  <HelpKINode Title="GenTags.TPL_TagProcessor field" Url="html/f2896cc3-a5b9-78fb-9daa-f2e351115da0.htm" />
-  <HelpKINode Title="GenTags.xlApp field" Url="html/bb3aafea-0c46-97df-638a-bf3872989a0f.htm" />
-  <HelpKINode Title="GenTags.xlDef field" Url="html/ffd2c265-d9ae-f367-c9be-a377104ffdee.htm" />
-  <HelpKINode Title="GenTags.xlWorkbook field" Url="html/de907b44-71e8-5d03-b492-5ba5665e061c.htm" />
-  <HelpKINode Title="GetArraySuffix method" Url="html/f7648bfd-aa12-3c45-1981-9f95bee38437.htm" />
+  <HelpKINode Title="GenTags.Generate method" Url="html/07023849-36a9-88c7-034d-f98e2e4e6350.htm" />
+  <HelpKINode Title="GetArraySuffix method" Url="html/7772e45b-87e5-e7ca-abc8-2026106669c3.htm" />
+  <HelpKINode Title="GetHashCode method" Url="html/c7d17ddb-3da3-a324-9120-d23348de5b0e.htm" />
   <HelpKINode Title="GetLinkedStatusPoint method" Url="html/0bbce6cd-adfe-6f65-d047-53a05c827b05.htm" />
-  <HelpKINode Title="GetNominalValue method" Url="html/fc07f66e-cfc7-5d67-acc0-1e5f04d4f50a.htm" />
   <HelpKINode Title="GetNthIndex method" Url="html/ce40c838-4f3b-10de-c336-b2829bde7e02.htm" />
-  <HelpKINode Title="GetOrCreateTagEntry method" Url="html/1c8179f2-5555-f0fc-912a-edda0c0d7ebe.htm" />
+  <HelpKINode Title="GetOrCreateTagEntry method" Url="html/2e521a81-11a8-30aa-9187-98ba5e829b1d.htm" />
   <HelpKINode Title="GetRtacAlias method" Url="html/a6c3b0ff-1c7a-b28d-0f4c-762dc72ef8b2.htm" />
   <HelpKINode Title="GetServerTagEntryByDevice method" Url="html/6b60c7b8-9a40-0bfe-e011-8b9b9ad20c36.htm" />
   <HelpKINode Title="GetServerTagInfoByDevice method" Url="html/a6927e82-e7c2-1b39-a76f-a677c4138cf9.htm" />
   <HelpKINode Title="GetServerTagPrototypeByDevice method" Url="html/fbf2f655-4b4d-ca14-7905-5e10f565f03f.htm" />
   <HelpKINode Title="GetServerTypeByIedType method" Url="html/b96729b0-42be-1f26-90b7-a243a86873c2.htm" />
-  <HelpKINode Title="GlobalPointers field" Url="html/8b1672dd-96e4-2f1d-510f-f36ff4af087d.htm" />
   <HelpKINode Title="GroupAllByDevice enumeration member" Url="html/c6dd1d07-c397-b19e-2ee6-5090b8d9c0cd.htm" />
-  <HelpKINode Title="IedName field" Url="html/f9f2b3e1-e718-678d-69b2-d13994797138.htm" />
+  <HelpKINode Title="IedName property" Url="html/583b248a-fc98-39f4-784d-32dd9103a17c.htm" />
   <HelpKINode Title="IedScadaNamePair class">
-    <HelpKINode Title="fields" Url="html/19d02fc4-c8ec-e5d8-08cf-19c7092282d4.htm" />
-    <HelpKINode Title="methods" Url="html/9649d5f5-c353-c5ec-d1e5-8f77d3173f0c.htm" />
+    <HelpKINode Title="IedScadaNamePair Class" Url="html/186be7b4-96a6-f306-ff15-33c9ecb959f3.htm" />
+    <HelpKINode Title="constructor" Url="html/698345a5-d039-06f3-472e-4e5ad96055f2.htm" />
+    <HelpKINode Title="methods" Url="html/4b559b26-10a6-5b17-60db-7acf08b981fe.htm" />
+    <HelpKINode Title="properties" Url="html/37502d49-16ea-9cd7-fe81-20312a5926c5.htm" />
   </HelpKINode>
+  <HelpKINode Title="IedScadaNamePair.IedName property" Url="html/583b248a-fc98-39f4-784d-32dd9103a17c.htm" />
+  <HelpKINode Title="IedScadaNamePair.IedScadaNamePair constructor" Url="html/698345a5-d039-06f3-472e-4e5ad96055f2.htm" />
+  <HelpKINode Title="IedScadaNamePair.ScadaName property" Url="html/6a9e2e95-007f-8a8c-5721-3ed7cc806e4a.htm" />
   <HelpKINode Title="IedScadaNames property" Url="html/ca02db96-2dcb-9d12-bcff-9f79031629ab.htm" />
   <HelpKINode Title="IedTagEntry class">
-    <HelpKINode Title="fields" Url="html/2747bcec-3c06-6d1f-c46d-b270169fdd3c.htm" />
-    <HelpKINode Title="methods" Url="html/fc558edf-767d-db48-3065-a79f44d61fad.htm" />
+    <HelpKINode Title="IedTagEntry Class" Url="html/9fff54aa-24f4-1501-101d-65852c304d8b.htm" />
+    <HelpKINode Title="constructor" Url="html/529c1bbb-12ae-dfa0-d07d-b2c9b8947581.htm" />
+    <HelpKINode Title="methods" Url="html/d0db8d4b-dba9-5b78-50e6-cf1ff31ff855.htm" />
+    <HelpKINode Title="properties" Url="html/a63f3672-9d4f-dae4-72ae-8040a16c5a33.htm" />
   </HelpKINode>
-  <HelpKINode Title="IedTagName field" Url="html/efefe64c-89c0-2c3c-38dd-07fe5bcddacc.htm" />
-  <HelpKINode Title="IedTagNameTypeList field" Url="html/1d9eb451-cf99-ff5c-66f4-35d335083053.htm" />
+  <HelpKINode Title="IedTagEntry.DeviceFilter property" Url="html/09b58aaf-5393-82fd-8e2d-fc58327743f8.htm" />
+  <HelpKINode Title="IedTagEntry.IedTagEntry constructor" Url="html/529c1bbb-12ae-dfa0-d07d-b2c9b8947581.htm" />
+  <HelpKINode Title="IedTagEntry.IedTagNameTypeList property" Url="html/7d659a71-2942-31f1-9743-96380d9d69b6.htm" />
+  <HelpKINode Title="IedTagEntry.PointNumber property" Url="html/6ad17601-a13f-38d8-7cbc-0ea81a5ed9e9.htm" />
+  <HelpKINode Title="IedTagEntry.PointNumberIsAbsolute property" Url="html/a35cce31-729e-b61d-fca7-49832c33727e.htm" />
+  <HelpKINode Title="IedTagEntry.RtacColumns property" Url="html/188b31bc-1043-64b6-2f5f-a4d4f249b409.htm" />
+  <HelpKINode Title="IedTagEntry.ScadaColumns property" Url="html/1bcc22ae-116e-b1f2-bcb6-df02510964b5.htm" />
+  <HelpKINode Title="IedTagEntry.ScadaPointName property" Url="html/50bb3697-1fac-b453-d027-e8275a90788d.htm" />
+  <HelpKINode Title="IedTagEntryList property" Url="html/53f45e04-cb41-fd20-b321-06e0c47f1998.htm" />
+  <HelpKINode Title="IedTagName property" Url="html/98a1745e-9645-44e4-5ab3-ad8d28545fa1.htm" />
+  <HelpKINode Title="IedTagNameTypeList property" Url="html/7d659a71-2942-31f1-9743-96380d9d69b6.htm" />
   <HelpKINode Title="IedTagNameTypePair class">
-    <HelpKINode Title="fields" Url="html/79a50172-0a69-c0ea-7524-de1537318e4d.htm" />
-    <HelpKINode Title="methods" Url="html/f333f337-b017-f930-078e-102ca7b14f94.htm" />
+    <HelpKINode Title="IedTagNameTypePair Class" Url="html/ee0cef25-8b48-08ca-5e94-ee20f0e5b5d4.htm" />
+    <HelpKINode Title="constructor" Url="html/f30c9f86-6d73-56bc-4efe-693eedc3bb17.htm" />
+    <HelpKINode Title="methods" Url="html/c1f774d7-60a2-2486-16dc-89dc6c876ac0.htm" />
+    <HelpKINode Title="properties" Url="html/4946c148-b4e7-2751-7c65-e037059bd337.htm" />
   </HelpKINode>
-  <HelpKINode Title="IedTagTypeName field" Url="html/68dcc656-ebb1-4e15-bef2-302d54442408.htm" />
+  <HelpKINode Title="IedTagNameTypePair.IedTagName property" Url="html/98a1745e-9645-44e4-5ab3-ad8d28545fa1.htm" />
+  <HelpKINode Title="IedTagNameTypePair.IedTagNameTypePair constructor" Url="html/f30c9f86-6d73-56bc-4efe-693eedc3bb17.htm" />
+  <HelpKINode Title="IedTagNameTypePair.IedTagTypeName property" Url="html/523441d8-88f3-2672-b910-ac9ab07902ef.htm" />
+  <HelpKINode Title="IedTagTypeName property" Url="html/523441d8-88f3-2672-b910-ac9ab07902ef.htm" />
   <HelpKINode Title="IedTemplate class">
     <HelpKINode Title="IedTemplate Class" Url="html/ebf582ba-dca0-a989-1c48-5c5f313e52fc.htm" />
-    <HelpKINode Title="constructor" Url="html/b3f83bf7-ceed-0c7f-6c62-b285ec45df0f.htm" />
+    <HelpKINode Title="constructor" Url="html/a2cf68f9-7f21-40a8-c617-1010aacc19d5.htm" />
     <HelpKINode Title="methods" Url="html/831236d6-fb1c-79c2-32f0-9e2ad41941f0.htm" />
     <HelpKINode Title="properties" Url="html/052e7f21-583a-bc11-c9b1-7d9065d164fa.htm" />
   </HelpKINode>
-  <HelpKINode Title="IedTemplate.AllIedPoints property" Url="html/fc1beab4-d262-323a-afa2-dd589789a12e.htm" />
-  <HelpKINode Title="IedTemplate.FilterInfo class">
-    <HelpKINode Title="IedTemplate.FilterInfo Class" Url="html/d110aa8b-cfba-52f4-2c54-1e609a067c37.htm" />
-    <HelpKINode Title="constructor" Url="html/71ad9638-bef4-06e8-1406-06b689cc3ddd.htm" />
-  </HelpKINode>
-  <HelpKINode Title="IedTemplate.FilterInfo.DeviceList field" Url="html/3a1b2d8d-92b3-63d5-429c-5ba9286fd41e.htm" />
-  <HelpKINode Title="IedTemplate.FilterInfo.FilterInfo constructor" Url="html/71ad9638-bef4-06e8-1406-06b689cc3ddd.htm" />
-  <HelpKINode Title="IedTemplate.FilterInfo.FilterPredicate field" Url="html/d2d67128-8177-1fee-c185-2894a6e470b5.htm" />
-  <HelpKINode Title="IedTemplate.FilterInfo.ShouldPointBeGenerated method" Url="html/674be8d6-9160-09b0-7a6d-78b67d43808a.htm" />
-  <HelpKINode Title="IedTemplate.FilterInfo.ToString method" Url="html/a7306f7a-c72d-cd44-8679-7aaaa65dec19.htm" />
-  <HelpKINode Title="IedTemplate.FilterPredicateEnum enumeration" Url="html/710074b3-e1cc-caa5-c21b-fa494094ac08.htm" />
   <HelpKINode Title="IedTemplate.GetLinkedStatusPoint method" Url="html/0bbce6cd-adfe-6f65-d047-53a05c827b05.htm" />
-  <HelpKINode Title="IedTemplate.GetOrCreateTagEntry method" Url="html/1c8179f2-5555-f0fc-912a-edda0c0d7ebe.htm" />
-  <HelpKINode Title="IedTemplate.IedScadaNamePair class">
-    <HelpKINode Title="IedTemplate.IedScadaNamePair Class" Url="html/bca8ebf8-c38c-2b06-3fe8-5ace736ad513.htm" />
-    <HelpKINode Title="constructor" Url="html/b5715b8a-b2f8-3250-ac27-76ec63fc8b11.htm" />
-  </HelpKINode>
-  <HelpKINode Title="IedTemplate.IedScadaNamePair.IedName field" Url="html/f9f2b3e1-e718-678d-69b2-d13994797138.htm" />
-  <HelpKINode Title="IedTemplate.IedScadaNamePair.IedScadaNamePair constructor" Url="html/b5715b8a-b2f8-3250-ac27-76ec63fc8b11.htm" />
-  <HelpKINode Title="IedTemplate.IedScadaNamePair.ScadaName field" Url="html/ed6d2e27-e5d5-16cd-df5f-176203645b30.htm" />
+  <HelpKINode Title="IedTemplate.GetOrCreateTagEntry method" Url="html/2e521a81-11a8-30aa-9187-98ba5e829b1d.htm" />
   <HelpKINode Title="IedTemplate.IedScadaNames property" Url="html/ca02db96-2dcb-9d12-bcff-9f79031629ab.htm" />
-  <HelpKINode Title="IedTemplate.IedTagEntry class">
-    <HelpKINode Title="IedTemplate.IedTagEntry Class" Url="html/b2cd1938-5aaf-422e-036a-a48418cfc32d.htm" />
-    <HelpKINode Title="constructor" Url="html/b1ea0e41-1f71-ad97-bdb8-de9ce70b1fd3.htm" />
-  </HelpKINode>
-  <HelpKINode Title="IedTemplate.IedTagEntry.DeviceFilter field" Url="html/4571dacb-e233-6cf3-62b8-9b578ee001f9.htm" />
-  <HelpKINode Title="IedTemplate.IedTagEntry.IedTagEntry constructor" Url="html/b1ea0e41-1f71-ad97-bdb8-de9ce70b1fd3.htm" />
-  <HelpKINode Title="IedTemplate.IedTagEntry.IedTagNameTypeList field" Url="html/1d9eb451-cf99-ff5c-66f4-35d335083053.htm" />
-  <HelpKINode Title="IedTemplate.IedTagEntry.PointNumber field" Url="html/261f7e8e-644f-c72f-bc8d-837aacd305ec.htm" />
-  <HelpKINode Title="IedTemplate.IedTagEntry.PointNumberIsAbsolute field" Url="html/5600db4d-f16a-1547-9f2a-43fca6b63351.htm" />
-  <HelpKINode Title="IedTemplate.IedTagEntry.RtacColumns field" Url="html/7bb5d8ad-525e-055c-570b-37b37c355876.htm" />
-  <HelpKINode Title="IedTemplate.IedTagEntry.ScadaColumns field" Url="html/f3d0a4bc-af3c-ee3c-5c0c-7670eeac7cad.htm" />
-  <HelpKINode Title="IedTemplate.IedTagEntry.ScadaPointName field" Url="html/0d2348f3-a3f5-e47e-7a68-8a8445fed9a3.htm" />
-  <HelpKINode Title="IedTemplate.IedTagNameTypePair class">
-    <HelpKINode Title="IedTemplate.IedTagNameTypePair Class" Url="html/b2adc314-5d6b-e03a-af16-5109bb4aba4d.htm" />
-    <HelpKINode Title="constructor" Url="html/d51c4037-9dd7-c1b0-7efc-59d37e7cf3ce.htm" />
-  </HelpKINode>
-  <HelpKINode Title="IedTemplate.IedTagNameTypePair.IedTagName field" Url="html/efefe64c-89c0-2c3c-38dd-07fe5bcddacc.htm" />
-  <HelpKINode Title="IedTemplate.IedTagNameTypePair.IedTagNameTypePair constructor" Url="html/d51c4037-9dd7-c1b0-7efc-59d37e7cf3ce.htm" />
-  <HelpKINode Title="IedTemplate.IedTagNameTypePair.IedTagTypeName field" Url="html/68dcc656-ebb1-4e15-bef2-302d54442408.htm" />
-  <HelpKINode Title="IedTemplate.IedTemplate constructor" Url="html/b3f83bf7-ceed-0c7f-6c62-b285ec45df0f.htm" />
+  <HelpKINode Title="IedTemplate.IedTagEntryList property" Url="html/53f45e04-cb41-fd20-b321-06e0c47f1998.htm" />
+  <HelpKINode Title="IedTemplate.IedTemplate constructor" Url="html/a2cf68f9-7f21-40a8-c617-1010aacc19d5.htm" />
   <HelpKINode Title="IedTemplate.Offsets property" Url="html/06505578-93d9-bd15-e7b4-98ee52b70beb.htm" />
   <HelpKINode Title="IedTemplate.Pointers property" Url="html/36dbce04-f5a3-4372-7402-0f1b3050d014.htm" />
   <HelpKINode Title="IedTemplate.SubstituteTagName method" Url="html/1539389c-5b45-52c6-04cb-3357b4ef855f.htm" />
+  <HelpKINode Title="IedTemplate.TemplateName property" Url="html/b2a0851e-64b7-25c3-38fa-41279228e063.htm" />
   <HelpKINode Title="IedTemplate.Validate method" Url="html/1cd45651-59b2-d987-c787-57d61a6cd1a6.htm" />
-  <HelpKINode Title="IedTemplate.xlSheet property" Url="html/aa87269d-2be7-2b3a-ffb6-e626f8897e8a.htm" />
-  <HelpKINode Title="IedTemplates field" Url="html/4699e947-b5cb-1cbe-dc7c-fb9732e643ed.htm" />
   <HelpKINode Title="IncrementRtacTagBaseAddressByRtacTagType method" Url="html/8207ea24-5e5f-93f8-526e-62aaa37fb0d5.htm" />
-  <HelpKINode Title="Index property" Url="html/ef780852-ce90-a2d6-e613-2ad81431e7d6.htm" />
-  <HelpKINode Title="InitExcel method" Url="html/1b9a2187-8dd3-9686-4875-2e18a4345f47.htm" />
+  <HelpKINode Title="Index property" Url="html/c637eabf-1878-75a4-3565-880cf3bd4544.htm" />
+  <HelpKINode Title="Inequality operator" Url="html/f352ab18-6275-e739-1881-f531470a2a00.htm" />
+  <HelpKINode Title="Info enumeration member" Url="html/17ab0b30-4173-dcec-3766-dc01c81ae8ec.htm" />
+  <HelpKINode Title="INotifier interface">
+    <HelpKINode Title="INotifier Interface" Url="html/bb443b5d-a958-9f1b-e648-7056afc4ff7c.htm" />
+    <HelpKINode Title="methods" Url="html/a6a77732-c7f8-821b-8676-8e61a7b55180.htm" />
+  </HelpKINode>
+  <HelpKINode Title="INotifier.Log method" Url="html/4952c501-4ce1-f348-dcab-7bcbb1945a23.htm" />
   <HelpKINode Title="IsAnalog property" Url="html/2ebcb514-7ceb-bc48-8dbd-4455f2c97e0f.htm" />
-  <HelpKINode Title="IsArray property" Url="html/b7286bcc-6ed3-7115-ca01-3e710abc2070.htm" />
+  <HelpKINode Title="IsArray property" Url="html/2fe562e8-b8b3-1e52-cb77-3292fe240c36.htm" />
   <HelpKINode Title="IsBinary property" Url="html/09e8d22f-e2f0-685b-c25b-f9371066ebed.htm" />
   <HelpKINode Title="IsControl property" Url="html/6712c1bd-d6c1-9811-821d-2652ff938a24.htm" />
   <HelpKINode Title="IsStatus property" Url="html/95b2a085-22e2-7d62-3b05-d8bbdbacbcce.htm" />
-  <HelpKINode Title="KeyFormat field" Url="html/6c9b3e73-423e-e91d-c2ce-389bcc6c2a27.htm" />
-  <HelpKINode Title="LoadPointers method" Url="html/3eae3da9-543f-af76-e6d7-65d7af103374.htm" />
-  <HelpKINode Title="LocateTemplates method" Url="html/6c8f9230-1d52-c724-f9aa-3799f95fc47d.htm" />
+  <HelpKINode Title="KeyFormat property" Url="html/e230ee62-2bb2-8494-b204-f588bccd51bf.htm" />
+  <HelpKINode Title="Log method">
+    <HelpKINode Title="ConsoleNotifier.Log Method " Url="html/ceef4e17-c54a-2f6e-15b3-b1a1ac1da3ab.htm" />
+    <HelpKINode Title="INotifier.Log Method " Url="html/4952c501-4ce1-f348-dcab-7bcbb1945a23.htm" />
+    <HelpKINode Title="MessageBoxNotifier.Log Method " Url="html/35411aa4-52fe-3c31-6327-d86bf6766b38.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LogSeverity enumeration" Url="html/17ab0b30-4173-dcec-3766-dc01c81ae8ec.htm" />
   <HelpKINode Title="MaxValidatedTag property" Url="html/d37b0322-7632-6e54-b18d-834da4ee411d.htm" />
   <HelpKINode Title="MaxValidatedTagLength property" Url="html/5614bd4d-4124-1367-e298-be8a9b992ea5.htm" />
-  <HelpKINode Title="NominalColumns field" Url="html/eaa620da-3c74-c2e1-66a0-5d14b870dc20.htm" />
-  <HelpKINode Title="NominalValueColumns property" Url="html/ae34f1a6-ef47-a236-99ba-c5be7474c5ac.htm" />
+  <HelpKINode Title="MessageBoxNotifier class">
+    <HelpKINode Title="MessageBoxNotifier Class" Url="html/620254d3-0e2c-50e6-949f-8f5eea78c81e.htm" />
+    <HelpKINode Title="constructor" Url="html/6743d13c-97cc-0cd4-ead0-9f353fe53805.htm" />
+    <HelpKINode Title="methods" Url="html/4dfaff7d-a4a1-60c3-332f-51f027660660.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MessageBoxNotifier.Log method" Url="html/35411aa4-52fe-3c31-6327-d86bf6766b38.htm" />
+  <HelpKINode Title="MessageBoxNotifier.MessageBoxNotifier constructor" Url="html/6743d13c-97cc-0cd4-ead0-9f353fe53805.htm" />
+  <HelpKINode Title="NominalColumns property" Url="html/1ba9ce3d-44b2-6fee-a25c-cf92a804cf5c.htm" />
   <HelpKINode Title="None enumeration member" Url="html/c6dd1d07-c397-b19e-2ee6-5090b8d9c0cd.htm" />
-  <HelpKINode Title="NOT enumeration member" Url="html/710074b3-e1cc-caa5-c21b-fa494094ac08.htm" />
+  <HelpKINode Title="NOT enumeration member" Url="html/ebe0b324-24c8-358b-0b23-cce096ab7024.htm" />
   <HelpKINode Title="Offsets property" Url="html/06505578-93d9-bd15-e7b4-98ee52b70beb.htm" />
   <HelpKINode Title="OutputRowEntryDictionaryToArray method" Url="html/faa71129-5eb2-9540-9e7e-fa752b2763eb.htm" />
+  <HelpKINode Title="ParameterVerificationHelper class">
+    <HelpKINode Title="ParameterVerificationHelper Class" Url="html/39db50f2-43b1-dbf7-de63-426916cf994d.htm" />
+    <HelpKINode Title="methods" Url="html/739cff8c-dec9-f797-b36e-657998bdceec.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ParameterVerificationHelper.ThrowIfNull(Of T) method" Url="html/9e11001e-2119-7399-f3cb-39ee3acad2d1.htm" />
+  <HelpKINode Title="ParameterVerificationHelper.ThrowIfNull&lt;T&gt; method" Url="html/9e11001e-2119-7399-f3cb-39ee3acad2d1.htm" />
   <HelpKINode Title="ParseColumnDataPairs method" Url="html/56d6a340-e257-ed29-dd74-714e5e8700c1.htm" />
-  <HelpKINode Title="ParsedDeviceName property" Url="html/1ef0bab5-0f79-b126-70b7-b76524419c1b.htm" />
-  <HelpKINode Title="ParsedTagName property" Url="html/aa961216-f3a1-087e-2264-a20a282fbb61.htm" />
-  <HelpKINode Title="PerformQualityWrapping field" Url="html/079207a1-666c-2741-8332-bc30a74b78a5.htm" />
-  <HelpKINode Title="PerformQualityWrapping property" Url="html/22c0b5ac-e0b6-d614-fd60-1ab36302f42e.htm" />
+  <HelpKINode Title="PerformQualityWrapping property" Url="html/507db6bb-6972-2f05-0e31-d7b566ae815f.htm" />
   <HelpKINode Title="Pointers property">
     <HelpKINode Title="IedTemplate.Pointers Property " Url="html/36dbce04-f5a3-4372-7402-0f1b3050d014.htm" />
     <HelpKINode Title="RtacTemplate.Pointers Property " Url="html/5f2a9d55-a2ba-20f4-4130-427ca5eea223.htm" />
     <HelpKINode Title="ScadaWorksheet.Pointers Property " Url="html/64afc11e-c998-68c1-f5a1-3302794e32f7.htm" />
   </HelpKINode>
-  <HelpKINode Title="PointNumber field" Url="html/261f7e8e-644f-c72f-bc8d-837aacd305ec.htm" />
-  <HelpKINode Title="PointNumberIsAbsolute field" Url="html/5600db4d-f16a-1547-9f2a-43fca6b63351.htm" />
-  <HelpKINode Title="PointType field" Url="html/70cf53e1-691e-01d3-a841-d7fa34acde3f.htm" />
-  <HelpKINode Title="PointType property" Url="html/0b160642-c024-5707-81c7-6e4b34b42c94.htm" />
+  <HelpKINode Title="PointNumber property" Url="html/6ad17601-a13f-38d8-7cbc-0ea81a5ed9e9.htm" />
+  <HelpKINode Title="PointNumberIsAbsolute property" Url="html/a35cce31-729e-b61d-fca7-49832c33727e.htm" />
+  <HelpKINode Title="PointType property" Url="html/f50dc216-28b3-9f6e-7cac-b1384e1ede87.htm" />
   <HelpKINode Title="PointTypeInfo class">
     <HelpKINode Title="PointTypeInfo Class" Url="html/63fa50df-e13c-d44a-572f-2bed2f2c9c6f.htm" />
     <HelpKINode Title="constructor" Url="html/0b4181d9-d6c6-8386-d50d-8e6903ef3739.htm" />
@@ -195,18 +206,12 @@
   <HelpKINode Title="PointTypeInfo.IsStatus property" Url="html/95b2a085-22e2-7d62-3b05-d8bbdbacbcce.htm" />
   <HelpKINode Title="PointTypeInfo.PointTypeInfo constructor" Url="html/0b4181d9-d6c6-8386-d50d-8e6903ef3739.htm" />
   <HelpKINode Title="PointTypeInfo.ToString method" Url="html/37f1e5d9-841c-a0b0-9788-2b91f3b164b7.htm" />
-  <HelpKINode Title="QualitySourceTagName property" Url="html/1e734619-e757-a9f2-2232-c21ded780c0a.htm" />
-  <HelpKINode Title="QUALITY_CONDITIONAL_TEMPLATE field" Url="html/02bffe00-a42a-420a-d5f9-8a19f09e5e97.htm" />
-  <HelpKINode Title="QUALITY_SOURCE_TEMPLATE field" Url="html/1528b69a-b308-212c-d70f-170ba5a1ffde.htm" />
   <HelpKINode Title="ReadPairRange method" Url="html/697da2ad-8ee7-378a-0064-84793a970ee9.htm" />
-  <HelpKINode Title="ReadRtac method" Url="html/926183a3-2e7a-f671-1b97-39ee6b33f838.htm" />
-  <HelpKINode Title="ReadScada method" Url="html/96e77905-600a-46dd-65a7-4af9efdcfa13.htm" />
-  <HelpKINode Title="ReadTemplate method" Url="html/08ac1331-b599-58dc-058f-c4736b935180.htm" />
   <HelpKINode Title="ReplaceRtacKeywords method" Url="html/18d5592f-a573-af31-67e4-cbfd0df85a95.htm" />
   <HelpKINode Title="ReplaceScadaKeywords method" Url="html/2e386af5-31e5-b1f0-5033-66a78e638625.htm" />
   <HelpKINode Title="ReplaceTagKeywords method" Url="html/4e5ba965-4421-bd5a-4e17-e1a1e2492859.htm" />
-  <HelpKINode Title="RootServerTagTypeName property" Url="html/db59ce4d-eac7-64e1-abde-d3748ac31445.htm" />
-  <HelpKINode Title="RtacColumns field" Url="html/7bb5d8ad-525e-055c-570b-37b37c355876.htm" />
+  <HelpKINode Title="RootServerTagTypeName property" Url="html/69812d66-5da3-169c-a0b9-f4bead91547a.htm" />
+  <HelpKINode Title="RtacColumns property" Url="html/188b31bc-1043-64b6-2f5f-a4d4f249b409.htm" />
   <HelpKINode Title="RtacServerName property" Url="html/9332eefe-5b0d-e087-5c1a-8c2403d75de7.htm" />
   <HelpKINode Title="RtacTagProcessorWorksheet class">
     <HelpKINode Title="RtacTagProcessorWorksheet Class" Url="html/01e946c8-e36e-a3d7-e858-17e90bd1152a.htm" />
@@ -214,56 +219,24 @@
     <HelpKINode Title="methods" Url="html/9418ebbf-8aa7-993c-5a30-ca124c41a825.htm" />
     <HelpKINode Title="properties" Url="html/20232bcd-f07f-15a2-a5da-90f879c5e4c3.htm" />
   </HelpKINode>
-  <HelpKINode Title="RtacTagProcessorWorksheet.AddEntry method" Url="html/e54d04d6-8e3b-f548-a9e5-bd7b90ad3b84.htm" />
+  <HelpKINode Title="RtacTagProcessorWorksheet.AddEntry method" Url="html/5375f9c4-c675-d833-8f1b-90e99bc89f32.htm" />
   <HelpKINode Title="RtacTagProcessorWorksheet.QualityWrapModeEnum enumeration" Url="html/c6dd1d07-c397-b19e-2ee6-5090b8d9c0cd.htm" />
   <HelpKINode Title="RtacTagProcessorWorksheet.RtacTagProcessorWorksheet constructor" Url="html/25944228-94c1-ce03-8745-9bcc38593cdd.htm" />
   <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorColumnsTemplate property" Url="html/ce6e402e-7841-0895-629e-d20389cdac74.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry class">
-    <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry Class" Url="html/5ce9c9b7-3254-f387-189b-b9dab1693293.htm" />
-    <HelpKINode Title="constructor" Url="html/647c7f6a-dcf0-594a-6ad7-7cd99b10fe57.htm" />
-  </HelpKINode>
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry.DestinationTagDataType property" Url="html/c8ddc9ab-cbe0-9baf-341b-d7f2e9304481.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry.DestinationTagName property" Url="html/011c1f86-1b03-5007-8590-930aec87d475.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry.NominalValueColumns property" Url="html/ae34f1a6-ef47-a236-99ba-c5be7474c5ac.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry.ParsedDeviceName property" Url="html/1ef0bab5-0f79-b126-70b7-b76524419c1b.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry.ParsedTagName property" Url="html/aa961216-f3a1-087e-2264-a20a282fbb61.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry.PerformQualityWrapping property" Url="html/22c0b5ac-e0b6-d614-fd60-1ab36302f42e.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry.PointType property" Url="html/0b160642-c024-5707-81c7-6e4b34b42c94.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry.QualitySourceTagName property" Url="html/1e734619-e757-a9f2-2232-c21ded780c0a.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry.ScadaRow property" Url="html/415ded19-3e4d-7244-2297-4f531313b628.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry.SourceExpression property" Url="html/aa526c84-bb3e-2dc2-2910-dc592ed5df38.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry.SourceExpressionDataType property" Url="html/d0c1850b-9683-1ed0-f7dd-aec568c23e4d.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry.TagProcessorMapEntry constructor" Url="html/647c7f6a-dcf0-594a-6ad7-7cd99b10fe57.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagProcessorMapEntry.TimeSourceTagName property" Url="html/86d9451e-890e-8367-3839-8651840d6109.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator class">
-    <HelpKINode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator Class" Url="html/3e8bc65c-7cbd-dd91-9861-bf062e0ce62d.htm" />
-    <HelpKINode Title="constructor" Url="html/3696e07d-a6ae-b0ea-3597-c75101192b88.htm" />
-  </HelpKINode>
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator.ELSE_TEMPLATE field" Url="html/9738bf0f-6ca9-d24e-e5a2-5e011244de4d.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator.END_IF_TEMPLATE field" Url="html/0801c56c-d08f-1982-2b27-b6d804f12f0b.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator.Generate method" Url="html/9aebaf6e-2ffe-d5b5-2433-efe836144e66.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator.GenerateConditionalTagEntry method" Url="html/accce18b-7fc0-9248-3c30-9410a4bdc210.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator.GetNominalValue method" Url="html/fc07f66e-cfc7-5d67-acc0-1e5f04d4f50a.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator.QUALITY_CONDITIONAL_TEMPLATE field" Url="html/02bffe00-a42a-420a-d5f9-8a19f09e5e97.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator.QUALITY_SOURCE_TEMPLATE field" Url="html/1528b69a-b308-212c-d70f-170ba5a1ffde.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator.TagQualityWrapGenerator constructor" Url="html/3696e07d-a6ae-b0ea-3597-c75101192b88.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator.TagsToWrap property" Url="html/e58516e5-c506-887e-7fb3-84d09cdf2bbe.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator.TAG_KEYWORD field" Url="html/a7122aac-597d-25c1-87a6-df576b42d3cb.htm" />
-  <HelpKINode Title="RtacTagProcessorWorksheet.TagQualityWrapGenerator.TIME_SOURCE_TEMPLATE field" Url="html/5cd36395-8655-ba44-1ebf-761fb4714b9e.htm" />
   <HelpKINode Title="RtacTagProcessorWorksheet.WriteCsv method" Url="html/4dd8b681-7513-e048-965c-648018faca98.htm" />
   <HelpKINode Title="RtacTagPrototypes property" Url="html/7f05c06d-f357-033d-afcc-9129479cd0d7.htm" />
   <HelpKINode Title="RtacTemplate class">
     <HelpKINode Title="RtacTemplate Class" Url="html/5eed4121-436a-f59b-1661-0987971e63c6.htm" />
-    <HelpKINode Title="constructor" Url="html/479b64bd-30b0-9406-ae17-ab2b7ba91e2e.htm" />
+    <HelpKINode Title="constructor" Url="html/de02e58f-97bb-f606-283c-204b63e9e2dc.htm" />
     <HelpKINode Title="methods" Url="html/81f9a3ce-8196-2809-3499-83a66d8d4c78.htm" />
     <HelpKINode Title="properties" Url="html/b4032607-4e47-42bd-6ba8-e3f22ad9934d.htm" />
   </HelpKINode>
   <HelpKINode Title="RtacTemplate.AddIedServerTagMap method" Url="html/28df6172-ccb7-3edd-8294-7c67d6384560.htm" />
   <HelpKINode Title="RtacTemplate.AddRtacTagOutput method" Url="html/33e6cdab-eab3-afe8-f828-1cfa0f8e9827.htm" />
-  <HelpKINode Title="RtacTemplate.AddTagPrototypeEntry method" Url="html/2921f849-af36-b247-3686-1b323b4f71dc.htm" />
+  <HelpKINode Title="RtacTemplate.AddTagPrototypeEntry method" Url="html/c23f4178-9c46-08e9-c751-9fad456219d0.htm" />
   <HelpKINode Title="RtacTemplate.AliasNameTemplate property" Url="html/43d205cf-56d6-9a71-151d-fbc218622dc8.htm" />
-  <HelpKINode Title="RtacTemplate.GenerateServerTagNameByAddress method" Url="html/861756af-1834-41a3-ccbb-f3c33e5b6f6a.htm" />
-  <HelpKINode Title="RtacTemplate.GetArraySuffix method" Url="html/f7648bfd-aa12-3c45-1981-9f95bee38437.htm" />
+  <HelpKINode Title="RtacTemplate.GenerateServerTagNameByAddress method" Url="html/9d9054c0-7782-8de3-2c35-a11d853c2b19.htm" />
+  <HelpKINode Title="RtacTemplate.GetArraySuffix method" Url="html/7772e45b-87e5-e7ca-abc8-2026106669c3.htm" />
   <HelpKINode Title="RtacTemplate.GetRtacAlias method" Url="html/a6c3b0ff-1c7a-b28d-0f4c-762dc72ef8b2.htm" />
   <HelpKINode Title="RtacTemplate.GetServerTagEntryByDevice method" Url="html/6b60c7b8-9a40-0bfe-e011-8b9b9ad20c36.htm" />
   <HelpKINode Title="RtacTemplate.GetServerTagInfoByDevice method" Url="html/a6927e82-e7c2-1b39-a76f-a677c4138cf9.htm" />
@@ -274,60 +247,35 @@
   <HelpKINode Title="RtacTemplate.ReplaceRtacKeywords method" Url="html/18d5592f-a573-af31-67e4-cbfd0df85a95.htm" />
   <HelpKINode Title="RtacTemplate.RtacServerName property" Url="html/9332eefe-5b0d-e087-5c1a-8c2403d75de7.htm" />
   <HelpKINode Title="RtacTemplate.RtacTagPrototypes property" Url="html/7f05c06d-f357-033d-afcc-9129479cd0d7.htm" />
-  <HelpKINode Title="RtacTemplate.RtacTemplate constructor" Url="html/479b64bd-30b0-9406-ae17-ab2b7ba91e2e.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagInfo class">
-    <HelpKINode Title="RtacTemplate.ServerTagInfo Class" Url="html/7abafda1-2c94-c861-ee0c-e61815df40b7.htm" />
-    <HelpKINode Title="constructor" Url="html/a44fa772-5737-665e-62ca-d86008e923e0.htm" />
-  </HelpKINode>
-  <HelpKINode Title="RtacTemplate.ServerTagInfo.FullServerTagTypeName property" Url="html/3ad8e2a8-76fb-b561-0ddf-160c52a799b9.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagInfo.Index property" Url="html/ef780852-ce90-a2d6-e613-2ad81431e7d6.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagInfo.IsArray property" Url="html/b7286bcc-6ed3-7115-ca01-3e710abc2070.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagInfo.RootServerTagTypeName property" Url="html/db59ce4d-eac7-64e1-abde-d3748ac31445.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagInfo.ServerTagInfo constructor" Url="html/a44fa772-5737-665e-62ca-d86008e923e0.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagMapInfo class">
-    <HelpKINode Title="RtacTemplate.ServerTagMapInfo Class" Url="html/9cc0dd91-e89b-f9f5-2bc7-e3307c084c74.htm" />
-    <HelpKINode Title="constructor" Url="html/3888d058-8b72-1a59-a189-4696014c0398.htm" />
-  </HelpKINode>
-  <HelpKINode Title="RtacTemplate.ServerTagMapInfo.PerformQualityWrapping field" Url="html/079207a1-666c-2741-8332-bc30a74b78a5.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagMapInfo.ServerTagMapInfo constructor" Url="html/3888d058-8b72-1a59-a189-4696014c0398.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagMapInfo.ServerTagTypeName field" Url="html/bb85fd27-9992-b52b-4313-f59d4d5489db.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagPrototypeEntry class">
-    <HelpKINode Title="RtacTemplate.ServerTagPrototypeEntry Class" Url="html/fcbf4804-22b7-a179-d46d-e542bda828e8.htm" />
-    <HelpKINode Title="constructor" Url="html/408da745-a2c3-86d8-214c-cef235f4b1c8.htm" />
-  </HelpKINode>
-  <HelpKINode Title="RtacTemplate.ServerTagPrototypeEntry.ServerTagNameTemplate field" Url="html/84c52a01-1e1f-0dc5-b46a-8809fa9ad5ab.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagPrototypeEntry.ServerTagPrototypeEntry constructor" Url="html/408da745-a2c3-86d8-214c-cef235f4b1c8.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagPrototypeEntry.StandardColumns field" Url="html/e0de6f12-6b83-487d-9fdd-72a62c9f7cf1.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagRootPrototype class">
-    <HelpKINode Title="RtacTemplate.ServerTagRootPrototype Class" Url="html/febc734d-2372-74af-27ae-d35f4d5c056d.htm" />
-    <HelpKINode Title="constructor" Url="html/4b07a4b6-6ac3-ed03-5634-c9d64a4cb84f.htm" />
-  </HelpKINode>
-  <HelpKINode Title="RtacTemplate.ServerTagRootPrototype.NominalColumns field" Url="html/eaa620da-3c74-c2e1-66a0-5d14b870dc20.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagRootPrototype.PointType field" Url="html/70cf53e1-691e-01d3-a841-d7fa34acde3f.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagRootPrototype.ServerTagRootPrototype constructor" Url="html/4b07a4b6-6ac3-ed03-5634-c9d64a4cb84f.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagRootPrototype.SortingColumn field" Url="html/086fde7f-4d11-93b5-c42b-23b936834d4e.htm" />
-  <HelpKINode Title="RtacTemplate.ServerTagRootPrototype.TagPrototypeEntries field" Url="html/d2d39bc7-0442-2c50-a07d-fac16c5e75e9.htm" />
+  <HelpKINode Title="RtacTemplate.RtacTemplate constructor" Url="html/de02e58f-97bb-f606-283c-204b63e9e2dc.htm" />
   <HelpKINode Title="RtacTemplate.TagAliasSubstitutes property" Url="html/7247dc17-3dd6-334c-fc15-25b22e339a84.htm" />
   <HelpKINode Title="RtacTemplate.TagTypeRunningAddressOffset property" Url="html/a07598b8-a7d3-2c0c-ce9d-0539c0d17c80.htm" />
+  <HelpKINode Title="RtacTemplate.TemplateName property" Url="html/06a80b33-f313-72b4-57a7-9d07062424e8.htm" />
   <HelpKINode Title="RtacTemplate.ValidateTag method" Url="html/0c986410-0b9e-2e03-dfcf-4b835d930b6e.htm" />
   <HelpKINode Title="RtacTemplate.ValidateTagAlias method" Url="html/a8f09ede-846e-6491-64db-c5c05a70ead6.htm" />
   <HelpKINode Title="RtacTemplate.ValidateTagPrototypes method" Url="html/bf25c8ab-8ca1-f24c-b22b-d6437ced6fb6.htm" />
   <HelpKINode Title="RtacTemplate.WriteAllServerTags method" Url="html/770cdde8-fa84-86ca-5315-2bc149d80f03.htm" />
-  <HelpKINode Title="RtacTemplate.xlSheet property" Url="html/f8d72c52-403c-5822-5b84-f7440d9130e3.htm" />
-  <HelpKINode Title="ScadaColumns field" Url="html/f3d0a4bc-af3c-ee3c-5c0c-7670eeac7cad.htm" />
-  <HelpKINode Title="ScadaName field" Url="html/ed6d2e27-e5d5-16cd-df5f-176203645b30.htm" />
+  <HelpKINode Title="ScadaColumns property" Url="html/1bcc22ae-116e-b1f2-bcb6-df02510964b5.htm" />
+  <HelpKINode Title="ScadaName property" Url="html/6a9e2e95-007f-8a8c-5721-3ed7cc806e4a.htm" />
   <HelpKINode Title="ScadaNameGenerator method" Url="html/166dc368-b090-8585-22e9-361c6512250f.htm" />
   <HelpKINode Title="ScadaNameTemplate property" Url="html/9d50d02e-4ff8-8812-efaf-b4475b88b88d.htm" />
-  <HelpKINode Title="ScadaPointName field" Url="html/0d2348f3-a3f5-e47e-7a68-8a8445fed9a3.htm" />
-  <HelpKINode Title="ScadaRow property" Url="html/415ded19-3e4d-7244-2297-4f531313b628.htm" />
+  <HelpKINode Title="ScadaPointName property" Url="html/50bb3697-1fac-b453-d027-e8275a90788d.htm" />
   <HelpKINode Title="ScadaTagPrototype class">
-    <HelpKINode Title="fields" Url="html/965b0eb1-d216-c8ef-07a2-4317787a6c66.htm" />
-    <HelpKINode Title="methods" Url="html/4ef09d83-fc46-5496-e52a-ae3e5e515abc.htm" />
+    <HelpKINode Title="ScadaTagPrototype Class" Url="html/489b0629-bcd9-55fd-6c03-a83da6c75993.htm" />
+    <HelpKINode Title="constructor" Url="html/4c40f35a-5b41-1923-9bbe-8c775cbef8bc.htm" />
+    <HelpKINode Title="methods" Url="html/47505783-5f0b-5a43-c0fd-f6d3ccc12f1b.htm" />
+    <HelpKINode Title="properties" Url="html/9b6b2cb1-ec62-ffc9-21e7-8f736c129db7.htm" />
   </HelpKINode>
+  <HelpKINode Title="ScadaTagPrototype.CsvHeader property" Url="html/e7f8f933-b4a3-4d90-e3bf-a21386d11971.htm" />
+  <HelpKINode Title="ScadaTagPrototype.CsvRowDefaults property" Url="html/fecb624f-36f9-f967-9780-ea894f7e6946.htm" />
+  <HelpKINode Title="ScadaTagPrototype.KeyFormat property" Url="html/e230ee62-2bb2-8494-b204-f588bccd51bf.htm" />
+  <HelpKINode Title="ScadaTagPrototype.ScadaTagPrototype constructor" Url="html/4c40f35a-5b41-1923-9bbe-8c775cbef8bc.htm" />
+  <HelpKINode Title="ScadaTagPrototype.SortingColumn property" Url="html/c4b426c2-0656-f50c-b60d-f53467331b41.htm" />
+  <HelpKINode Title="ScadaTagPrototype.StandardColumns property" Url="html/ca08e2ba-b0f8-a422-8422-a4b29dd64e0c.htm" />
   <HelpKINode Title="ScadaTagPrototypes property" Url="html/d651ade2-dde3-2fc9-cf0d-aa78e6e245c3.htm" />
   <HelpKINode Title="ScadaWorksheet class">
     <HelpKINode Title="ScadaWorksheet Class" Url="html/837d246f-9703-1b28-6902-91500a7d7e21.htm" />
-    <HelpKINode Title="constructor" Url="html/8f4bd731-4e22-313d-6397-be3c06173dfe.htm" />
+    <HelpKINode Title="constructor" Url="html/9e36c12a-f7fd-eb57-48b1-0966e4399b92.htm" />
     <HelpKINode Title="methods" Url="html/f1bf7b8c-a4fe-7704-716e-208a0a34247d.htm" />
     <HelpKINode Title="properties" Url="html/c713b248-b776-ae10-f508-0c2bd030b404.htm" />
   </HelpKINode>
@@ -339,121 +287,130 @@
   <HelpKINode Title="ScadaWorksheet.ReplaceScadaKeywords method" Url="html/2e386af5-31e5-b1f0-5033-66a78e638625.htm" />
   <HelpKINode Title="ScadaWorksheet.ScadaNameGenerator method" Url="html/166dc368-b090-8585-22e9-361c6512250f.htm" />
   <HelpKINode Title="ScadaWorksheet.ScadaNameTemplate property" Url="html/9d50d02e-4ff8-8812-efaf-b4475b88b88d.htm" />
-  <HelpKINode Title="ScadaWorksheet.ScadaTagPrototype class">
-    <HelpKINode Title="ScadaWorksheet.ScadaTagPrototype Class" Url="html/ca2e742e-6b7e-d074-57c9-68fee3b882fc.htm" />
-    <HelpKINode Title="constructor" Url="html/7eb95aa5-a38d-0781-9e7a-21435f314a27.htm" />
-  </HelpKINode>
-  <HelpKINode Title="ScadaWorksheet.ScadaTagPrototype.CsvHeader field" Url="html/1d23d115-2ddc-0810-3de7-1c8f908e026a.htm" />
-  <HelpKINode Title="ScadaWorksheet.ScadaTagPrototype.CsvRowDefaults field" Url="html/357f6c7e-7547-71fa-3f43-e9ce48b02a73.htm" />
-  <HelpKINode Title="ScadaWorksheet.ScadaTagPrototype.KeyFormat field" Url="html/6c9b3e73-423e-e91d-c2ce-389bcc6c2a27.htm" />
-  <HelpKINode Title="ScadaWorksheet.ScadaTagPrototype.ScadaTagPrototype constructor" Url="html/7eb95aa5-a38d-0781-9e7a-21435f314a27.htm" />
-  <HelpKINode Title="ScadaWorksheet.ScadaTagPrototype.SortingColumn field" Url="html/547b5c56-4799-e082-7f89-8263086e8c76.htm" />
-  <HelpKINode Title="ScadaWorksheet.ScadaTagPrototype.StandardColumns field" Url="html/085f7707-38ce-1540-574c-b5c508bff83e.htm" />
   <HelpKINode Title="ScadaWorksheet.ScadaTagPrototypes property" Url="html/d651ade2-dde3-2fc9-cf0d-aa78e6e245c3.htm" />
-  <HelpKINode Title="ScadaWorksheet.ScadaWorksheet constructor" Url="html/8f4bd731-4e22-313d-6397-be3c06173dfe.htm" />
+  <HelpKINode Title="ScadaWorksheet.ScadaWorksheet constructor" Url="html/9e36c12a-f7fd-eb57-48b1-0966e4399b92.htm" />
+  <HelpKINode Title="ScadaWorksheet.TemplateName property" Url="html/906848ce-ed03-edfc-9890-d54a11420f28.htm" />
   <HelpKINode Title="ScadaWorksheet.ValidateTagName method" Url="html/120b7cb5-3df6-2ecb-6a02-1f5326742a06.htm" />
   <HelpKINode Title="ScadaWorksheet.WriteAllSCADATags method" Url="html/d53e8a89-f8fe-5add-eb01-27f975f0af92.htm" />
-  <HelpKINode Title="ScadaWorksheet.xlSheet property" Url="html/3965b242-2e41-57a4-1826-85b165241dd6.htm" />
   <HelpKINode Title="ServerTagInfo class">
-    <HelpKINode Title="methods" Url="html/ade8a4ee-d6c6-fa3d-2508-c745e0e7253c.htm" />
-    <HelpKINode Title="properties" Url="html/70e2a1ec-988b-935b-af0d-85fb937c7fc4.htm" />
+    <HelpKINode Title="ServerTagInfo Class" Url="html/05b4af1e-6d8a-7494-aaad-18898af89363.htm" />
+    <HelpKINode Title="constructor" Url="html/6991106d-4aae-aa2b-c1e3-6bb5913fea4c.htm" />
+    <HelpKINode Title="methods" Url="html/a26ab3d2-506a-c7d6-e6a0-0fccc66429cf.htm" />
+    <HelpKINode Title="properties" Url="html/9e2934e7-c4fe-bd75-aa4e-2ea3dc379635.htm" />
   </HelpKINode>
+  <HelpKINode Title="ServerTagInfo.FullServerTagTypeName property" Url="html/49efb06a-a48e-37ec-879f-5724c19e7232.htm" />
+  <HelpKINode Title="ServerTagInfo.Index property" Url="html/c637eabf-1878-75a4-3565-880cf3bd4544.htm" />
+  <HelpKINode Title="ServerTagInfo.IsArray property" Url="html/2fe562e8-b8b3-1e52-cb77-3292fe240c36.htm" />
+  <HelpKINode Title="ServerTagInfo.RootServerTagTypeName property" Url="html/69812d66-5da3-169c-a0b9-f4bead91547a.htm" />
+  <HelpKINode Title="ServerTagInfo.ServerTagInfo constructor" Url="html/6991106d-4aae-aa2b-c1e3-6bb5913fea4c.htm" />
   <HelpKINode Title="ServerTagMapInfo class">
-    <HelpKINode Title="fields" Url="html/c9e46ffe-2d0a-06b8-f9f3-5a4e13b3992e.htm" />
-    <HelpKINode Title="methods" Url="html/99a62f5f-9076-b60c-1481-c968f7380a92.htm" />
+    <HelpKINode Title="ServerTagMapInfo Class" Url="html/4b061797-3a34-f268-d171-d73b24069ad3.htm" />
+    <HelpKINode Title="constructor" Url="html/3274a608-40d3-0a18-6148-c9e309841654.htm" />
+    <HelpKINode Title="methods" Url="html/fe39b558-fcab-fe63-c2b7-ad33a3daf32f.htm" />
+    <HelpKINode Title="properties" Url="html/c668fc69-6b32-c53e-6a57-63f1848f2541.htm" />
   </HelpKINode>
-  <HelpKINode Title="ServerTagNameTemplate field" Url="html/84c52a01-1e1f-0dc5-b46a-8809fa9ad5ab.htm" />
+  <HelpKINode Title="ServerTagMapInfo.PerformQualityWrapping property" Url="html/507db6bb-6972-2f05-0e31-d7b566ae815f.htm" />
+  <HelpKINode Title="ServerTagMapInfo.ServerTagMapInfo constructor" Url="html/3274a608-40d3-0a18-6148-c9e309841654.htm" />
+  <HelpKINode Title="ServerTagMapInfo.ServerTagTypeName property" Url="html/0e0f64c2-6130-c677-0894-d8e923acc924.htm" />
+  <HelpKINode Title="ServerTagNameTemplate property" Url="html/4340a4e7-e46e-ca94-babd-282365891ef2.htm" />
   <HelpKINode Title="ServerTagPrototypeEntry class">
-    <HelpKINode Title="fields" Url="html/c2b47867-90a4-9ab8-436f-01f1fc155d79.htm" />
-    <HelpKINode Title="methods" Url="html/c9a98d20-b964-a361-8b26-28dffbdbdce5.htm" />
+    <HelpKINode Title="ServerTagPrototypeEntry Class" Url="html/dd886c31-89e5-ac79-83ca-549ae6f21000.htm" />
+    <HelpKINode Title="constructor" Url="html/7e596477-b035-5ed8-8373-544dacf04f04.htm" />
+    <HelpKINode Title="methods" Url="html/a49dea30-f78e-3ba8-5ff5-27d44a99a1c1.htm" />
+    <HelpKINode Title="properties" Url="html/e7e994c7-de6a-0c81-a2d7-70e68d82acac.htm" />
   </HelpKINode>
+  <HelpKINode Title="ServerTagPrototypeEntry.ServerTagNameTemplate property" Url="html/4340a4e7-e46e-ca94-babd-282365891ef2.htm" />
+  <HelpKINode Title="ServerTagPrototypeEntry.ServerTagPrototypeEntry constructor" Url="html/7e596477-b035-5ed8-8373-544dacf04f04.htm" />
+  <HelpKINode Title="ServerTagPrototypeEntry.StandardColumns property" Url="html/c894c664-d58d-f2fd-96d6-826b52c47aff.htm" />
   <HelpKINode Title="ServerTagRootPrototype class">
-    <HelpKINode Title="fields" Url="html/f66eb9ec-0615-fa4f-74ed-922452d56c5f.htm" />
-    <HelpKINode Title="methods" Url="html/bfe5837c-95a4-4dc3-2acb-7ab823ed455d.htm" />
+    <HelpKINode Title="ServerTagRootPrototype Class" Url="html/e90b5d5a-625a-5c98-5eb9-7bd98ab8e491.htm" />
+    <HelpKINode Title="constructor" Url="html/694753f9-210c-ac9b-11d2-e8a785b6e1e0.htm" />
+    <HelpKINode Title="methods" Url="html/aa2e065b-2ce3-cbe3-04d0-278d11d8e240.htm" />
+    <HelpKINode Title="properties" Url="html/29b250a6-498c-f54e-bec5-fb51bb1ec9d1.htm" />
   </HelpKINode>
-  <HelpKINode Title="ServerTagTypeName field" Url="html/bb85fd27-9992-b52b-4313-f59d4d5489db.htm" />
+  <HelpKINode Title="ServerTagRootPrototype.NominalColumns property" Url="html/1ba9ce3d-44b2-6fee-a25c-cf92a804cf5c.htm" />
+  <HelpKINode Title="ServerTagRootPrototype.PointType property" Url="html/f50dc216-28b3-9f6e-7cac-b1384e1ede87.htm" />
+  <HelpKINode Title="ServerTagRootPrototype.ServerTagRootPrototype constructor" Url="html/694753f9-210c-ac9b-11d2-e8a785b6e1e0.htm" />
+  <HelpKINode Title="ServerTagRootPrototype.SortingColumn property" Url="html/d2f855f9-746a-0360-90f6-e8951f93eb2d.htm" />
+  <HelpKINode Title="ServerTagRootPrototype.TagPrototypeEntries property" Url="html/33a4fe2e-98a3-c17e-b3bb-5d0e8e5477ec.htm" />
+  <HelpKINode Title="ServerTagTypeName property" Url="html/0e0f64c2-6130-c677-0894-d8e923acc924.htm" />
   <HelpKINode Title="SharedUtils class">
     <HelpKINode Title="SharedUtils Class" Url="html/3d306b51-5f7a-145b-0c6e-56b3e0eb222f.htm" />
     <HelpKINode Title="methods" Url="html/abc84dd0-2c16-7013-9c1c-0f888d3c8710.htm" />
   </HelpKINode>
   <HelpKINode Title="SharedUtils.OutputRowEntryDictionaryToArray method" Url="html/faa71129-5eb2-9540-9e7e-fa752b2763eb.htm" />
   <HelpKINode Title="SharedUtils.ReadPairRange method" Url="html/697da2ad-8ee7-378a-0064-84793a970ee9.htm" />
-  <HelpKINode Title="ShouldPointBeGenerated method" Url="html/674be8d6-9160-09b0-7a6d-78b67d43808a.htm" />
-  <HelpKINode Title="SOME enumeration member" Url="html/710074b3-e1cc-caa5-c21b-fa494094ac08.htm" />
-  <HelpKINode Title="SortingColumn field">
-    <HelpKINode Title="RtacTemplate.ServerTagRootPrototype.SortingColumn Field" Url="html/086fde7f-4d11-93b5-c42b-23b936834d4e.htm" />
-    <HelpKINode Title="ScadaWorksheet.ScadaTagPrototype.SortingColumn Field" Url="html/547b5c56-4799-e082-7f89-8263086e8c76.htm" />
+  <HelpKINode Title="ShouldPointBeGenerated method" Url="html/eea0628c-0fa0-4ef7-d749-782a7e51c82b.htm" />
+  <HelpKINode Title="SOME enumeration member" Url="html/ebe0b324-24c8-358b-0b23-cce096ab7024.htm" />
+  <HelpKINode Title="SortingColumn property">
+    <HelpKINode Title="ScadaTagPrototype.SortingColumn Property " Url="html/c4b426c2-0656-f50c-b60d-f53467331b41.htm" />
+    <HelpKINode Title="ServerTagRootPrototype.SortingColumn Property " Url="html/d2f855f9-746a-0360-90f6-e8951f93eb2d.htm" />
   </HelpKINode>
-  <HelpKINode Title="SourceExpression property" Url="html/aa526c84-bb3e-2dc2-2910-dc592ed5df38.htm" />
-  <HelpKINode Title="SourceExpressionDataType property" Url="html/d0c1850b-9683-1ed0-f7dd-aec568c23e4d.htm" />
-  <HelpKINode Title="StandardColumns field">
-    <HelpKINode Title="RtacTemplate.ServerTagPrototypeEntry.StandardColumns Field" Url="html/e0de6f12-6b83-487d-9fdd-72a62c9f7cf1.htm" />
-    <HelpKINode Title="ScadaWorksheet.ScadaTagPrototype.StandardColumns Field" Url="html/085f7707-38ce-1540-574c-b5c508bff83e.htm" />
+  <HelpKINode Title="StandardColumns property">
+    <HelpKINode Title="ScadaTagPrototype.StandardColumns Property " Url="html/ca08e2ba-b0f8-a422-8422-a4b29dd64e0c.htm" />
+    <HelpKINode Title="ServerTagPrototypeEntry.StandardColumns Property " Url="html/c894c664-d58d-f2fd-96d6-826b52c47aff.htm" />
   </HelpKINode>
   <HelpKINode Title="SubstituteTagName method" Url="html/1539389c-5b45-52c6-04cb-3357b4ef855f.htm" />
   <HelpKINode Title="TagAliasSubstitutes property" Url="html/7247dc17-3dd6-334c-fc15-25b22e339a84.htm" />
-  <HelpKINode Title="TagProcessorColumnsTemplate property" Url="html/ce6e402e-7841-0895-629e-d20389cdac74.htm" />
-  <HelpKINode Title="TagProcessorMapEntry class">
-    <HelpKINode Title="methods" Url="html/dc8a198b-7191-5610-9a0b-ead830b01d3f.htm" />
-    <HelpKINode Title="properties" Url="html/8d668e78-3d33-34b1-1de3-ea9b3b38b5ce.htm" />
+  <HelpKINode Title="TagGenerationException class">
+    <HelpKINode Title="TagGenerationException Class" Url="html/72f70b23-c7de-4efe-8ab5-93beefb648b0.htm" />
+    <HelpKINode Title="constructor" Url="html/35cd700c-4107-441c-c7c6-0c49ba31a31a.htm" />
+    <HelpKINode Title="events" Url="html/7b7e2d8b-05d0-1e6c-e17d-1d64b2f64570.htm" />
+    <HelpKINode Title="methods" Url="html/06bffc59-564a-24c5-f4e3-bad2ee4992bd.htm" />
+    <HelpKINode Title="properties" Url="html/33625470-733e-605d-0e48-6c383553cadc.htm" />
   </HelpKINode>
+  <HelpKINode Title="TagGenerationException.TagGenerationException constructor" Url="html/35cd700c-4107-441c-c7c6-0c49ba31a31a.htm" />
+  <HelpKINode Title="TagProcessorColumnsTemplate property" Url="html/ce6e402e-7841-0895-629e-d20389cdac74.htm" />
   <HelpKINode Title="TagProcGen namespace" Url="html/76b416ce-348b-cca5-fbd2-6ca849320289.htm" />
   <HelpKINode Title="TagProcGen.BySortingColumn class" Url="html/0c1cab49-fd46-dbd5-f385-bc2afc68d8d2.htm" />
+  <HelpKINode Title="TagProcGen.ConsoleNotifier class" Url="html/2e417df9-86c2-0be1-3464-aef300ced3dd.htm" />
   <HelpKINode Title="TagProcGen.ExtensionMethods class" Url="html/0980ef94-9ff3-d8a2-d83e-6adaec44bd9c.htm" />
+  <HelpKINode Title="TagProcGen.FilterInfo class" Url="html/ff122135-3fbf-334f-5789-748a27fdf2fd.htm" />
+  <HelpKINode Title="TagProcGen.FilterPredicateEnum enumeration" Url="html/ebe0b324-24c8-358b-0b23-cce096ab7024.htm" />
+  <HelpKINode Title="TagProcGen.FormMain class" Url="html/b4f13e51-1dc7-fbfb-943e-5b32e1651e6e.htm" />
   <HelpKINode Title="TagProcGen.GenTags class" Url="html/1ade3047-3e97-9c85-fb41-72e606840297.htm" />
+  <HelpKINode Title="TagProcGen.IedScadaNamePair class" Url="html/186be7b4-96a6-f306-ff15-33c9ecb959f3.htm" />
+  <HelpKINode Title="TagProcGen.IedTagEntry class" Url="html/9fff54aa-24f4-1501-101d-65852c304d8b.htm" />
+  <HelpKINode Title="TagProcGen.IedTagNameTypePair class" Url="html/ee0cef25-8b48-08ca-5e94-ee20f0e5b5d4.htm" />
   <HelpKINode Title="TagProcGen.IedTemplate class" Url="html/ebf582ba-dca0-a989-1c48-5c5f313e52fc.htm" />
-  <HelpKINode Title="TagProcGen.IedTemplate.FilterInfo class" Url="html/d110aa8b-cfba-52f4-2c54-1e609a067c37.htm" />
-  <HelpKINode Title="TagProcGen.IedTemplate.FilterPredicateEnum enumeration" Url="html/710074b3-e1cc-caa5-c21b-fa494094ac08.htm" />
-  <HelpKINode Title="TagProcGen.IedTemplate.IedScadaNamePair class" Url="html/bca8ebf8-c38c-2b06-3fe8-5ace736ad513.htm" />
-  <HelpKINode Title="TagProcGen.IedTemplate.IedTagEntry class" Url="html/b2cd1938-5aaf-422e-036a-a48418cfc32d.htm" />
-  <HelpKINode Title="TagProcGen.IedTemplate.IedTagNameTypePair class" Url="html/b2adc314-5d6b-e03a-af16-5109bb4aba4d.htm" />
+  <HelpKINode Title="TagProcGen.INotifier interface" Url="html/bb443b5d-a958-9f1b-e648-7056afc4ff7c.htm" />
+  <HelpKINode Title="TagProcGen.LogSeverity enumeration" Url="html/17ab0b30-4173-dcec-3766-dc01c81ae8ec.htm" />
+  <HelpKINode Title="TagProcGen.MessageBoxNotifier class" Url="html/620254d3-0e2c-50e6-949f-8f5eea78c81e.htm" />
+  <HelpKINode Title="TagProcGen.ParameterVerificationHelper class" Url="html/39db50f2-43b1-dbf7-de63-426916cf994d.htm" />
   <HelpKINode Title="TagProcGen.PointTypeInfo class" Url="html/63fa50df-e13c-d44a-572f-2bed2f2c9c6f.htm" />
   <HelpKINode Title="TagProcGen.RtacTagProcessorWorksheet class" Url="html/01e946c8-e36e-a3d7-e858-17e90bd1152a.htm" />
   <HelpKINode Title="TagProcGen.RtacTagProcessorWorksheet.QualityWrapModeEnum enumeration" Url="html/c6dd1d07-c397-b19e-2ee6-5090b8d9c0cd.htm" />
-  <HelpKINode Title="TagProcGen.RtacTagProcessorWorksheet.TagProcessorMapEntry class" Url="html/5ce9c9b7-3254-f387-189b-b9dab1693293.htm" />
-  <HelpKINode Title="TagProcGen.RtacTagProcessorWorksheet.TagQualityWrapGenerator class" Url="html/3e8bc65c-7cbd-dd91-9861-bf062e0ce62d.htm" />
   <HelpKINode Title="TagProcGen.RtacTemplate class" Url="html/5eed4121-436a-f59b-1661-0987971e63c6.htm" />
-  <HelpKINode Title="TagProcGen.RtacTemplate.ServerTagInfo class" Url="html/7abafda1-2c94-c861-ee0c-e61815df40b7.htm" />
-  <HelpKINode Title="TagProcGen.RtacTemplate.ServerTagMapInfo class" Url="html/9cc0dd91-e89b-f9f5-2bc7-e3307c084c74.htm" />
-  <HelpKINode Title="TagProcGen.RtacTemplate.ServerTagPrototypeEntry class" Url="html/fcbf4804-22b7-a179-d46d-e542bda828e8.htm" />
-  <HelpKINode Title="TagProcGen.RtacTemplate.ServerTagRootPrototype class" Url="html/febc734d-2372-74af-27ae-d35f4d5c056d.htm" />
+  <HelpKINode Title="TagProcGen.ScadaTagPrototype class" Url="html/489b0629-bcd9-55fd-6c03-a83da6c75993.htm" />
   <HelpKINode Title="TagProcGen.ScadaWorksheet class" Url="html/837d246f-9703-1b28-6902-91500a7d7e21.htm" />
-  <HelpKINode Title="TagProcGen.ScadaWorksheet.ScadaTagPrototype class" Url="html/ca2e742e-6b7e-d074-57c9-68fee3b882fc.htm" />
+  <HelpKINode Title="TagProcGen.ServerTagInfo class" Url="html/05b4af1e-6d8a-7494-aaad-18898af89363.htm" />
+  <HelpKINode Title="TagProcGen.ServerTagMapInfo class" Url="html/4b061797-3a34-f268-d171-d73b24069ad3.htm" />
+  <HelpKINode Title="TagProcGen.ServerTagPrototypeEntry class" Url="html/dd886c31-89e5-ac79-83ca-549ae6f21000.htm" />
+  <HelpKINode Title="TagProcGen.ServerTagRootPrototype class" Url="html/e90b5d5a-625a-5c98-5eb9-7bd98ab8e491.htm" />
   <HelpKINode Title="TagProcGen.SharedUtils class" Url="html/3d306b51-5f7a-145b-0c6e-56b3e0eb222f.htm" />
-  <HelpKINode Title="TagPrototypeEntries field" Url="html/d2d39bc7-0442-2c50-a07d-fac16c5e75e9.htm" />
-  <HelpKINode Title="TagQualityWrapGenerator class">
-    <HelpKINode Title="fields" Url="html/b1aba3d5-76bb-360d-1ae6-5b3ba2ee47d9.htm" />
-    <HelpKINode Title="methods" Url="html/1d161cdb-9d82-ca85-639f-5bcdf6c95319.htm" />
-    <HelpKINode Title="properties" Url="html/a57084d8-47b8-fefd-cd7c-8291f274012b.htm" />
-  </HelpKINode>
-  <HelpKINode Title="TagsToWrap property" Url="html/e58516e5-c506-887e-7fb3-84d09cdf2bbe.htm" />
+  <HelpKINode Title="TagProcGen.TagGenerationException class" Url="html/72f70b23-c7de-4efe-8ab5-93beefb648b0.htm" />
+  <HelpKINode Title="TagPrototypeEntries property" Url="html/33a4fe2e-98a3-c17e-b3bb-5d0e8e5477ec.htm" />
   <HelpKINode Title="TagTypeRunningAddressOffset property" Url="html/a07598b8-a7d3-2c0c-ce9d-0539c0d17c80.htm" />
-  <HelpKINode Title="TAG_KEYWORD field" Url="html/a7122aac-597d-25c1-87a6-df576b42d3cb.htm" />
-  <HelpKINode Title="TimeSourceTagName property" Url="html/86d9451e-890e-8367-3839-8651840d6109.htm" />
-  <HelpKINode Title="TIME_SOURCE_TEMPLATE field" Url="html/5cd36395-8655-ba44-1ebf-761fb4714b9e.htm" />
+  <HelpKINode Title="TemplateName property">
+    <HelpKINode Title="IedTemplate.TemplateName Property " Url="html/b2a0851e-64b7-25c3-38fa-41279228e063.htm" />
+    <HelpKINode Title="RtacTemplate.TemplateName Property " Url="html/06a80b33-f313-72b4-57a7-9d07062424e8.htm" />
+    <HelpKINode Title="ScadaWorksheet.TemplateName Property " Url="html/906848ce-ed03-edfc-9890-d54a11420f28.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ThrowIfNull(Of T) method" Url="html/9e11001e-2119-7399-f3cb-39ee3acad2d1.htm" />
+  <HelpKINode Title="ThrowIfNull&lt;T&gt; method" Url="html/9e11001e-2119-7399-f3cb-39ee3acad2d1.htm" />
   <HelpKINode Title="ToString method">
-    <HelpKINode Title="IedTemplate.FilterInfo.ToString Method " Url="html/a7306f7a-c72d-cd44-8679-7aaaa65dec19.htm" />
+    <HelpKINode Title="FilterInfo.ToString Method " Url="html/a1774bd0-6e89-44fa-a003-2fdcddf5ccc4.htm" />
     <HelpKINode Title="PointTypeInfo.ToString Method " Url="html/37f1e5d9-841c-a0b0-9788-2b91f3b164b7.htm" />
   </HelpKINode>
-  <HelpKINode Title="TPL_Rtac field" Url="html/b5461686-d33c-e251-8eca-d13fa6ae1a77.htm" />
-  <HelpKINode Title="TPL_Scada field" Url="html/26205f3a-7c52-9996-d7e1-99e32af6d31e.htm" />
-  <HelpKINode Title="TPL_TagProcessor field" Url="html/f2896cc3-a5b9-78fb-9daa-f2e351115da0.htm" />
   <HelpKINode Title="Validate method" Url="html/1cd45651-59b2-d987-c787-57d61a6cd1a6.htm" />
   <HelpKINode Title="ValidateTag method" Url="html/0c986410-0b9e-2e03-dfcf-4b835d930b6e.htm" />
   <HelpKINode Title="ValidateTagAlias method" Url="html/a8f09ede-846e-6491-64db-c5c05a70ead6.htm" />
   <HelpKINode Title="ValidateTagName method" Url="html/120b7cb5-3df6-2ecb-6a02-1f5326742a06.htm" />
   <HelpKINode Title="ValidateTagPrototypes method" Url="html/bf25c8ab-8ca1-f24c-b22b-d6437ced6fb6.htm" />
+  <HelpKINode Title="Warning enumeration member" Url="html/17ab0b30-4173-dcec-3766-dc01c81ae8ec.htm" />
   <HelpKINode Title="WrapFirstGroupRestByDevice enumeration member" Url="html/c6dd1d07-c397-b19e-2ee6-5090b8d9c0cd.htm" />
   <HelpKINode Title="WrapIndividually enumeration member" Url="html/c6dd1d07-c397-b19e-2ee6-5090b8d9c0cd.htm" />
   <HelpKINode Title="WriteAllSCADATags method" Url="html/d53e8a89-f8fe-5add-eb01-27f975f0af92.htm" />
   <HelpKINode Title="WriteAllServerTags method" Url="html/770cdde8-fa84-86ca-5315-2bc149d80f03.htm" />
   <HelpKINode Title="WriteCsv method" Url="html/4dd8b681-7513-e048-965c-648018faca98.htm" />
-  <HelpKINode Title="xlApp field" Url="html/bb3aafea-0c46-97df-638a-bf3872989a0f.htm" />
-  <HelpKINode Title="xlDef field" Url="html/ffd2c265-d9ae-f367-c9be-a377104ffdee.htm" />
-  <HelpKINode Title="xlSheet property">
-    <HelpKINode Title="IedTemplate.xlSheet Property " Url="html/aa87269d-2be7-2b3a-ffb6-e626f8897e8a.htm" />
-    <HelpKINode Title="RtacTemplate.xlSheet Property " Url="html/f8d72c52-403c-5822-5b84-f7440d9130e3.htm" />
-    <HelpKINode Title="ScadaWorksheet.xlSheet Property " Url="html/3965b242-2e41-57a4-1826-85b165241dd6.htm" />
-  </HelpKINode>
-  <HelpKINode Title="xlWorkbook field" Url="html/de907b44-71e8-5d03-b492-5ba5665e061c.htm" />
 </HelpKI>
