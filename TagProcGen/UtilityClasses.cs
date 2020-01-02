@@ -123,7 +123,7 @@ namespace TagProcGen
     }
 
     /// <summary>
-    /// Custom comparer that sorts a list of output rows by the given sorting column alphanumerically.
+    /// /// Custom comparer that sorts a list of output rows by the given sorting column alphanumerically.
     /// </summary>
     public class BySortingColumn : IComparer<OutputRowEntryDictionary>
     {

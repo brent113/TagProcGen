@@ -45,7 +45,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\TagProcGen.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <NoWarn>CA1303;CA1304;CA1305;CA1307</NoWarn>
     <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
@@ -60,6 +61,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>CA1303;CA1304;CA1305;CA1307</NoWarn>
+    <DocumentationFile>bin\Release\TagProcGen.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>TagProcGen.Program</StartupObject>
@@ -68,7 +70,8 @@
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug Console\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DocumentationFile>bin\Debug\TagProcGen.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>7.3</LangVersion>
