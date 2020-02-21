@@ -104,6 +104,7 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="GenTags.cs" />
+    <Compile Include="Helper Classes\ShowHideConsole.cs" />
     <Compile Include="IedTemplate.cs" />
     <Compile Include="Helper Classes\INotifier.cs" />
     <Compile Include="Helper Classes\ParameterVerificationHelper.cs" />

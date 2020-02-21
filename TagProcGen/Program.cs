@@ -29,6 +29,9 @@ namespace TagProcGen
             }
             else
             {
+                // Hide Console
+                //ShowHideConsole.SetConsoleVisibility(false);
+                
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 #pragma warning disable CA2000 // Dispose objects before losing scope
