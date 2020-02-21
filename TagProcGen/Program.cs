@@ -30,7 +30,7 @@ namespace TagProcGen
             else
             {
                 // Hide Console
-                //ShowHideConsole.SetConsoleVisibility(false);
+                ShowHideConsole.SetConsoleVisibility(false);
                 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
